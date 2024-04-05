@@ -2,13 +2,12 @@ package com.ssafy.mvc.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.service.AttractionService;
 import com.ssafy.mvc.model.service.AttractionServiceImpl;
-import com.ssafy.util.Distance.NowLocation;
+import com.ssafy.mvc.model.NowLocation;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;

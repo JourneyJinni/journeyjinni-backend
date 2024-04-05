@@ -1,4 +1,4 @@
-package com.ssafy.util.Distance;
+package com.ssafy.mvc.model;
 
 /**
  * 현재 고객의 현재 위치를 가지고 있는 객체
@@ -11,15 +11,10 @@ public class NowLocation {
 	private Double longtitude;
 	
 	private static NowLocation nowLocation;
-	
-	/**
-	 * TODO 
-	 * GeoLocation의 위치 정확도 오류로 magic number 추가 
-	 */
+
 
 	/**
 	 * 문자열로 생성시에 Double 타입으로 형변환
-
 	 */
 	public NowLocation(String latitiude, String longtitude) {
 		this(Double.parseDouble(latitiude), Double.parseDouble(longtitude));
@@ -30,7 +25,7 @@ public class NowLocation {
         this.longtitude = longtitude;
         
         nowLocation = this;
-		System.out.println("[Log] 위치가 저장됨! : " + this.latitiude + " , " + this.longtitude);
+		System.out.println("[Log] : 현재 내위치 : " + this.latitiude + " , " + this.longtitude);
 	}
 	
 	public static NowLocation getLocation() {

@@ -3,10 +3,7 @@ package com.ssafy.util.Distance;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.w3c.dom.Attr;
-
-import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
+import com.ssafy.mvc.model.AttractionDistance;
 import com.ssafy.mvc.model.AttractionDto;
 
 public class DistanceSort {

@@ -7,7 +7,7 @@ import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.dao.AttractionDao;
 import com.ssafy.mvc.model.dao.AttractionDaoImpl;
 import com.ssafy.util.Distance.DistanceSort;
-import com.ssafy.util.Distance.NowLocation;
+import com.ssafy.mvc.model.NowLocation;
 
 public class AttractionServiceImpl implements AttractionService {
 

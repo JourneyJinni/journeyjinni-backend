@@ -1,12 +1,10 @@
-package com.ssafy.util.Distance;
-
-import com.ssafy.mvc.model.AttractionDto;
+package com.ssafy.mvc.model;
 
 /**
- * 기존의 관광지에 거리를 추가하여 정렬용 객체 
- * @param <T>
+ * 기존의 관광지에 거리를 추가하여 정렬용 객체
+ * @author 김규형
  */
-class AttractionDistance implements Comparable<AttractionDistance>{
+public class AttractionDistance implements Comparable<AttractionDistance>{
 	
 	private AttractionDto attraction;
 	private double distance;
