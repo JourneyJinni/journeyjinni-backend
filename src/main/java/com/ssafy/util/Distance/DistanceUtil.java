@@ -7,7 +7,9 @@ public class DistanceUtil {
 	
 	
 	private static final double EARTH_RADIUS_KM = 6371.0; // 지구 반지름
-
+	
+	// TODO : 정확도가 127km 씩 차이가 나서 설정한 값 추후 정확도 상승시 삭제해야함
+	private static final double ACCURACY = 127.0;
 	/**
 	 * 두 위도와 경도 사이의 거리를 구하는 메서드
 	 * @return d는 두 경도 사이의 거리이다.
@@ -20,7 +22,7 @@ public class DistanceUtil {
 	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 	    double d = EARTH_RADIUS_KM * c;    // 거리 단위를 미터로 변환
 		
-	    return d;
+	    return Math.abs(d - ACCURACY);
 	}
 }
 
