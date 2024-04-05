@@ -13,7 +13,7 @@ public class DistanceUtil {
 	 * 두 위도와 경도 사이의 거리를 구하는 메서드
 	 * @return d는 두 경도 사이의 거리이다.
 	 */
-	private double getDistance(double lat1, double lon1, double lat2, double lon2) {
+	public static double getDistance(double lat1, double lon1, double lat2, double lon2) {
 		double dLat = Math.toRadians(lat2 - lat1);
 	    double dLon = Math.toRadians(lon2 - lon1);
 	    

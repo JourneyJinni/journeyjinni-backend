@@ -1,8 +1,14 @@
 package com.ssafy.mvc.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.service.AttractionService;
 import com.ssafy.mvc.model.service.AttractionServiceImpl;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -10,9 +16,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.util.List;
 
 
 @WebServlet("/attraction-controller")
@@ -52,6 +55,17 @@ public class AttractionContoller extends HttpServlet {
                 AttractionDto attractionDetail = attractionService.getAttraction(Integer.parseInt(contentId));
                 request.setAttribute("attractionDetail", attractionDetail);
                 forward(request, response, "/view/tour/attractiondetail.jsp");
+            } else if("attractionRoute".equals(action)) {
+            	ArrayList<String[]> list = new ArrayList<>();
+            	for(int i=0;i<10;i++) {
+            		String[] input = request.getParameter("attration"+i).split(" ");
+            		if(input !=null) {
+            			list.add(input);
+            		}
+            	}
+            	
+                
+            	
             }
         } catch (Exception e) {
             e.printStackTrace();

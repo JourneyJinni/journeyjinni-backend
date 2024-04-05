@@ -22,3 +22,5 @@ function settingMap(latitude, longitude) {
     marker.setMap(map);
 }
 
+
+
