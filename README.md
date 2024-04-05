@@ -37,7 +37,8 @@
 ![Haversine](https://img.shields.io/badge/Haversine-000000?style=flat-square&logo=JavaScript&logoColor=F7DF1E)
 ![Merge Sort](https://img.shields.io/badge/Merge_Sort-000000?style=flat-square)
 
-![list](https://github.com/unggu0704/nhnacademy-study/assets/130115689/ceab0b6d-1ebd-4c0d-ac40-37216b814615)
+![signup](https://github.com/unggu0704/algorithm-study/assets/130115689/745c5648-939c-4e67-a9af-27ab882cc3a8)
+
 
 - 관광지 조회는 모두 **attraction-controller** 가 제어합니다.
 
@@ -48,7 +49,8 @@
     - 사용자가 원하는 정보만을 Read
     - 사용자가 자세히 보기를 원하는 관광지 정보 Read
 - 선택한 관광지에 대해서 카카오 맵 api를 활용해 위치 정보를 제공합니다.
-- 결과는 서버에 저장되어 있는 사용자 위치를 기반으로 가까운 순서부터 제공합니다. 
+- 결과는 서버에 저장되어 있는 사용자 위치를 기반으로 **Haversine** 알고리즘을 사용해 거리를 계산합니다.
+- **merge sort**를 사용하여 가까운 순서부터 제공합니다. 
 
 ## 메인 화면
 
@@ -59,11 +61,11 @@
 - `더보기` 버튼을 통해 modal로 관광지에 대한 자세한 정보를 제공합니다.
 
 
-### *기존의 기능 (알고리즘 미사용x)*
 
 ## 로그인 및 회원 관리
 
-![member_login_logout](/uploads/315ba03038e14aeb88dd528aff2c77f7/member_login_logout.gif)
+![login](https://github.com/unggu0704/algorithm-study/assets/130115689/e3be4e51-90d8-47a4-82fc-653c1c004af5)
+
 
 - 유저관련 CRUD는 모두 **memberController** 가 제어합니다.
 - 로그인 성공 시 유저의 id, 이름은 session에 저장됩니다.
@@ -71,7 +73,7 @@
 - 수정 완료 시 로그아웃 처리됩니다.
 
 
-![member_signup_delete](/uploads/141e915a49c5199ef9cb4f4dff9079e2/member_signup_delete.gif)
+![signup](https://github.com/unggu0704/algorithm-study/assets/130115689/7bd6a5b0-7ca4-4149-8a28-eba5cf1d4414)
 
 - 회원가입 시 입력한 ID가 DB에 존재하는 지 ajax를 사용하여 검사합니다.
 - 검사 결과 아이디 사용여부를 물은 후 완료 또는 취소될 때까지 ID를 수정할 수 없습니다.
