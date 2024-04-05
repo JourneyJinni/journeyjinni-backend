@@ -3,6 +3,8 @@ package com.ssafy.mvc.controller;
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.service.AttractionService;
 import com.ssafy.mvc.model.service.AttractionServiceImpl;
+import com.ssafy.util.Distance.NowLocation;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -48,10 +50,16 @@ public class AttractionContoller extends HttpServlet {
             } else if ("attractionDetail".equals(action)) {
                 String contentId = request.getParameter("selectedAttractionId");
 
-                System.out.println("id : " + contentId);
                 AttractionDto attractionDetail = attractionService.getAttraction(Integer.parseInt(contentId));
                 request.setAttribute("attractionDetail", attractionDetail);
                 forward(request, response, "/view/tour/attractiondetail.jsp");
+            } else if ("nowLocation".equals(action)) {
+            	System.out.println("[Log] : 위치 정보가 사용됨!");
+                String latitude = request.getParameter("latitude");
+                String longitude = request.getParameter("longitude");
+                
+                new NowLocation(latitude, longitude);
+                forward(request, response, "/view/tour/attraction.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
