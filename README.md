@@ -1,4 +1,4 @@
-# SSAFY11_Java_관통_프로젝트
+# SSAFY11_Algorithm_관통_프로젝트
 
 ## 광주_5반_1팀 (서동인, 김규형)
 
@@ -80,75 +80,92 @@
 
 ## 디렉터리 구조
 ```
-
-├─EnjoyTrip_BackEnd
-│  .classpath
-│  .project
-│  .gitignore
-│  README.md
-│  pom.xml
-│
-├─.settings
-│      .jsdtscope
-│
-├─build
-│  └─classes
-├─src
-│  └─main
-│      ├─java
-│      │  └─com
-│      │      └─ssafy
-│      │          ├─mvc
-│      │          │  ├─controller
-│      │          │  │      AttractionController.java
-│      │          │  │      MemberController.java
-│      │          │  │
-│      │          │  └─model
-│      │          │      │ MemberDto.java
-│      │          │      │ AttractioncDto.java
-│      │          │      │
-│      │          │      ├─dao
-│      │          │      │      MemberDao.java
-│      │          │      │      MemberDaoImpl.java
-│      │          │      │      AttractioncDao.java
-│      │          │      │      AttractioncDaoImpl.java
-│      │          │      │
-│      │          │      └─service
-│      │          │              MemberService.java
-│      │          │              MemberServiceImpl.java
-│      │          │              AttractionService.java
-│      │          │              AttractionServiceImpl.java
-│      │          │
-│      │          └─util
-│      │                  DBUtil.java
-│      │
-│      └─webapp
-│          │  index.jsp
-│          │
-│          ├─assets
-│          │  └─css
-│          │      main.css
-│          │  └─js
-│          │      kakaomap.js
-│          │
-│          ├─common
-│          │    error.jsp
-│          │    footer.jsp
-│          │    head.jsp
-│          │    modal.jsp
-│          │    nav.jsp
-│          │  
-│          ├─view
-│          │  └─member
-│          │      login.jsp
-│          │      memberInfo.jsp
-│          │  └─tour
-│          │      attraction.jsp
-│          │
-│          ├─META-INF
-│          │      MANIFEST.MF
-│          │
-│          │
-│          └─WEB-INF
-│              └─lib
+│  │  .gitignore
+│  │  .project
+│  │  EnjoyTrip_Algorithm_최종.zip
+│  │  알고리즘 적용기획서.docx
+│  │  pom.xml
+│  │  README.md
+│  ├─src
+│  │  └─main
+│  │      ├─java
+│  │      │  └─com
+│  │      │      └─ssafy
+│  │      │          ├─mvc
+│  │      │          │  ├─controller
+│  │      │          │  │      AttractionContoller.class
+│  │      │          │  │      BoardController.class
+│  │      │          │  │      MemberController.class
+│  │      │          │  │
+│  │      │          │  └─model
+│  │      │          │      │  AttractionDto.class
+│  │      │          │      │  BoardDto.class
+│  │      │          │      │  MemberDto.class
+│  │      │          │      │
+│  │      │          │      ├─dao
+│  │      │          │      │      AttractionDao.class
+│  │      │          │      │      AttractionDaoImpl.class
+│  │      │          │      │      BoardDao.class
+│  │      │          │      │      BoardDaoImpl.class
+│  │      │          │      │      MemberDao.class
+│  │      │          │      │      MemberDaoImpl.class
+│  │      │          │      │
+│  │      │          │      └─service
+│  │      │          │              AttractionService.class
+│  │      │          │              AttractionServiceImpl.class
+│  │      │          │              BoardService.class
+│  │      │          │              BoardServiceImpl.class
+│  │      │          │              MemberService.class
+│  │      │          │              MemberServiceImpl.class
+│  │      │          │
+│  │      │          └─util
+│  │      │                  DBUtil.class
+│  │      │
+│  │      ├─resource
+│  │      │      .gitkeep
+│  │      │      memberCreate.sql
+│  │      │
+│  │      └─webapp
+│  │          │  index.jsp
+│  │          │  todo.txt
+│  │          │
+│  │          ├─assets
+│  │          │  ├─css
+│  │          │  │      main.css
+│  │          │  │
+│  │          │  ├─img
+│  │          │  │      a.png
+│  │          │  │      favicon.ico
+│  │          │  │      main_beach.jpg
+│  │          │  │      my_position.png
+│  │          │  │      noimg.jpg
+│  │          │  │      noimg.png
+│  │          │  │      ssafy_logo.png
+│  │          │  │
+│  │          │  ├─js
+│  │          │  │      kakaomap.js
+│  │          │  │      main.js
+│  │          │  │      map.js
+│  │          │  │      tour.js
+│  │          │  │
+│  │          │  └─map
+│  │          │          map.html
+│  │          │
+│  │          ├─common
+│  │          │      error.jsp
+│  │          │      footer.jsp
+│  │          │      head.jsp
+│  │          │      modal.jsp
+│  │          │      nav.jsp
+│  │          │
+│  │          ├─META-INF
+│  │          │      MANIFEST.MF
+│  │          │
+│  │          └─view
+│  │              ├─member
+│  │              │      login.jsp
+│  │              │      memberInfo.jsp
+│  │              │
+│  │              └─tour
+│  │                      attraction.jsp
 ```
