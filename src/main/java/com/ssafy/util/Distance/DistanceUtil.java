@@ -6,7 +6,7 @@ import java.util.List;
 public class DistanceUtil {
 	
 	
-	private static final double EARTH_RADIUS_KM = 6371.0; // 지구 둘레
+	private static final double EARTH_RADIUS_KM = 6371.0; // 지구 반지름
 
 	/**
 	 * 두 위도와 경도 사이의 거리를 구하는 메서드
@@ -18,7 +18,7 @@ public class DistanceUtil {
 	    
 	    double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
 	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	    double d = Math.abs(EARTH_RADIUS_KM * c * 1000);    // 거리 단위를 미터로 변환
+	    double d = EARTH_RADIUS_KM * c;    // 거리 단위를 미터로 변환
 		
 	    return d;
 	}
