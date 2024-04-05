@@ -10,6 +10,8 @@
  <jsp:include page="/common/modal.jsp" />
   <!-- 중앙 content start -->
 
+  <!-- 내 위치를 받아와 서버에 저장해놓기 -->
+  <body onload="sendLocation()">
   <br><br>
   <br>
   <br>
@@ -267,7 +269,7 @@
                    <!-- 모달 내용 -->
                    <div class="modal-img-wrapper">
                      <img src="<%= attractionDto.getFirstImage() %>" class="img-fluid" alt="..." 
-                     onerror="this.src='${root }/assets/img/noimg.jpg'">
+                     onerror="this.src='${root}/assets/img/noimg.jpg'">
                    </div>
                    <h5 class="mt-1"><%= attractionDto.getTitle() %></h5>
                    <p><%= attractionDto.getAddr1() + attractionDto.getAddr2() %></p>
@@ -312,7 +314,7 @@
 
      <!-- map.js 파일 불러오기 -->
      <script src="<%= request.getContextPath() %>/assets/js/kakaomap.js"></script>
-     <!-- HTML에서 함수 호출하여 원하는 위도와 경도 값을 전달 -->
+     <script src="<%= request.getContextPath() %>/assets/js/Geolocation.js"></script>
 
    </div>
  </div>
