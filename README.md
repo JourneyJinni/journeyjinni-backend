@@ -96,40 +96,38 @@
 │  │      │          ├─mvc
 │  │      │          │  ├─controller
 │  │      │          │  │      AttractionContoller.class
-│  │      │          │  │      BoardController.class
 │  │      │          │  │      MemberController.class
 │  │      │          │  │
 │  │      │          │  └─model
+│  │      │          │      │  AttractionDistance.class
 │  │      │          │      │  AttractionDto.class
-│  │      │          │      │  BoardDto.class
 │  │      │          │      │  MemberDto.class
+│  │      │          │      │  NowLocation.class
 │  │      │          │      │
 │  │      │          │      ├─dao
 │  │      │          │      │      AttractionDao.class
 │  │      │          │      │      AttractionDaoImpl.class
-│  │      │          │      │      BoardDao.class
-│  │      │          │      │      BoardDaoImpl.class
 │  │      │          │      │      MemberDao.class
 │  │      │          │      │      MemberDaoImpl.class
 │  │      │          │      │
 │  │      │          │      └─service
 │  │      │          │              AttractionService.class
 │  │      │          │              AttractionServiceImpl.class
-│  │      │          │              BoardService.class
-│  │      │          │              BoardServiceImpl.class
 │  │      │          │              MemberService.class
 │  │      │          │              MemberServiceImpl.class
 │  │      │          │
 │  │      │          └─util
-│  │      │                  DBUtil.class
-│  │      │
+│  │      │              │  DBUtil.class
+│  │      │              │
+│  │      │              └─Distance
+│  │      │                     DistanceSort.class
+│  │      │                     DistanceUtil.class
 │  │      ├─resource
 │  │      │      .gitkeep
 │  │      │      memberCreate.sql
 │  │      │
 │  │      └─webapp
 │  │          │  index.jsp
-│  │          │  todo.txt
 │  │          │
 │  │          ├─assets
 │  │          │  ├─css
@@ -145,6 +143,7 @@
 │  │          │  │      ssafy_logo.png
 │  │          │  │
 │  │          │  ├─js
+│  │          │  │      Geolocation.js
 │  │          │  │      kakaomap.js
 │  │          │  │      main.js
 │  │          │  │      map.js
