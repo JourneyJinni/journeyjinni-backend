@@ -13,6 +13,12 @@ public class NowLocation {
 	private static NowLocation nowLocation;
 	
 	/**
+	 * TODO 
+	 * GeoLocation의 위치 정확도 오류로 magic number 추가 
+	 */
+	private final double MAGICLOGTITUE = -0.9;
+	private final double MAGICLATITUDE = -0.7;
+	/**
 	 * 문자열로 생성시에 Double 타입으로 형변환
 
 	 */
@@ -21,11 +27,11 @@ public class NowLocation {
 	}
 
 	public NowLocation(Double latitiude, Double longtitude) {
-		this.latitiude = latitiude;
-        this.longtitude = longtitude;
+		this.latitiude = latitiude + MAGICLATITUDE;
+        this.longtitude = longtitude + MAGICLOGTITUE;
         
         nowLocation = this;
-		System.out.println("[Log] 위치가 저장됨! : " + latitiude + " , " + longtitude);
+		System.out.println("[Log] 위치가 저장됨! : " + this.latitiude + " , " + this.longtitude);
 	}
 	
 	public static NowLocation getLocation() {
