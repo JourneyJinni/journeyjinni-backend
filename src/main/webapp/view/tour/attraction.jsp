@@ -295,6 +295,7 @@
 									현재 위치로부터 거리 :
 									<%=String.format("%.2f", attractionDto.getDistance() / 1000.0)%>
 									km
+									<br> <br>
 								</div>
 								<div class="col-5">
 									<label class="form-check-label font-weight-bold"
