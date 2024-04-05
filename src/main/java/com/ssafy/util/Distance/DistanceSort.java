@@ -23,12 +23,54 @@ public class DistanceSort {
 		
 		Collections.sort(aroundList);
 		
+		//기존의 DTO에 내 위치로부터의 distance를 추가함 
+		//DTO 리스트로 변환하여 저장
 		for (int i = 0; i < aroundList.size(); i++) {
-			System.out.println(aroundList.get(i).getAttraction().getTitle() + "의 위도 경도 : " + aroundList.get(i).getAttraction().getLongitude() + ", " +aroundList.get(i).getAttraction().getLatitude() );
-			System.out.println( "거리 : " + aroundList.get(i).getDistance() + "km");
+			aroundList.get(i).getAttraction().setDistance(aroundList.get(i).getDistance());
 			attractionList.add(aroundList.get(i).getAttraction());
 		}
 
 	   return attractionList;
 	}
+	
+	public static void mergeSortByDistance(List<AttractionDistance> aroundList) {
+	    if (aroundList == null || aroundList.size() <= 1) {
+	        return; // 리스트가 비어있거나 하나의 요소만 있는 경우는 정렬할 필요가 없음
+	    }
+
+	    // 리스트를 두 부분으로 분할
+	    List<AttractionDistance> leftHalf = new ArrayList<>(aroundList.subList(0, aroundList.size() / 2));
+	    List<AttractionDistance> rightHalf = new ArrayList<>(aroundList.subList(aroundList.size() / 2, aroundList.size()));
+
+	    // 재귀적으로 각 부분을 정렬
+	    mergeSortByDistance(leftHalf);
+	    mergeSortByDistance(rightHalf);
+
+	    // 두 부분을 병합
+	    merge(aroundList, leftHalf, rightHalf);
+	}
+
+	private static void merge(List<AttractionDistance> mergedList, List<AttractionDistance> leftHalf, List<AttractionDistance> rightHalf) {
+	    int leftIndex = 0, rightIndex = 0, mergedIndex = 0;
+
+	    // 두 부분을 순회하면서 정렬된 순서대로 mergedList에 병합
+	    while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
+	        if (leftHalf.get(leftIndex).getDistance() >= rightHalf.get(rightIndex).getDistance()) {
+	            mergedList.set(mergedIndex++, leftHalf.get(leftIndex++));
+	        } else {
+	            mergedList.set(mergedIndex++, rightHalf.get(rightIndex++));
+	        }
+	    }
+
+	    // 남은 요소들을 병합
+	    while (leftIndex < leftHalf.size()) {
+	        mergedList.set(mergedIndex++, leftHalf.get(leftIndex++));
+	    }
+	    while (rightIndex < rightHalf.size()) {
+	        mergedList.set(mergedIndex++, rightHalf.get(rightIndex++));
+	    }
+	}
+
 }
+
+
