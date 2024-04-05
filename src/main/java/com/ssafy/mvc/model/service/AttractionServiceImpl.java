@@ -6,11 +6,14 @@ import java.util.List;
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.dao.AttractionDao;
 import com.ssafy.mvc.model.dao.AttractionDaoImpl;
+import com.ssafy.util.Distance.DistanceSort;
+import com.ssafy.util.Distance.NowLocation;
 
 public class AttractionServiceImpl implements AttractionService {
 
 	private static AttractionService attractionService = new AttractionServiceImpl();
 	private AttractionDao attractionDao;
+	private NowLocation nowLocation;
 	
 	private AttractionServiceImpl() {
 		attractionDao = AttractionDaoImpl.getAttractionDao();
@@ -37,7 +40,9 @@ public class AttractionServiceImpl implements AttractionService {
 
 		if (categorys == null)
 			categorys = new String[0];
-		return attractionDao.fetchFilteredList(cities, categorys);
+		
+		nowLocation = NowLocation.getLocation();
+		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionDao.fetchFilteredList(cities, categorys));
 	}
 
 

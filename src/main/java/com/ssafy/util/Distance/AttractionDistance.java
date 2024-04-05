@@ -1,29 +1,38 @@
 package com.ssafy.util.Distance;
 
+import com.ssafy.mvc.model.AttractionDto;
+
 /**
  * 기존의 관광지에 거리를 추가하여 정렬용 객체 
  * @param <T>
  */
-class AttractionDistance <T> implements Comparable<T>{
+class AttractionDistance implements Comparable<AttractionDistance>{
 	
-	private T attraction;
+	private AttractionDto attraction;
 	private double distance;
 	
-	public AttractionDistance(T attraction, double distance) {
+	public AttractionDistance(AttractionDto attraction, double distance) {
 		this.attraction = attraction;
 		this.distance = distance;
 	}
 	
-	public T getAttraction () {
+	public AttractionDto getAttraction() {
 		return attraction;
+	}
+	
+	public double getDistance() {
+		return distance;
 	}
 
 	@Override
-	public int compareTo(T o) {
-		@SuppressWarnings("unchecked")
-		AttractionDistance<T> attractionDistance = (AttractionDistance<T>) o;
-		
-		return (int) (this.distance - attractionDistance.distance);
+	public int compareTo(AttractionDistance o) {
+		return (int) (this.distance - o.distance);
 	}
+
+	@Override
+	public String toString() {
+		return "AttractionDistance [attraction=" + attraction + ", distance=" + distance + "]";
+	}
+	
 	
 }

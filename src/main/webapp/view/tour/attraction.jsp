@@ -5,7 +5,7 @@
 
 <jsp:include page="/common/head.jsp" />
 
-<body>
+<body onload="sendLocation()">
 	<jsp:include page="/common/nav.jsp" />
 	<jsp:include page="/common/modal.jsp" />
 	<!-- 중앙 content start -->
@@ -292,6 +292,9 @@
 								<div class="col-7">
 									<h4><%=attractionDto.getTitle()%></h4>
 									<p><%=attractionDto.getAddr1()%></p>
+									현재 위치로부터 거리 :
+									<%=String.format("%.2f", attractionDto.getDistance() / 1000.0)%>
+									km
 								</div>
 								<div class="col-5">
 									<label class="form-check-label font-weight-bold"
@@ -330,7 +333,6 @@
 											<p><%=attractionDto.getAddr1() + attractionDto.getAddr2()%></p>
 											<div><%=attractionDto.getOverview()%></div>
 
-
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-primary btn-sm"
@@ -364,19 +366,19 @@
 						</ul>
 				</div>
 			</div>
-			</form>
-			<!-- 오른쪽: 카카오맵 -->
-			<div id="map" style="width: 500px; height: 400px;"></div>
+	</form>
+	<!-- 오른쪽: 카카오맵 -->
+	<div id="map" style="width: 500px; height: 400px;"></div>
 
-			<!-- JavaScript 파일 불러오기 -->
-			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fba22d17b9dfcc039051c2097282d942"></script>
+	<!-- JavaScript 파일 불러오기 -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fba22d17b9dfcc039051c2097282d942"></script>
 
-			<!-- map.js 파일 불러오기 -->
-			<script src="<%=request.getContextPath()%>/assets/js/kakaomap.js"></script>
-			<!-- HTML에서 함수 호출하여 원하는 위도와 경도 값을 전달 -->
+	<!-- map.js 파일 불러오기 -->
+	<script src="<%=request.getContextPath()%>/assets/js/kakaomap.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/Geolocation.js"></script>
 
-		</div>
+	</div>
 	</div>
 
 	<!-- 중앙 content end -->

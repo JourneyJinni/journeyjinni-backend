@@ -19,7 +19,7 @@ public class AttractionDto {
     private BigDecimal longitude;
     private String mlevel;
     private String overview;
-
+    private Double distance;
     // 생성자
     
     public AttractionDto() {}
@@ -172,7 +172,16 @@ public class AttractionDto {
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
+
+	public Double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(Double distance) {
+		this.distance = distance;
+	}
     
+	
     
 }
 
