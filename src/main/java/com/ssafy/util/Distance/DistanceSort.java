@@ -7,21 +7,24 @@ import com.ssafy.mvc.model.AttractionDistance;
 import com.ssafy.mvc.model.AttractionDto;
 
 public class DistanceSort {
-	
+
+	/**
+	 * 거리를 기준으로 객체 정렬
+	 */
 	public static List<AttractionDto> isAroundSort (double nowLat, double nowlon, List<AttractionDto> attractions) {
 		List<AttractionDistance> aroundList = new ArrayList<>();
 		List<AttractionDto> attractionList = new ArrayList<>();
 		
-		// 각 리스트를 순회하며 리스트에 추가 
 		for (AttractionDto attractionDto : attractions) {
 			double d = DistanceUtil.getDistance(nowLat, nowlon, attractionDto.getLatitude().doubleValue(), attractionDto.getLongitude().doubleValue());
 			aroundList.add(new AttractionDistance(attractionDto, d));
 		}
-		
-		Collections.sort(aroundList);
-		
-		//기존의 DTO에 내 위치로부터의 distance를 추가함 
-		//DTO 리스트로 변환하여 저장
+
+		//기존의 API 사용 방식
+		//Collections.sort(aroundList);
+
+		mergeSortByDistance(aroundList);
+
 		for (int i = 0; i < aroundList.size(); i++) {
 			aroundList.get(i).getAttraction().setDistance(aroundList.get(i).getDistance());
 			attractionList.add(aroundList.get(i).getAttraction());
@@ -29,10 +32,14 @@ public class DistanceSort {
 
 	   return attractionList;
 	}
-	
+
+	/**
+	 * 합병 정렬 오름차순 정렬
+	 * @param aroundList
+	 */
 	public static void mergeSortByDistance(List<AttractionDistance> aroundList) {
 	    if (aroundList == null || aroundList.size() <= 1) {
-	        return; // 리스트가 비어있거나 하나의 요소만 있는 경우는 정렬할 필요가 없음
+	        return;
 	    }
 
 	    // 리스트를 두 부분으로 분할
@@ -52,7 +59,7 @@ public class DistanceSort {
 
 	    // 두 부분을 순회하면서 정렬된 순서대로 mergedList에 병합
 	    while (leftIndex < leftHalf.size() && rightIndex < rightHalf.size()) {
-	        if (leftHalf.get(leftIndex).getDistance() >= rightHalf.get(rightIndex).getDistance()) {
+	        if (leftHalf.get(leftIndex).getDistance() <= rightHalf.get(rightIndex).getDistance()) {
 	            mergedList.set(mergedIndex++, leftHalf.get(leftIndex++));
 	        } else {
 	            mergedList.set(mergedIndex++, rightHalf.get(rightIndex++));
