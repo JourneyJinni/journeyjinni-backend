@@ -287,7 +287,7 @@
 							%>
 							<input type="hidden" id="attration<%=count%>"
 								name="attration<%=count%>"
-								value="<%=attractionDto.getTitle() + " " + attractionDto.getLatitude() + " " + attractionDto.getLongitude()%>">
+								value="<%=attractionDto.getTitle() + "," + attractionDto.getLatitude() + "," + attractionDto.getLongitude()%>">
 							<li class="row">
 								<div class="col-7">
 									<h4><%=attractionDto.getTitle()%></h4>
@@ -301,8 +301,8 @@
 									<label class="form-check-label font-weight-bold"
 										for="attraction<%=count%>">경로추가</label> <input
 										class="form-check-input" style="width: 25px; height: 25px;"
-										type="checkbox" value="<%=count%>" id="attraction<%=count%>"
-										name="attraction">
+										type="checkbox" value="<%=count%>" id="attractionCheckbox<%=count%>"
+										name="attractionCheckbox">
 									<button type="button" class="btn btn-primary btn-sm"
 										data-toggle="modal" data-target="#<%=modalId%>">더보기</button>
 									<button class="btn btn-primary"
@@ -398,16 +398,20 @@ function submitForm() {
     // 체크된 체크박스들을 담을 배열 생성
     var hiddenInputs = [];
     // 모든 체크박스 요소들을 가져옴
-    var checkboxes = document.querySelectorAll('input[name="attraction"]:checked');
+    var checkboxes = document.querySelectorAll('input[name="attractionCheckbox"][type="checkbox"]');
     // 각 체크박스 요소에 대해 반복하여 값을 배열에 추가
     checkboxes.forEach(function(checkbox) {
-        // 각 체크박스에 대한 hidden input 요소의 값을 가져와 배열에 추가
-        var hiddenInput = document.querySelector('input[type="hidden"][id="attration' + checkbox.value + '"]');
-        if (hiddenInput) {
-            hiddenInputs.push({
-                name: hiddenInput.name,
-                value: hiddenInput.value
-            });
+        // 체크된 체크박스만 고려합니다.
+        if(checkbox.checked){
+            // 체크된 체크박스의 번호에 해당하는 hidden input을 가져옵니다.
+            var hiddenInput = document.querySelector('input[type="hidden"][id="attraction' + checkbox.value + '"]');
+            if (hiddenInput) {
+                // hidden input의 이름과 값을 배열에 추가합니다.
+                hiddenInputs.push({
+                    name: hiddenInput.name,
+                    value: hiddenInput.value
+                });
+            }
         }
     });
 

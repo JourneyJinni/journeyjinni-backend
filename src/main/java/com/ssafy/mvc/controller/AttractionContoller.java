@@ -56,12 +56,20 @@ public class AttractionContoller extends HttpServlet {
                 forward(request, response, "/view/tour/attractiondetail.jsp");
             } else if("attractionRoute".equals(action)) {
             	ArrayList<String[]> list = new ArrayList<>();
-            	for(int i=0;i<10;i++) {
-            		String[] input = request.getParameter("attration"+i).split(" ");
+            	String[] checked = request.getParameterValues("attractionCheckbox");
+            	for(int i=0;i<checked.length;i++) {
+            		String[] input = request.getParameter("attration"+checked[i]).split(",");
             		if(input !=null) {
             			list.add(input);
             		}
             	}
+            	
+        		List<Integer> route = attractionService.getRoute(list);
+        		System.out.println(route.toString());
+//            	System.out.println(Arrays.toString(checked));
+//        		for(String[] p : list) {
+//        			System.out.println(p[0] + " " + p[1] + " " + p[2]);
+//        		}
             } else if ("nowLocation".equals(action)) {
             	System.out.println("[Log] : 위치 정보가 사용됨!");
                 String latitude = request.getParameter("latitude");
