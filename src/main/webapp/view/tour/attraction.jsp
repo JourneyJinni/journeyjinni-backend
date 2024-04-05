@@ -246,7 +246,12 @@
            <li class="row">
              <div class="col-9">
                <h4><%= attractionDto.getTitle() %></h4>
-               <p><%= attractionDto.getAddr1() %></p>
+               <h5><%= attractionDto.getAddr1() %></h5>
+               
+				현재 위치로부터 거리 : <%= String.format("%.2f", attractionDto.getDistance() / 1000.0) %> km
+				<br>
+				<br>
+				
              </div>
              <div class="col-3">
 
