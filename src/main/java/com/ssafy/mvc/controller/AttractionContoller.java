@@ -1,9 +1,17 @@
 package com.ssafy.mvc.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.service.AttractionService;
 import com.ssafy.mvc.model.service.AttractionServiceImpl;
+<<<<<<< HEAD
+=======
 import com.ssafy.util.Distance.NowLocation;
+>>>>>>> 81fe084d0478f50f3b68904a250385b182972c0f
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -12,9 +20,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.util.List;
 
 
 @WebServlet("/attraction-controller")
@@ -53,6 +58,19 @@ public class AttractionContoller extends HttpServlet {
                 AttractionDto attractionDetail = attractionService.getAttraction(Integer.parseInt(contentId));
                 request.setAttribute("attractionDetail", attractionDetail);
                 forward(request, response, "/view/tour/attractiondetail.jsp");
+<<<<<<< HEAD
+            } else if("attractionRoute".equals(action)) {
+            	ArrayList<String[]> list = new ArrayList<>();
+            	for(int i=0;i<10;i++) {
+            		String[] input = request.getParameter("attration"+i).split(" ");
+            		if(input !=null) {
+            			list.add(input);
+            		}
+            	}
+            	
+                
+            	
+=======
             } else if ("nowLocation".equals(action)) {
             	System.out.println("[Log] : 위치 정보가 사용됨!");
                 String latitude = request.getParameter("latitude");
@@ -60,6 +78,7 @@ public class AttractionContoller extends HttpServlet {
                 
                 new NowLocation(latitude, longitude);
                 forward(request, response, "/view/tour/attraction.jsp");
+>>>>>>> 81fe084d0478f50f3b68904a250385b182972c0f
             }
         } catch (Exception e) {
             e.printStackTrace();
