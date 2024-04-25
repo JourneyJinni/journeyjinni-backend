@@ -43,7 +43,7 @@
 
 ## Use Case Diagram
 
-![ssafytrip_usecase](./ssafytrip_usecase.png)
+![ssafytrip_usecase](./resources/ssafytrip_usecase.PNG)
 
 
 ## 메인 화면 및 관광지 조회
