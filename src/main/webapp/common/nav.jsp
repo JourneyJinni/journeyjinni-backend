@@ -71,7 +71,7 @@
     <script>
     document.querySelector("#logout").addEventListener("click",function(){
     	if (confirm("로그아웃 하시겠습니까?")) {
-            window.location.href='${root}/member?service=logout';
+            window.location.href='/logout';
         }
   	});
   	document.querySelector("#del_user").addEventListener("click",function(){
