@@ -4,35 +4,47 @@
 
 <mapper namespace="com.ssafy.mvc.model.mapper.AttractionMapper">
 
-    <select id="listAttraction" resultType="com.ssafy.mvc.model.AttractionDto">
-        SELECT * FROM attraction_info ai JOIN attraction_description ad
-        WHERE ai.content_id = ad.content_id
-        ORDER BY ai.content_id DESC
-    </select>
 
-    <select id="getAttractionbyContentId" parameterType="int" resultType="com.ssafy.mvc.model.AttractionDto">
+	<resultMap id="attractionDto" type="com.ssafy.mvc.model.AttractionDto">
+	  <result property="contentId" column="content_id" />
+	  <result property="contentTypeId" column="content_type_id" />
+	  <result property="title" column="title" />
+	  <result property="addr1" column="addr1" />
+	  <result property="addr2" column="addr2" />
+	  <result property="zipcode" column="zipcode" />
+	  <result property="tel" column="tel" />
+	  <result property="firstImage" column="first_image" />
+	  <result property="firstImage2" column="first_image2" />
+	  <result property="readCount" column="readcount" />
+	  <result property="sidoCode" column="sido_code" />
+	  <result property="gugunCode" column="gugun_code" />
+	  <result property="latitude" column="latitude" />
+	  <result property="longitude" column="longitude" />
+	  <result property="mlevel" column="mlevel" />
+	  <result property="overview" column="overview"/>
+	  <result property="distance" column="distance" javaType="java.lang.Double" />
+	</resultMap>
+
+	<select id="listAttraction" resultMap="attractionDto">
+	  SELECT *
+	  FROM attraction_info ai
+	  JOIN attraction_description ad ON ai.content_id = ad.content_id
+	  ORDER BY ai.content_id DESC
+	</select>
+
+    <select id="getAttractionbyContentId" parameterType="int" resultMap="attractionDto">
         SELECT * FROM attraction_info ai JOIN attraction_description ad
         WHERE ai.content_id = ad.content_id AND ai.content_id = #{contentId}
     </select>
 
-	<select id="fetchFilteredList" parameterType="map" resultType="com.ssafy.mvc.model.AttractionDto">
+	<select id="fetchFilteredList" parameterType="map" resultMap="attractionDto">
 	    SELECT * FROM attraction_info ai JOIN attraction_description ad USING (content_id)
 	    <where>
-	        <if test="cities != null and cities.size() > 0">
-	            AND ai.sido_code IN
-	            <foreach collection="cities" item="city" open="(" separator="," close=")">
-	                #{city}
-	            </foreach>
-	        </if>
-	        <if test="categories != null and categories.size() > 0">
-	            <if test="cities != null and cities.size() > 0">
-	                AND
-	            </if>
-	            ai.content_type_id IN
-	            <foreach collection="categories" item="category" open="(" separator="," close=")">
-	                #{category}
-	            </foreach>
-	        </if>
+            ai.sido_code IN
+				(#{cities})
+                AND
+            ai.content_type_id IN
+                (#{categorys})
 	    </where>
 	</select>
 
