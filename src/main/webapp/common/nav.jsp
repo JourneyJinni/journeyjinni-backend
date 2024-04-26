@@ -25,10 +25,10 @@
               <a class="nav-link" href="#">공지사항</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="${root}/index.jsp">홈</a>
+              <a class="nav-link" href="${root}/index">홈</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="${root}/view/tour/attraction.jsp">지도</a>
+              <a class="nav-link" href="${root}/attraction">지도</a>
             </li>
           </ul>
 
