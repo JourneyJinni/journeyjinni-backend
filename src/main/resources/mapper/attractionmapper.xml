@@ -15,25 +15,26 @@
         WHERE ai.content_id = ad.content_id AND ai.content_id = #{contentId}
     </select>
 
-    <select id="fetchFilteredList" parameterType="map" resultType="com.ssafy.mvc.model.AttractionDto">
-        SELECT * FROM attraction_info ai JOIN attraction_description ad USING (content_id)
-        <where>
-            <if test="cities != null and cities.size() > 0">
-                ai.sido_code IN
-                <foreach collection="cities" item="city" open="(" separator="," close=")">
-                    #{city}
-                </foreach>
-            </if>
-            <if test="categotys != null and categotys.size() > 0">
-                <if test="cities != null and cities.size() > 0">
-                    AND
-                </if>
-                ai.content_type_id IN
-                <foreach collection="categotys" item="category" open="(" separator="," close=")">
-                    #{category}
-                </foreach>
-            </if>
-        </where>
-    </select>
+	<select id="fetchFilteredList" parameterType="map" resultType="com.ssafy.mvc.model.AttractionDto">
+	    SELECT * FROM attraction_info ai JOIN attraction_description ad USING (content_id)
+	    <where>
+	        <if test="cities != null and cities.size() > 0">
+	            AND ai.sido_code IN
+	            <foreach collection="cities" item="city" open="(" separator="," close=")">
+	                #{city}
+	            </foreach>
+	        </if>
+	        <if test="categories != null and categories.size() > 0">
+	            <if test="cities != null and cities.size() > 0">
+	                AND
+	            </if>
+	            ai.content_type_id IN
+	            <foreach collection="categories" item="category" open="(" separator="," close=")">
+	                #{category}
+	            </foreach>
+	        </if>
+	    </where>
+	</select>
+
 
 </mapper>

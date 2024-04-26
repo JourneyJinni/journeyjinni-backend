@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,16 +39,12 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public List<AttractionDto> getFilteredList(String[] cities, String[] categorys) throws SQLException {
-		if (cities == null)
-			cities = new String[0];
-
-		if (categorys == null)
-			categorys = new String[0];
+	public List<AttractionDto> getFilteredList(Map<String, Object> map) throws SQLException {
 		
 		nowLocation = NowLocation.getLocation();
-		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(cities, categorys));
+		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(map));
 	}
+	
 	public List<Integer> getRoute(ArrayList<String[]> list){
 		List<Integer> route = new ArrayList<Integer>();
 		double adjMatrix[][] = new double[list.size()][list.size()];

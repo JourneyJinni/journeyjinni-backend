@@ -5,7 +5,7 @@
 
 <jsp:include page="/common/head.jsp" />
 
-<body onload="sendLocation()">
+	<body onload="sendLocation()">
 	<jsp:include page="/common/nav.jsp" />
 	<jsp:include page="/common/modal.jsp" />
 	<!-- 중앙 content start -->
@@ -22,7 +22,7 @@
 				<div class="rounded p-4 bg-light shadow">
 					<h4 class="mb-4">Find your Tour</h4>
 					<form class="rd-mailform form-fix"
-						action="${root}/attraction-controller?action=filterList"
+						action="${root}/filterList"
 						method="post">
 						<div class="row row-20 row-fix">
 							<div class="col-sm-12">
