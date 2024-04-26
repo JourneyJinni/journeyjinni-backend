@@ -4,7 +4,7 @@
 <%@ page import="com.ssafy.mvc.model.*" %>
 <jsp:include page="/common/head.jsp" />
 
-  <body>
+<body>
 <script>
 	window.onload=function(){
 		window.location.href="${root}/attraction-controller?&action=list";
