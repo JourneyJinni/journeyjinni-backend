@@ -55,7 +55,6 @@ public class AttractionContoller {
     public String filterList(@RequestParam(name = "city") String city, @RequestParam(name = "category") String category, 
     		 HttpServletRequest request) {
     	
-    	
     	Map<String, Object> map = new HashMap<>();
     	
     	for (String value : request.getParameterValues("city")) {
