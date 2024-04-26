@@ -180,6 +180,15 @@ public class AttractionDto {
 	public void setDistance(Double distance) {
 		this.distance = distance;
 	}
+
+//	@Override
+//	public String toString() {
+//		return "AttractionDto [contentId=" + contentId + ", contentTypeId=" + contentTypeId + ", title=" + title
+//				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", tel=" + tel + ", firstImage="
+//				+ firstImage + ", firstImage2=" + firstImage2 + ", readCount=" + readCount + ", sidoCode=" + sidoCode
+//				+ ", gugunCode=" + gugunCode + ", latitude=" + latitude + ", longitude=" + longitude + ", mlevel="
+//				+ mlevel + ", overview=" + overview + ", distance=" + distance + "]";
+//	}
     
 	
     
