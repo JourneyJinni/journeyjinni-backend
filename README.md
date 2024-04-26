@@ -1,6 +1,6 @@
-# SSAFY11_DataBase_관통_프로젝트
+# SSAFY11_Spring_관통_프로젝트
 
-## 광주_5반_12팀 (서동인, 김규형)
+## 광주_5반_14팀 (서동인, 김규형)
 
 ## INFO
 
@@ -13,9 +13,9 @@
 - 게시판을 통해 회원들끼리 커뮤니티 기능 제공
 
 ## 기술 스택
+<img src="https://img.shields.io/badge/Spring-9ACD32?style=flat&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-9ACD32?style=flat&logo=SpringBoot&logoColor=white"/>
 ![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white)
-![JSP/Servlet](https://img.shields.io/badge/JSP%2FServlet-007396?style=flat-square&logo=Java&logoColor=white)
 ![Apache](https://img.shields.io/badge/Apache-D22128?style=flat-square&logo=Apache&logoColor=white)
 ![HTML](https://img.shields.io/badge/HTML-239120?style=flat-square&logo=HTML5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=CSS3&logoColor=white)
@@ -94,92 +94,91 @@
 
 ## 디렉터리 구조
 ```
-│  │  .gitignore
-│  │  .project
-│  │  pom.xml
-│  │  README.md
-│  ├─resources
-│  │      DBDump.sql
-│  │      ssafytrip_erd.PNG
-│  │      ssafytrip_schemasql.sql
-│  │      ssafytrip_usecase.PNG
-│  ├─src
-│  │  └─main
-│  │      ├─java
-│  │      │  └─com
-│  │      │      └─ssafy
-│  │      │          ├─mvc
-│  │      │          │  ├─controller
-│  │      │          │  │      AttractionContoller.class
-│  │      │          │  │      BoardController.class
-│  │      │          │  │      MemberController.class
-│  │      │          │  │
-│  │      │          │  └─model
-│  │      │          │      │  AttractionDto.class
-│  │      │          │      │  BoardDto.class
-│  │      │          │      │  MemberDto.class
-│  │      │          │      │
-│  │      │          │      ├─dao
-│  │      │          │      │      AttractionDao.class
-│  │      │          │      │      AttractionDaoImpl.class
-│  │      │          │      │      BoardDao.class
-│  │      │          │      │      BoardDaoImpl.class
-│  │      │          │      │      MemberDao.class
-│  │      │          │      │      MemberDaoImpl.class
-│  │      │          │      │
-│  │      │          │      └─service
-│  │      │          │              AttractionService.class
-│  │      │          │              AttractionServiceImpl.class
-│  │      │          │              BoardService.class
-│  │      │          │              BoardServiceImpl.class
-│  │      │          │              MemberService.class
-│  │      │          │              MemberServiceImpl.class
-│  │      │          │
-│  │      │          └─util
-│  │      │                  DBUtil.class
-│  │      │
-│  │      │
-│  │      └─webapp
-│  │          │  index.jsp
-│  │          │  todo.txt
-│  │          │
-│  │          ├─assets
-│  │          │  ├─css
-│  │          │  │      main.css
-│  │          │  │
-│  │          │  ├─img
-│  │          │  │      a.png
-│  │          │  │      favicon.ico
-│  │          │  │      main_beach.jpg
-│  │          │  │      my_position.png
-│  │          │  │      noimg.jpg
-│  │          │  │      noimg.png
-│  │          │  │      ssafy_logo.png
-│  │          │  │
-│  │          │  ├─js
-│  │          │  │      kakaomap.js
-│  │          │  │      main.js
-│  │          │  │      map.js
-│  │          │  │      tour.js
-│  │          │  │
-│  │          │  └─map
-│  │          │          map.html
-│  │          │
-│  │          ├─common
-│  │          │      error.jsp
-│  │          │      footer.jsp
-│  │          │      head.jsp
-│  │          │      modal.jsp
-│  │          │      nav.jsp
-│  │          │
-│  │          ├─META-INF
-│  │          │      MANIFEST.MF
-│  │          │
-│  │          └─view
-│  │              ├─member
-│  │              │      login.jsp
-│  │              │      memberInfo.jsp
-│  │              │
-│  │              └─tour
-│  │                      attraction.jsp
+└─src
+    ├─main
+    │  ├─java
+    │  │  └─com
+    │  │      └─ssafy
+    │  │          │  EnjoyTripSpringBootApplication.java
+    │  │          │
+    │  │          ├─mvc
+    │  │          │  ├─controller
+    │  │          │  │      AttractionContoller.java
+    │  │          │  │      MemberController.java
+    │  │          │  │
+    │  │          │  └─model
+    │  │          │      │  AttractionDistance.java
+    │  │          │      │  AttractionDto.java
+    │  │          │      │  MemberDto.java
+    │  │          │      │  NowLocation.java
+    │  │          │      │
+    │  │          │      ├─mapper
+    │  │          │      │      AttractionMapper.java
+    │  │          │      │      MemberMapper.java
+    │  │          │      │
+    │  │          │      └─service
+    │  │          │              AttractionService.java
+    │  │          │              AttractionServiceImpl.java
+    │  │          │              MemberService.java
+    │  │          │              MemberServiceImpl.java
+    │  │          │
+    │  │          └─util
+    │  │              │  DBUtil.java
+    │  │              │
+    │  │              └─Distance
+    │  │                      DistanceSort.java
+    │  │                      DistanceUtil.java
+    │  │
+    │  ├─resources
+    │  │  │  application.properties
+    │  │  │
+    │  │  └─mapper
+    │  │          attractionmapper.xml
+    │  │          membermapper.xml
+    │  │
+    │  └─webapp
+    │      ├─assets
+    │      │  ├─css
+    │      │  │      main.css
+    │      │  │
+    │      │  ├─img
+    │      │  │      a.png
+    │      │  │      favicon.ico
+    │      │  │      main_beach.jpg
+    │      │  │      my_position.png
+    │      │  │      noimg.jpg
+    │      │  │      noimg.png
+    │      │  │      profile.png
+    │      │  │      ssafy_logo.png
+    │      │  │
+    │      │  ├─js
+    │      │  │      Geolocation.js
+    │      │  │      kakaomap.js
+    │      │  │      main.js
+    │      │  │      map.js
+    │      │  │      tour.js
+    │      │  │
+    │      │  └─map
+    │      │          map.html
+    │      │
+    │      ├─common
+    │      │      error.jsp
+    │      │      footer.jsp
+    │      │      head.jsp
+    │      │      modal.jsp
+    │      │      nav.jsp
+    │      │
+    │      ├─META-INF
+    │      │      MANIFEST.MF
+    │      │
+    │      └─WEB-INF
+    │          └─views
+    │              │  index.jsp
+    │              │
+    │              ├─member
+    │              │      memberInfo.jsp
+    │              │
+    │              └─tour
+    │                      attraction.jsp
+    │
 ```
