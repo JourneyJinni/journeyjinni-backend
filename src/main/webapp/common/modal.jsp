@@ -21,7 +21,7 @@
       </div>
 
       <div class="modal-body">
-        <form action="${applicationScope.root }/member?service=login" method="POST" id="action_login">
+        <form action="login" method="POST" id="action_login">
           <div class="row mb-3 mt-3">
             <div class="col-md-3">
               <label for="user_id" class="form-label">아이디 : </label>

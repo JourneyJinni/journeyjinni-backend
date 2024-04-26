@@ -1,5 +1,7 @@
 package com.ssafy.mvc.model.service;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mvc.model.MemberDto;
@@ -20,9 +22,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public MemberDto memberLogin(String user_id, String user_password) throws Exception {
+	public MemberDto memberLogin(Map<String,String> map) throws Exception {
 		System.out.println("service");
-		return memberMapper.memberLogin(user_id, user_password);
+		return memberMapper.memberLogin(map);
 	}
 
 	@Override

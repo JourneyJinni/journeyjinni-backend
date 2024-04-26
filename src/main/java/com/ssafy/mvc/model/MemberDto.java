@@ -2,8 +2,8 @@ package com.ssafy.mvc.model;
 
 public class MemberDto {
 	private String user_id;
-	private String user_password;
 	private String user_name;
+	private String user_password;
 	private String email_id;
 	private String email_domain;
 	private String join_date;
@@ -14,17 +14,17 @@ public class MemberDto {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getUser_password() {
-		return user_password;
-	}
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
-	}
 	public String getUser_name() {
 		return user_name;
 	}
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
+	}
+	public String getUser_password() {
+		return user_password;
+	}
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
 	public String getEmail_id() {
 		return email_id;
@@ -44,6 +44,12 @@ public class MemberDto {
 	public void setJoin_date(String join_date) {
 		this.join_date = join_date;
 	}
+	@Override
+	public String toString() {
+		return "MemberDto [user_id=" + user_id + ", user_password=" + user_password + ", user_name=" + user_name
+				+ ", email_id=" + email_id + ", email_domain=" + email_domain + ", join_date=" + join_date + "]";
+	}
+	
 	
 	
 }

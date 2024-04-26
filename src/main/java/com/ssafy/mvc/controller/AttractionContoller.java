@@ -25,14 +25,14 @@ public class AttractionContoller {
     	this.attractionService = attractionService; 
 	}
     
-    @GetMapping("/")
+    @GetMapping(value = {"/","/index"})
     public String index(HttpServletRequest request ) {
     	System.out.println("리스트정보:" );
     	  try {
 			List<AttractionDto> attractionList=attractionService.list();
 			request.setAttribute("attractionList",attractionList );
 			
-			System.out.println(attractionList);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
