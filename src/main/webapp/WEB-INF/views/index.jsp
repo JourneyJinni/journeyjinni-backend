@@ -148,7 +148,7 @@
   <script src="assets/js/main.js"></script>
   <script>
   	document.querySelector("#map").addEventListener("click",function(){
-  		window.location.href="${root}/view/tour/attraction.jsp";
+  		window.location.href="${root}/attraction";
   	});
     $(document).ready(function() {
         $('#myModal').on('shown.bs.modal', function () {

@@ -7,7 +7,7 @@
  <!-- 상단 navbar start -->
     <nav class="navbar navbar-expand-sm shadow bg-light navbar-light fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand text-primary fw-bold" href="${root}/index.jsp">
+        <a class="navbar-brand text-primary fw-bold" href="${root}/index">
           <img src="${root}/assets/img/ssafy_logo.png" 
           alt="Logo" 
           width="60" 
