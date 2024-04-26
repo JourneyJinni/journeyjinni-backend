@@ -33,8 +33,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void memberSignUp(MemberDto memberDto) throws Exception {
-		memberMapper.memberSignUp(memberDto);		
+	public void memberSignUp(Map<String,String> map) throws Exception {
+		memberMapper.memberSignUp(map);		
 	}
 
 	@Override

@@ -74,13 +74,13 @@
       </div>
 
       <div class="modal-body">
-        <form action="${applicationScope.root }/member?service=signup" method="POST" id="action_signup">
+        <form action="/join" method="POST" id="action_signup">
           <div class="row mb-3 mt-3">
             <div class="col-md-3">
               <label for="user-id" class="form-label">아이디 : </label>
             </div>
             <div class="col-md-5">
-              <input type="text" class="form-control" id="sign_user-id" name="sign_user-id"/>
+              <input type="text" class="form-control" id="sign_user-id" name="user_id"/>
             </div>
             <div class="col-md-4">
               <button type="button" class="btn btn-outline-danger btn-sm" id="id-check">
@@ -93,7 +93,7 @@
               <label for="user-pw" class="form-label">비밀번호 : </label>
             </div>
             <div class="col-md-5">
-              <input type="password" class="form-control" id="sign_user-pw" name="sign_user-pw" />
+              <input type="password" class="form-control" id="sign_user-pw" name="user_password" />
             </div>
             <div class="col-md-4">
               <label for="user-pw" class="form-label" style="display:none;"> 임시 </label>
@@ -115,7 +115,7 @@
               <label for="user-name" class="form-label">이름 : </label>
             </div>
             <div class="col-md-5">
-              <input type="text" class="form-control" id="sign_user-name" name="sign_user-name"/>
+              <input type="text" class="form-control" id="sign_user-name" name="user_name"/>
             </div>
           </div>
           <div class="row mb-3 mt-3">
@@ -123,18 +123,18 @@
               <label for="user-email" class="form-label">이메일 : </label>
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control" id="sign_user-email" name="sign_user-email"/>
+              <input type="text" class="form-control" id="sign_user-email" name="email_id"/>
             </div>
             @
             <div class="col-md-3">
-              <input type="text" class="form-control" id="sign_user-domain" name="sign_user-domain"/>
+              <input type="text" class="form-control" id="sign_user-domain" name="email_domain"/>
             </div>
           </div>
         </form>
       </div>
 
       <div class="modal-footer">
-        <button type="button" id="btn-signup" class="btn btn-primary btn-sm" onclick="javascript:signup()">
+        <button type="submit" form="action_signup" id="btn-signup" class="btn btn-primary btn-sm" ><!--  onclick="javascript:signup()" -->
           회원가입
         </button>
         <button type="button" id="btn-signup_close" class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal">
@@ -146,7 +146,7 @@
 </div>
 <!-- 회원가입 modal end -->
 <script>
-	let signId = document.querySelector("#sign_user-id");
+ 	let signId = document.querySelector("#sign_user-id");
 	
 	document.querySelector("#id-check").addEventListener("click",function(){
 		if (document.querySelector("#sign_user-id").value.length == 0) {
@@ -154,28 +154,24 @@
 	        console.log("script");
 	        return;
 	    }
-		
-		fetch("${root}/member?service=idcheck",{
-			method: "POST",
-			body: JSON.stringify({
-				checkUserId : signId.value
-			})
-		}).then((response) => response.json())
-		.then((data)=>{
-			console.log(data.success);
-			if(data.success){
-				if (window.confirm("사용 가능한 id입니다. 사용하시겠습니까?")) {
-					signId.readOnly = true;
-					signId.setAttribute("class", "form-control bg-secondary");
-			        return;
-			   	}
-			}else{
-		    	alert("이미 사용중인 ID 입니다.");
-		    	return;
-			}
-		})
+		 fetch("/idcheck/" + signId.value)
+	   		.then(response => response.text())
+	   		.then(data => {
+	   			console.log(data);
+		 		if(data == 0) {
+		 			if (window.confirm("사용 가능한 id입니다. 사용하시겠습니까?")) {
+						signId.readOnly = true;
+						signId.setAttribute("class", "form-control bg-secondary");
+				        return;
+				   	}
+		 		} else {
+		 			alert("이미 사용중인 ID 입니다.");
+			    	return;
+		 		}
+  		   });
+
 	});
-	
+	 
 	document.querySelector("#btn-signup_close").addEventListener("click",function(){
 		document.querySelector("#action_signup").reset();
 		signId.readOnly = false;

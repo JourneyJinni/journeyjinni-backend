@@ -12,7 +12,7 @@ public interface MemberMapper {
 	MemberDto memberView(String user_id) throws SQLException; 
 	MemberDto memberLogin(Map<String,String> map) throws SQLException;
 	int memberIdCheck(String user_id) throws SQLException;
-	void memberSignUp(MemberDto memberDto) throws SQLException;
+	void memberSignUp(Map<String,String> map) throws SQLException;
 	void memberModify(MemberDto memberDto) throws SQLException;
 	void memberDelete(String user_id) throws SQLException;
 }

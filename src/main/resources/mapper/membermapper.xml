@@ -23,7 +23,7 @@
     </select>
 
     <!-- 회원 가입 -->
-    <insert id="memberSignUp" parameterType="com.ssafy.mvc.model.MemberDto">
+    <insert id="memberSignUp" parameterType="map">
         INSERT INTO members(user_id, user_name, user_password, email_id, email_domain, join_date)
         VALUES (#{user_id}, #{user_name}, #{user_password}, #{email_id}, #{email_domain}, NOW())
     </insert>
