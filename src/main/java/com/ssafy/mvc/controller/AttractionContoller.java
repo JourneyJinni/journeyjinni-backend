@@ -1,6 +1,7 @@
 package com.ssafy.mvc.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class AttractionContoller {
 	 @GetMapping("/attraction")
 	 public String attraction() {
 		 System.out.println("[Log] attraction으로 이동");
-		 return "tour/attraction";
+		 return "tour/attraction"; 
 	 }
     
     
@@ -41,7 +42,7 @@ public class AttractionContoller {
     	  try {
 			List<AttractionDto> attractionList=attractionService.list();
 			request.setAttribute("attractionList",attractionList );
-			System.out.println("[Log] : 리스트를 불러옴! ");
+			System.out.println("[Log] : 리스트를 불러옴! " + attractionList.size() + " 개");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,11 +52,23 @@ public class AttractionContoller {
     }
     
     @PostMapping("/filterList")
-    public String filterList(@RequestParam Map<String, Object> filterParams
-    		, HttpServletRequest request) {
-		
+    public String filterList(@RequestParam(name = "city") String city, @RequestParam(name = "category") String category, 
+    		 HttpServletRequest request) {
+    	
+    	
+    	Map<String, Object> map = new HashMap<>();
+    	
+    	for (String value : request.getParameterValues("city")) {
+    		map.put("cities", value);
+    	}
+    	
+    	for (String value : request.getParameterValues("category")) {
+    		map.put("categorys", value);
+    	}
+    	
 		 try {
-			List<AttractionDto> filteredList = attractionService.getFilteredList(filterParams);
+			List<AttractionDto> filteredList = attractionService.getFilteredList(map);
+			System.out.println("[Log] : filterList 실행");
 			request.setAttribute("filteredList", filteredList);
 		} catch (SQLException e) {
 			e.printStackTrace();
