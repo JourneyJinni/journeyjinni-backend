@@ -11,7 +11,7 @@ function sendLocation() {
 
             // AJAX를 사용하여 서버에 위치 정보를 전송
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", '/EnjoyTrip_Algorithm/attraction-controller?action=nowLocation', true);
+            xhr.open("POST", '/nowLocation', true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
@@ -21,7 +21,7 @@ function sendLocation() {
             };
             console.log(position)
             xhr.send("latitude=" + latitude + "&longitude=" + longitude);
-            console.log("latitude=" + latitude + "&longitude=" + longitude);
+            console.log("latitude=" + latitude + "와 longitude=" + longitude);
         }, function(error) {
             // 에러 처리
             console.error("Error getting geolocation:", error);
