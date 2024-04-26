@@ -273,9 +273,7 @@
 								id="rootSearch" onclick="submitForm()">경로 검색</button>
 						</div>
 					</div>
-					<form id="attractionRoute"
-						action="${root}/attraction-controller?action=attractionRoute"
-						method="post">
+						
 						<ul>
 							<%
 							List<AttractionDto> filteredList = (List<AttractionDto>) request.getAttribute("filteredList");
