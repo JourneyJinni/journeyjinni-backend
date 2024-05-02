@@ -36,14 +36,24 @@
 - [ ]  게시판 기능
 - [ ]  맞춤 여행 코스 제공 및 등록
 
+## ERD, Use case 다이어그램
 
-## ERD Diagram
+<table>
+  <tr>
+   <td align="center">
+      <img src="https://github.com/unggu0704/saffy/assets/130115689/7752ce09-780c-47e0-bcf0-425e5c8060bb" alt="ERD Diagram">
+       <span>ERD Diagram</span>
+    </td>
+    <td align="center">
+      <img src="./resources/ssafytrip_usecase.PNG" alt="Use Case Diagram">
+      <span>Use Case Diagram</span>
+    </td>
+  </tr>
+</table>
 
-![ssafytrip_erd](https://github.com/unggu0704/saffy/assets/130115689/7752ce09-780c-47e0-bcf0-425e5c8060bb)
 
-## Use Case Diagram
 
-![ssafytrip_usecase](./resources/ssafytrip_usecase.PNG)
+
 
 
 ## 메인 화면 및 관광지 조회
@@ -52,13 +62,9 @@
   <tr>
     <td align="center">
       <img src="https://github.com/unggu0704/nhnacademy-study/assets/130115689/ceab0b6d-1ebd-4c0d-ac40-37216b814615" alt="signup">
-      <br>
-      <span>main</span>
     </td>
     <td align="center">
       <img src="https://github.com/unggu0704/nhnacademy-study/assets/130115689/8c687e8c-bbd3-4604-a68f-61013637a953" alt="login">
-      <br>
-      <span>find</span>
     </td>
   </tr>
 </table>
@@ -75,13 +81,9 @@
   <tr>
     <td align="center">
       <img src="https://github.com/unggu0704/algorithm-study/assets/130115689/7bd6a5b0-7ca4-4149-8a28-eba5cf1d4414" alt="signup">
-      <br>
-      <span>Signup</span>
     </td>
     <td align="center">
       <img src="https://github.com/unggu0704/algorithm-study/assets/130115689/e3be4e51-90d8-47a4-82fc-653c1c004af5" alt="login">
-      <br>
-      <span>Login</span>
     </td>
   </tr>
 </table>
