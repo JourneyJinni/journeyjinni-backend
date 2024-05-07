@@ -6,8 +6,8 @@
 <jsp:include page="/common/head.jsp" />
 
 	<body onload="sendLocation()">
-	<jsp:include page="/common/nav.jsp" />
-	<jsp:include page="/common/modal.jsp" />
+	<jsp:include page="/src/main/webapp/common/nav.jsp" />
+	<jsp:include page="/src/main/webapp/common/modal.jsp" />
 	<!-- 중앙 content start -->
 
 	<br>
