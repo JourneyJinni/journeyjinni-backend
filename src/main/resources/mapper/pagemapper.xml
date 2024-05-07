@@ -23,7 +23,7 @@
         <result property="distance" column="distance" javaType="java.lang.Double" />
     </resultMap>
 
-    <select id="listAttraction" parameterType="int" resultMap="attractionDto">
+    <select id="getRandomAttractions" parameterType="int" resultMap="attractionDto">
         SELECT *
         FROM attraction_info
         ORDER BY RAND()
