@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,13 +18,13 @@ import com.ssafy.mvc.model.service.AttractionService;
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
-public class AttractionContoller {
-    private static final long serialVersionUID = 1L;
+public class AttractionController {
 
 
-    private AttractionService attractionService;
-    
-    public AttractionContoller(AttractionService attractionService) {
+    private final AttractionService attractionService;
+
+	@Autowired
+    public AttractionController(AttractionService attractionService) {
     	this.attractionService = attractionService; 
 	}
     
@@ -35,21 +33,7 @@ public class AttractionContoller {
 		 System.out.println("[Log] attraction으로 이동");
 		 return "tour/attraction"; 
 	 }
-    
-    
-    @GetMapping(value = {"/", "/index", "/main"})
-    public String index(HttpServletRequest request ) {
-    	  try {
-			List<AttractionDto> attractionList=attractionService.list();
-			request.setAttribute("attractionList",attractionList );
-			System.out.println("[Log] : 리스트를 불러옴! " + attractionList.size() + " 개");
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-    	
-    	return "index";
-    }
+
     
     @PostMapping("/filterList")
     public String filterList(@RequestParam(name = "city") String city, @RequestParam(name = "category") String category, 
@@ -76,16 +60,8 @@ public class AttractionContoller {
 		return "tour/attraction";
     }
     
-//    @PostMapping("/nowLocation")
-//    public String nowLocationi(@RequestParam("latitude") String latitude, @RequestParam("longtitide") String longitude) {
-//    	System.out.println("[Log] : 위치 정보가 사용됨!");
-//    	
-//    	new NowLocation(latitude, longitude);
-//    	return "attraction";
-//    }
-    
     @PostMapping("/nowLocation")
-    public String nowLocationi(HttpServletRequest request) {
+    public String nowLocation(HttpServletRequest request) {
     	System.out.println("[Log] : 위치 정보가 사용됨!");
     	String latitude = request.getParameter("latitude");
     	String longitude = request.getParameter("longitude");
