@@ -1,7 +1,14 @@
 package com.ssafy.mvc.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.math.BigDecimal;
 
+@Setter
+@Getter
+@ToString
 public class AttractionDto {
     private int contentId;
     private int contentTypeId;
@@ -44,153 +51,6 @@ public class AttractionDto {
         this.mlevel = mlevel;
         this.overview=overview;
     }
-
-    public int getContentId() {
-        return contentId;
-    }
-
-    public void setContentId(int contentId) {
-        this.contentId = contentId;
-    }
-
-    public int getContentTypeId() {
-        return contentTypeId;
-    }
-
-    public void setContentTypeId(int contentTypeId) {
-        this.contentTypeId = contentTypeId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAddr1() {
-        return addr1;
-    }
-
-    public void setAddr1(String addr1) {
-        this.addr1 = addr1;
-    }
-
-    public String getAddr2() {
-        return addr2;
-    }
-
-    public void setAddr2(String addr2) {
-        this.addr2 = addr2;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getFirstImage() {
-        return firstImage;
-    }
-
-    public void setFirstImage(String firstImage) {
-        this.firstImage = firstImage;
-    }
-
-    public String getFirstImage2() {
-        return firstImage2;
-    }
-
-    public void setFirstImage2(String firstImage2) {
-        this.firstImage2 = firstImage2;
-    }
-
-    public int getReadCount() {
-        return readCount;
-    }
-
-    public void setReadCount(int readCount) {
-        this.readCount = readCount;
-    }
-
-    public int getSidoCode() {
-        return sidoCode;
-    }
-
-    public void setSidoCode(int sidoCode) {
-        this.sidoCode = sidoCode;
-    }
-
-    public int getGugunCode() {
-        return gugunCode;
-    }
-
-    public void setGugunCode(int gugunCode) {
-        this.gugunCode = gugunCode;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
-    }
-
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getMlevel() {
-        return mlevel;
-    }
-
-    public void setMlevel(String mlevel) {
-        this.mlevel = mlevel;
-    }
-
-	public String getOverview() {
-		return overview;
-	}
-
-	public void setOverview(String overview) {
-		this.overview = overview;
-	}
-
-	public Double getDistance() {
-		return distance;
-	}
-
-	public void setDistance(Double distance) {
-		this.distance = distance;
-	}
-
-//	@Override
-//	public String toString() {
-//		return "AttractionDto [contentId=" + contentId + ", contentTypeId=" + contentTypeId + ", title=" + title
-//				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", tel=" + tel + ", firstImage="
-//				+ firstImage + ", firstImage2=" + firstImage2 + ", readCount=" + readCount + ", sidoCode=" + sidoCode
-//				+ ", gugunCode=" + gugunCode + ", latitude=" + latitude + ", longitude=" + longitude + ", mlevel="
-//				+ mlevel + ", overview=" + overview + ", distance=" + distance + "]";
-//	}
-    
-	
     
 }
 

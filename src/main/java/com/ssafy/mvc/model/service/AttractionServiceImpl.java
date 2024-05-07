@@ -20,10 +20,9 @@ import com.ssafy.util.Distance.DistanceUtil;
 public class AttractionServiceImpl implements AttractionService {
 
 
-	private AttractionMapper attractionMapper;
-	private NowLocation nowLocation;
-	
-	private AttractionServiceImpl(AttractionMapper attractionMapper) {
+	private final AttractionMapper attractionMapper;
+
+    private AttractionServiceImpl(AttractionMapper attractionMapper) {
 		this.attractionMapper = attractionMapper;
 	}
 	
@@ -40,8 +39,8 @@ public class AttractionServiceImpl implements AttractionService {
 
 	@Override
 	public List<AttractionDto> getFilteredList(Map<String, Object> map) throws SQLException {
-		
-		nowLocation = NowLocation.getLocation();
+
+        NowLocation nowLocation = NowLocation.getLocation();
 		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(map));
 	}
 	

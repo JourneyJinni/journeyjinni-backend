@@ -1,10 +1,15 @@
 package com.ssafy.mvc.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 현재 고객의 현재 위치를 가지고 있는 객체
  * 
  * @author 김규형
  */
+@Setter
+@Getter
 public class NowLocation {
 	
 	private Double latitiude;
@@ -32,23 +37,5 @@ public class NowLocation {
 		return nowLocation;
 	}
 
-	public Double getLatitiude() {
-		return latitiude;
-	}
 
-	public void setLatitiude(Double latitiude) {
-		this.latitiude = latitiude;
-	}
-
-	public Double getLongtitude() {
-		return longtitude;
-	}
-
-	public void setLongtitude(Double longtitude) {
-		this.longtitude = longtitude;
-	}
-	
-	
-	
-	
 }

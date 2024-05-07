@@ -27,7 +27,7 @@ public class PageController {
         int MAIN_GALLERY_COUNT = 4;
         List<AttractionDto> attractionList = pageService.getRandomAttractions(MAIN_GALLERY_COUNT);
         request.setAttribute("attractionList",attractionList );
-        System.out.println("[Log] : 리스트를 불러옴! ");
+        System.out.println("[Log] : 메인화면을 불러옴! ");
 
         return "index";
     }
