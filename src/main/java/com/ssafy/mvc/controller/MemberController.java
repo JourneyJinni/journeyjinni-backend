@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MemberController {
 	
-	private MemberService memberService;
+	private final MemberService memberService;
 	
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
