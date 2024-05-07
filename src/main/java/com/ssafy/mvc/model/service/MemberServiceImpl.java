@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.mvc.model.MemberDto;
 import com.ssafy.mvc.model.mapper.MemberMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -33,6 +34,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	@Transactional
 	public void memberSignUp(Map<String,String> map) throws Exception {
 		memberMapper.memberSignUp(map);		
 	}
