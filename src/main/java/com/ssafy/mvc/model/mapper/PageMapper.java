@@ -8,5 +8,5 @@ import java.util.List;
 @Mapper
 public interface PageMapper {
 
-    List<AttractionDto> getAttractionDtos(int attractionCount);
+    List<AttractionDto> getRandomAttractions(int attractionCount);
 }

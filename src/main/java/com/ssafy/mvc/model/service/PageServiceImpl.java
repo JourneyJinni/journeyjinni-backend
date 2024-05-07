@@ -21,6 +21,6 @@ public class PageServiceImpl implements PageService{
 
     @Override
     public List<AttractionDto> getRandomAttractions(int attractionCount) {
-        return pageMapper.getAttractionDtos(attractionCount);
+        return pageMapper.getRandomAttractions(attractionCount);
     }
 }
