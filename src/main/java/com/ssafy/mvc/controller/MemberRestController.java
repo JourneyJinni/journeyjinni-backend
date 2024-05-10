@@ -73,7 +73,7 @@ public class MemberRestController {
 
 	@GetMapping("/idcheck/{userid}")
 	@ResponseBody
-    public ResponseEntity<Object> idCheck(@RequestBody String userid) throws Exception {
+    public ResponseEntity<Object> idCheck(@PathVariable String userid) throws Exception {
 		int cnt = memberService.memberIdCheck(userid);
         if (cnt == 0)
 			return ResponseEntity.ok().body(Map.of("success", true, "message", "사용가능한 ID입니다."));

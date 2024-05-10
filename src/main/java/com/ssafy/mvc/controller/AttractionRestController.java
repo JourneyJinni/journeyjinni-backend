@@ -48,6 +48,7 @@ public class AttractionRestController {
 //        for (String value : request.getParameterValues("category")) {
 //            map.put("categorys", value);
 //        }
+
         try {
             List<AttractionDto> filteredList = attractionService.getFilteredList(map);
             System.out.println("[Log] : filterList 실행");
