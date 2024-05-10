@@ -1,11 +1,14 @@
 package com.ssafy.mvc.controller;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,10 +37,16 @@ public class AttractionController {
 		 return "tour/attraction"; 
 	 }
 
-    
-    @PostMapping("/filterList")
-    public String filterList(@RequestParam(name = "city") String city, @RequestParam(name = "category") String category, 
-    		 HttpServletRequest request) {
+	/**
+	 * 반환 타입 수정 완료 그러나 얻는 타입 추후 수정 필요
+	 * @param city
+	 * @param category
+	 * @param request
+	 * @return
+	 */
+	@PostMapping("/filterList")
+    public ResponseEntity<List<AttractionDto>> filterList(@RequestParam(name = "city") String city, @RequestParam(name = "category") String category,
+														  HttpServletRequest request) {
     	
     	Map<String, Object> map = new HashMap<>();
     	
@@ -48,16 +57,16 @@ public class AttractionController {
     	for (String value : request.getParameterValues("category")) {
     		map.put("categorys", value);
     	}
-    	
 		 try {
-			List<AttractionDto> filteredList = attractionService.getFilteredList(map);
+			 List<AttractionDto> filteredList = attractionService.getFilteredList(map);
 			System.out.println("[Log] : filterList 실행");
-			request.setAttribute("filteredList", filteredList);
+
+			return ResponseEntity.ok(filteredList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		return "tour/attraction";
+		 //에러 발생시 서버 에러 및 빈 리스트 반환
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
     }
     
     @PostMapping("/nowLocation")
