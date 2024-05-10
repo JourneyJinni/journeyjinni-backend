@@ -59,11 +59,16 @@ public class MemberRestController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
+	public ResponseEntity<Object> logout(HttpSession session) {
+		try {
+			session.invalidate();
+			return ResponseEntity.ok().body(Map.of("success", true, "message", "로그아웃이 성공적으로 처리되었습니다."));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Map.of("success", false, "message", "서버 오류가 발생했습니다."));
+		}
 	}
-
 	@GetMapping("/idcheck/{userid}")
 	@ResponseBody
     public String idCheck(@PathVariable("userid") String userId) throws Exception {
