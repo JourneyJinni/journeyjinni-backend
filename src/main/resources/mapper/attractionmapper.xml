@@ -25,6 +25,16 @@
 	  <result property="distance" column="distance" javaType="java.lang.Double" />
 	</resultMap>
 
+	<resultMap id="sidoResultMap" type="SidoDto">
+		<result property="sidoCode" column="sido_code"/>
+		<result property="sidoName" column="sido_name"/>
+	</resultMap>
+
+	<select id="getCities" resultMap="sidoResultMap">
+		select sido_code, sido_name
+		from sido
+	</select>
+
 	<select id="listAttraction" resultMap="attractionDto">
 	  SELECT *
 	  FROM attraction_info ai

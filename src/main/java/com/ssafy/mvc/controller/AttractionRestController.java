@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ssafy.mvc.model.SidoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,15 @@ public class AttractionRestController {
         this.attractionService = attractionService;
     }
 
-
+    @GetMapping("/getCity")
+    public ResponseEntity<List<SidoDto>> getCity() {
+        try {
+            return ResponseEntity.ok(attractionService.getCities());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
     /**
      * 반환 타입 수정 완료 그러나 얻는 타입 추후 수정 필요
      * @param city
