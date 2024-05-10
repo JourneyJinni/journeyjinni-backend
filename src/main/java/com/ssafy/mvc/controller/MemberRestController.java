@@ -26,6 +26,7 @@ public class MemberRestController {
 
 		try {
 			MemberDto memberDto = memberService.memberLogin(map);
+			log.info("map = " + map.toString());
 			log.info("memberDto: {}", memberDto);
 
 			if(memberDto == null) {
@@ -69,11 +70,14 @@ public class MemberRestController {
 					.body(Map.of("success", false, "message", "서버 오류가 발생했습니다."));
 		}
 	}
+
 	@GetMapping("/idcheck/{userid}")
 	@ResponseBody
-    public String idCheck(@PathVariable("userid") String userId) throws Exception {
-		int cnt = memberService.memberIdCheck(userId);
-        return cnt+"";
+    public ResponseEntity<Object> idCheck(@RequestBody String userid) throws Exception {
+		int cnt = memberService.memberIdCheck(userid);
+        if (cnt == 0)
+			return ResponseEntity.ok().body(Map.of("success", true, "message", "사용가능한 ID입니다."));
 
+		return ResponseEntity.ok().body(Map.of("success", true, "message", "사용불가능한 ID입니다."));
     }
 }
