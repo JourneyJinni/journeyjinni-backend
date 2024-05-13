@@ -26,13 +26,23 @@
 	</resultMap>
 
 	<resultMap id="sidoResultMap" type="SidoDto">
-		<result property="sidoCode" column="sido_code"/>
-		<result property="sidoName" column="sido_name"/>
+		<result property="code" column="sido_code"/>
+		<result property="name" column="sido_name"/>
+	</resultMap>
+
+	<resultMap id="categoryResultMap" type="CategoryDto">
+		<result property="code" column="category_code"/>
+		<result property="name" column="category_name"/>
 	</resultMap>
 
 	<select id="getCities" resultMap="sidoResultMap">
 		select sido_code, sido_name
 		from sido
+	</select>
+
+	<select id="getCategories" resultMap="categoryResultMap">
+		select category_code, category_name
+		from categories
 	</select>
 
 	<select id="listAttraction" resultMap="attractionDto">

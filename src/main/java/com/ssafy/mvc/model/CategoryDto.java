@@ -1,12 +1,15 @@
 package com.ssafy.mvc.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter
 @Setter
-public class SidoDto {
-    private int Code;
+@Getter
+@ToString
+public class CategoryDto {
     private String Name;
+    private int Code;
 
 }
