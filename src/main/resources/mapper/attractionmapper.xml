@@ -35,6 +35,18 @@
 		<result property="name" column="category_name"/>
 	</resultMap>
 
+	<resultMap id="gugnResultMap" type="GugunDto">
+		<result property="gugunCode" column="gugun_code"/>
+		<result property="name" column="gugun_name"/>
+		<result property="sidoCode" column="sido_code"/>
+	</resultMap>
+	
+	<select id="getGugun" parameterType="String" resultMap="gugnResultMap">
+		select *
+		from gugun
+		where sido_code = #{sidoCode}
+	</select>
+	
 	<select id="getCities" resultMap="sidoResultMap">
 		select sido_code, sido_name
 		from sido

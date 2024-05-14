@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.mvc.model.CategoryDto;
+import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,10 @@ public class AttractionServiceImpl implements AttractionService {
 		this.attractionMapper = attractionMapper;
 	}
 
-
+	@Override
+	public List<GugunDto> getGugun(String sidoCode) throws SQLException {
+		return attractionMapper.getGugun(sidoCode);
+	}
 	@Override
 	public List<SidoDto> getCities() throws SQLException {
 		return attractionMapper.getCities();
@@ -98,6 +102,9 @@ public class AttractionServiceImpl implements AttractionService {
 		dfs(route,adjMatrix,visited,minVertex,cnt+1);
 		
 	}
+
+
+
 	
 
 

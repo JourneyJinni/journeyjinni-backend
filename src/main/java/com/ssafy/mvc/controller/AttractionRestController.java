@@ -6,16 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.ssafy.mvc.model.CategoryDto;
-import com.ssafy.mvc.model.SidoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.mvc.model.AttractionDto;
+import com.ssafy.mvc.model.CategoryDto;
+import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.NowLocation;
+import com.ssafy.mvc.model.SidoDto;
 import com.ssafy.mvc.model.service.AttractionService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +35,7 @@ public class AttractionRestController {
         this.attractionService = attractionService;
     }
 
-    @GetMapping("/getCity")
+    @GetMapping("/getcity")
     public ResponseEntity<List<SidoDto>> getCity() {
         try {
             return ResponseEntity.ok(attractionService.getCities());
@@ -41,10 +45,20 @@ public class AttractionRestController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    @GetMapping("/getCategory")
+    @GetMapping("/getcategory")
     public ResponseEntity<List<CategoryDto>> getCategory() {
         try {
             return ResponseEntity.ok(attractionService.getCategories());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    @GetMapping("/getgugun/{sidoCode}")
+    public ResponseEntity<List<GugunDto>> getGugun(@PathVariable("sidoCode") String sidoCode) {
+        try {
+            return ResponseEntity.ok(attractionService.getGugun(sidoCode));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,7 +72,7 @@ public class AttractionRestController {
      * @param category
      * @return
      */
-    @PostMapping("/filterList")
+    @PostMapping("/filterlist")
     public ResponseEntity<List<AttractionDto>> filterList(@RequestBody String city, @RequestBody String category) {
 
         Map<String, Object> map = new HashMap<>();
