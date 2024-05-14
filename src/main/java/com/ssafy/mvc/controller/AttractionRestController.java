@@ -3,7 +3,6 @@ package com.ssafy.mvc.controller;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.CategoryDto;
+import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.NowLocation;
 import com.ssafy.mvc.model.SidoDto;
@@ -72,8 +72,12 @@ public class AttractionRestController {
      * @return
      */
     @PostMapping("/filterlist")
-    public ResponseEntity<List<AttractionDto>> filterList(@RequestBody String sido, @RequestBody String gugun, @RequestBody String attractionType) {
+    public ResponseEntity<List<AttractionDto>> filterList(@RequestBody FilterRequestDto request) {
 
+        String sido = request.getSido();
+        String gugun = request.getGugun();
+        String attractionType = request.getAttractionType();
+        
     	  System.out.println(sido);
     	  System.out.println(gugun);
     	  System.out.println(attractionType);
