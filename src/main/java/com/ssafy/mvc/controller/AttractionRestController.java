@@ -30,7 +30,7 @@ public class AttractionRestController {
         this.attractionService = attractionService;
     }
 
-    @GetMapping("/getCity")
+    @GetMapping("/getcity")
     public ResponseEntity<List<SidoDto>> getCity() {
         try {
             return ResponseEntity.ok(attractionService.getCities());
