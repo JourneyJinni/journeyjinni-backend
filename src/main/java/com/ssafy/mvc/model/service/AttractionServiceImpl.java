@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.SidoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,8 +35,8 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public Map<Integer, String> getCategories() throws SQLException {
-		return Map.of();
+	public List<CategoryDto> getCategories() throws SQLException {
+		return attractionMapper.getCategories();
 	}
 
 	@Override

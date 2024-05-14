@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.mvc.model.AttractionDto;
+import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.SidoDto;
 
 public interface AttractionService {
 
 	List<SidoDto> getCities() throws SQLException;
-	Map<Integer, String> getCategories() throws SQLException;
+	List<CategoryDto> getCategories() throws SQLException;
 
 
 	List<AttractionDto> list() throws SQLException;
