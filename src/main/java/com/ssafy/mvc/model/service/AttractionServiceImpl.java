@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.mvc.model.CategoryDto;
+import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +55,10 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public List<AttractionDto> getFilteredList(Map<String, Object> map) throws SQLException {
+	public List<AttractionDto> getFilteredList(FilterRequestDto request) throws SQLException {
 
         NowLocation nowLocation = NowLocation.getLocation();
-		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(map));
+		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(request));
 	}
 	
 	public List<Integer> getRoute(ArrayList<String[]> list){
