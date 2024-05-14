@@ -73,10 +73,13 @@
 	    SELECT * FROM attraction_info ai JOIN attraction_description ad USING (content_id)
 	    <where>
             ai.sido_code IN
-				(#{cities})
+				#{sidoCode}
                 AND
+            ai.gugun_code = #{gugunCode}
+            	AND    
             ai.content_type_id IN
-                (#{categorys})
+                #{categoryCode}
+                
 	    </where>
 	</select>
 

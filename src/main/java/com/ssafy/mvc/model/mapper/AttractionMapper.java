@@ -16,6 +16,7 @@ public interface AttractionMapper {
 	List<SidoDto> getCities() throws SQLException;
 	List<CategoryDto> getCategories() throws SQLException;
 	List<GugunDto> getGugun(String sidoCode) throws SQLException;
+	
 	List<AttractionDto> listAttraction() throws SQLException;
 	AttractionDto getAttractionbyContentId(int contentId) throws SQLException;
 
