@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
+@RequestMapping("/user")
 @RestController
 public class MemberRestController {
 
@@ -50,7 +51,7 @@ public class MemberRestController {
 
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody MemberDto memberDto) {
-		log.debug("login user : {}", memberDto);
+		log.info("login user : {}", memberDto);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.ACCEPTED;
 		try {
@@ -58,11 +59,11 @@ public class MemberRestController {
 			if(loginUser != null) {
 				String accessToken = jwtUtil.createAccessToken(loginUser.getUser_id());
 				String refreshToken = jwtUtil.createRefreshToken(loginUser.getUser_id());
-				log.debug("access token : {}", accessToken);
-				log.debug("refresh token : {}", refreshToken);
+				log.info("access token : {}", accessToken);
+				log.info("refresh token : {}", refreshToken);
 
 //				발급받은 refresh token 을 DB에 저장.
-			//	memberService.saveRefreshToken(loginUser.getUserId(), refreshToken);
+				memberService.saveRefreshToken(loginUser.getUser_id(), refreshToken);
 
 //				JSON 으로 token 전달.
 				resultMap.put("access-token", accessToken);
@@ -75,7 +76,7 @@ public class MemberRestController {
 			}
 
 		} catch (Exception e) {
-			log.debug("로그인 에러 발생 : {}", e);
+			log.info("로그인 에러 발생 : {}", e);
 			resultMap.put("message", e.getMessage());
 			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
