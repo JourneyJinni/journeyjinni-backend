@@ -13,8 +13,14 @@
     <!-- 회원 로그인 -->
     <select id="memberLogin" parameterType="com.ssafy.mvc.model.MemberDto" resultType="memberDto">
         SELECT * FROM members
-        WHERE user_id = #{user_id} AND user_password = #{user_pw}
+        WHERE user_id = #{user_id} AND user_password = #{user_password}
     </select>
+
+    <update id="saveRefreshToken" parameterType="map">
+        Update members
+        set token = #{refreshToken}
+        where user_id = #{user_id}
+    </update>
 
     <!-- 회원 아이디 중복 확인 -->
     <select id="memberIdCheck" parameterType="String" resultType="int">

@@ -1,5 +1,7 @@
 package com.ssafy.mvc.model.service;
 
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -24,8 +26,16 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberDto memberLogin(MemberDto memberDto) throws Exception {
-		System.out.println("service");
 		return memberMapper.memberLogin(memberDto);
+	}
+
+	@Override
+	public int saveRefreshToken(String user_id, String refreshToken) throws SQLException {
+		Map<String, String> map = new HashMap<>();
+		map.put("user_id", user_id);
+		map.put("refreshToken", refreshToken);
+
+		return memberMapper.saveRefreshToken(map);
 	}
 
 	@Override
