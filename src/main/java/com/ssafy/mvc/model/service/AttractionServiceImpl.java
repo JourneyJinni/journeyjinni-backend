@@ -57,8 +57,9 @@ public class AttractionServiceImpl implements AttractionService {
 	@Override
 	public List<AttractionDto> getFilteredList(FilterRequestDto request) throws SQLException {
 
-        NowLocation nowLocation = NowLocation.getLocation();
-		return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(request));
+        //NowLocation nowLocation = NowLocation.getLocation();
+		//return DistanceSort.isAroundSort(nowLocation.getLatitiude(), nowLocation.getLongtitude(), attractionMapper.fetchFilteredList(request));
+		return attractionMapper.fetchFilteredList(request);
 	}
 	
 	public List<Integer> getRoute(ArrayList<String[]> list){

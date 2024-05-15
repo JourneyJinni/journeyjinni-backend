@@ -82,22 +82,18 @@ public class AttractionRestController {
     	  System.out.println(gugun);
     	  System.out.println(attractionType);
 
-//        for (String value : request.getParameterValues("city")) {
-//            map.put("cities", value);
-//        }
+
 ////
-////        for (String value : request.getParameterValues("category")) {
-////            map.put("categorys", value);
-////        }
+
 //
-//        try {
-//            List<AttractionDto> filteredList = attractionService.getFilteredList(map);
-//            System.out.println("[Log] : filterList 실행");
-//
-//            return ResponseEntity.ok(filteredList);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            List<AttractionDto> filteredList = attractionService.getFilteredList(request);
+            System.out.println("[Log] : filterList 실행");
+
+            return ResponseEntity.ok(filteredList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //에러 발생시 서버 에러 및 빈 리스트 반환
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Collections.emptyList());
     }
