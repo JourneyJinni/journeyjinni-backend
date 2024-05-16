@@ -4,6 +4,7 @@ import com.ssafy.mvc.model.MemberDto;
 import com.ssafy.mvc.model.mapper.MemberMapper;
 import com.ssafy.mvc.model.service.MemberService;
 import com.ssafy.util.jwt.JWTUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,28 +27,6 @@ public class MemberRestController {
 		this.memberService = memberService;
 		this.jwtUtil = jwtUtil;
 	}
-	
-//	@PostMapping("/login")
-//	protected ResponseEntity<Object> login(@RequestBody Map<String,String> map , HttpSession session) {
-//
-//		try {
-//			MemberDto memberDto = memberService.memberLogin(map);
-//			log.info("map = " + map.toString());
-//			log.info("memberDto: {}", memberDto);
-//
-//			if(memberDto == null) {
-//				return ResponseEntity.badRequest()
-//						.body(Map.of("success", false, "message", "아이디 또는 비밀번호가 잘못되었습니다."));
-//			}
-//
-//			return ResponseEntity.ok()
-//					.body(Map.of("success", true, "message", "로그인에 성공했습니다.", "user", memberDto));
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-//					.body(Map.of("success", false, "message", "서버 오류가 발생했습니다."));
-//		}
-//	}
 
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody MemberDto memberDto) {
@@ -84,6 +63,48 @@ public class MemberRestController {
 	}
 
 
+
+	@GetMapping("/token_confirm")
+	public ResponseEntity<Map<String, Object>> tokenConfirm(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		if (jwtUtil.checkToken(request.getHeader("Authorization"))) {
+			log.info("사용 가능한 인증 토큰!!!");
+			return new ResponseEntity<Map<String, Object>>(resultMap, status);
+		}
+
+		status = HttpStatus.INTERNAL_SERVER_ERROR;
+		log.error("사용 불가능 토큰!!!");
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+
+	}
+
+	@GetMapping("/info/{userId}")
+	public ResponseEntity<Map<String, Object>> getInfo(
+			@PathVariable("userId")String userId, HttpServletRequest request) {
+//		logger.debug("userId : {} ", userId);
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		if (jwtUtil.checkToken(request.getHeader("Authorization"))) {
+			log.info("사용 가능한 토큰!!!");
+			try {
+//				로그인 사용자 정보.
+				MemberDto memberDto = memberService.memberView(userId);
+				resultMap.put("userInfo", memberDto);
+				status = HttpStatus.OK;
+			} catch (Exception e) {
+				log.error("정보조회 실패 : {}", e);
+				resultMap.put("message", e.getMessage());
+				status = HttpStatus.INTERNAL_SERVER_ERROR;
+			}
+		} else {
+			log.error("사용 불가능 토큰!!!");
+			status = HttpStatus.UNAUTHORIZED;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+
+
 	@PostMapping("/join")
 	public ResponseEntity<Object> join(@RequestBody Map<String,String> map) {
 		
@@ -98,20 +119,6 @@ public class MemberRestController {
 				.body(Map.of("success", false, "message", "로그인이 성공적으로 완료되었습니다."));
 	}
 
-	@GetMapping("/logout/{userId}")
-	public ResponseEntity<?> removeToken(@PathVariable ("userId") String userId) {
-		Map<String, Object> resultMap = new HashMap<>();
-		HttpStatus status = HttpStatus.ACCEPTED;
-		try {
-			memberService.deleteRefreshToken(userId);
-			status = HttpStatus.OK;
-		} catch (Exception e) {
-			log.error("로그아웃 실패 : {}", e);
-			resultMap.put("message", e.getMessage());
-			status = HttpStatus.INTERNAL_SERVER_ERROR;
-		}
-		return new ResponseEntity<Map<String, Object>>(resultMap, status);
-	}
 
 	@GetMapping("/idcheck/{userid}")
 	@ResponseBody
