@@ -141,6 +141,21 @@ public class MemberRestController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
+	@PostMapping("/update")
+	public ResponseEntity<Map<String, Object>> update(@RequestBody MemberDto memberDto) {
+		log.info("login user : {}", memberDto);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		try {
+			memberService.memberModify(memberDto);
+		} catch (Exception e) {
+			log.info("회원 정보 업데이트 중 오류 발생");
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+
 
 	@PostMapping("/join")
 	public ResponseEntity<Object> join(@RequestBody Map<String,String> map) {
