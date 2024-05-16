@@ -43,7 +43,7 @@ public class MemberRestController {
 
 //				발급받은 refresh token 을 DB에 저장.
 				memberService.saveRefreshToken(loginUser.getUser_id(), refreshToken);
-
+				resultMap.put("userInfo", memberDto);
 //				JSON 으로 token 전달.
 				resultMap.put("access-token", accessToken);
 				resultMap.put("refresh-token", refreshToken);
@@ -62,7 +62,21 @@ public class MemberRestController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
-
+	@GetMapping("/logout/{user_id}")
+	public ResponseEntity<?> removeToken(@PathVariable ("user_id") String user_id) {
+		Map<String, Object> resultMap = new HashMap<>();
+		log.info("logout user : user_id : {}", user_id);
+		HttpStatus status = HttpStatus.ACCEPTED;
+		try {
+			memberService.deleteRefreshToken(user_id);
+			status = HttpStatus.OK;
+		} catch (Exception e) {
+			log.error("로그아웃 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
 
 	@GetMapping("/token_confirm")
 	public ResponseEntity<Map<String, Object>> tokenConfirm(HttpServletRequest request) {

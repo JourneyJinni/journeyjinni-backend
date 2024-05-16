@@ -22,7 +22,7 @@
         where user_id = #{user_id}
     </update>
 
-    <delete id="deleRefreshToken" parameterType="String">
+    <delete id="deleteRefreshToken" parameterType="String">
         Update members
         set token = null
         where user_id = #{user_id}
