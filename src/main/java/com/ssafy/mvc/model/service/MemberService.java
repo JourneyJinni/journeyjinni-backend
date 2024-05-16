@@ -11,6 +11,8 @@ public interface MemberService {
 	MemberDto memberLogin(MemberDto memberDto) throws Exception;
 
 	int saveRefreshToken(String user_id, String refreshToken) throws SQLException;
+	void deleteRefreshToken(String user_id) throws SQLException;
+
 	int memberIdCheck(String user_id) throws Exception;
 	void memberSignUp(Map<String,String> map) throws Exception;
 	void memberModify(MemberDto memberDto) throws Exception;

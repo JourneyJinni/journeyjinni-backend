@@ -98,16 +98,19 @@ public class MemberRestController {
 				.body(Map.of("success", false, "message", "로그인이 성공적으로 완료되었습니다."));
 	}
 
-	@GetMapping("/logout")
-	public ResponseEntity<Object> logout(HttpSession session) {
+	@GetMapping("/logout/{userId}")
+	public ResponseEntity<?> removeToken(@PathVariable ("userId") String userId) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
 		try {
-			session.invalidate();
-			return ResponseEntity.ok().body(Map.of("success", true, "message", "로그아웃이 성공적으로 처리되었습니다."));
+			memberService.deleteRefreshToken(userId);
+			status = HttpStatus.OK;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body(Map.of("success", false, "message", "서버 오류가 발생했습니다."));
+			log.error("로그아웃 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
 		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
 	@GetMapping("/idcheck/{userid}")
