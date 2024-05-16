@@ -93,6 +93,29 @@ public class MemberRestController {
 
 	}
 
+	@PostMapping("/refresh/{user_id}")
+	public ResponseEntity<?> refreshToken(@PathVariable("user_id") String user_id, HttpServletRequest request)
+			throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+		String token = request.getHeader("refreshToken");
+		log.debug("token : {}, memberDto : {}", token, user_id);
+		if (jwtUtil.checkToken(token)) {
+			if (token.equals(memberService.getRefreshToken(user_id))) {
+				String accessToken = jwtUtil.createAccessToken(user_id);
+				log.debug("token : {}", accessToken);
+				log.debug("정상적으로 access token 재발급!!!");
+				resultMap.put("access-token", accessToken);
+				resultMap.put("userInfo", memberService.memberView(user_id));
+				status = HttpStatus.CREATED;
+			}
+		} else {
+			log.debug("refresh token 도 사용 불가!!!!!!!");
+			status = HttpStatus.UNAUTHORIZED;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+
 	@GetMapping("/info/{userId}")
 	public ResponseEntity<Map<String, Object>> getInfo(
 			@PathVariable("userId")String userId, HttpServletRequest request) {

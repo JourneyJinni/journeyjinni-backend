@@ -22,6 +22,12 @@
         where user_id = #{user_id}
     </update>
 
+    <select id="getRefreshToken" parameterType="string" resultType="string">
+        select token
+        from members
+        where user_id = #{user_id}
+    </select>
+
     <delete id="deleteRefreshToken" parameterType="String">
         Update members
         set token = null
