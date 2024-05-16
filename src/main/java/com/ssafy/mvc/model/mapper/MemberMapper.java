@@ -10,7 +10,8 @@ import com.ssafy.mvc.model.MemberDto;
 @Mapper
 public interface MemberMapper {
 	MemberDto memberView(String user_id) throws SQLException; 
-	MemberDto memberLogin(Map<String,String> map) throws SQLException;
+	MemberDto memberLogin(MemberDto memberDto) throws SQLException;
+	int saveRefreshToken(Map<String, String> map) throws SQLException;
 	int memberIdCheck(String user_id) throws SQLException;
 	void memberSignUp(Map<String,String> map) throws SQLException;
 	void memberModify(MemberDto memberDto) throws SQLException;

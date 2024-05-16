@@ -82,8 +82,6 @@ public class AttractionRestController {
     	  System.out.println(gugun);
     	  System.out.println(attractionType);
 
-
-
         try {
             List<AttractionDto> filteredList = attractionService.getFilteredList(request);
             System.out.println("[Log] : filterList 실행");

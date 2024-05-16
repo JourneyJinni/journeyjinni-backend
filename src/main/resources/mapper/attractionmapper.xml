@@ -72,15 +72,14 @@
 	<select id="fetchFilteredList" parameterType="com.ssafy.mvc.model.FilterRequestDto" resultMap="attractionDto">
 	    SELECT * FROM attraction_info ai JOIN attraction_description ad USING (content_id)
 	    <where>
-            ai.sido_code IN
-				#{sido}
+            ai.sido_code = #{sido}
                 AND
             ai.gugun_code = #{gugun}
             	AND    
-            ai.content_type_id IN
-                #{attractionType}
+            ai.content_type_id = #{attractionType}
                 
 	    </where>
+	    limit 10
 	</select>
 
 
