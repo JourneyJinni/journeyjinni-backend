@@ -1,18 +1,11 @@
 package com.ssafy.mvc.controller;
 
 
-import java.sql.SQLException;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.metadata.Directory;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.GpsDirectory;
-import com.drew.metadata.exif.ExifSubIFDDirectory;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.metadata.Metadata;
+import com.drew.metadata.exif.ExifSubIFDDirectory;
+import com.drew.metadata.exif.GpsDirectory;
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
@@ -142,6 +139,18 @@ public class AttractionRestController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    @PostMapping("/map-img-upload")
+    public String handleImgFilesUpload(@RequestParam("images") MultipartFile[] images) {
+        // images 배열에는 전송된 이미지 파일들이 포함됩니다.
+        // 각 이미지 파일을 저장하거나 다른 작업을 수행할 수 있습니다.
+
+        // 예시로, 받은 이미지 파일들의 개수를 출력해보겠습니다.
+        System.out.println("Received " + images.length + " images");
+
+        // 파일을 처리한 후 응답을 반환합니다.
+        return "Images uploaded successfully!";
     }
 
 
