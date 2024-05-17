@@ -151,8 +151,21 @@ public class AttractionRestController {
         for (int i = 0; i < images.length; i++) {
             MultipartFile image = images[i];
             String metadataJson = metadataList[i];
-            System.out.println(metadataJson);
             
+            try {
+                // 메타데이터를 JSON으로 파싱
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, Object> metadata = objectMapper.readValue(metadataJson, Map.class);
+
+                // 응답에 메타데이터 추가
+                response.put(image.getOriginalFilename(), metadata);
+
+                // 여기서 이미지를 저장하거나 추가 작업을 수행할 수 있습니다.
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process file: " + image.getOriginalFilename());
+            }
         }
         return ResponseEntity.ok(response);
     }
