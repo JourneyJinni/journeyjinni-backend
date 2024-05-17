@@ -14,8 +14,4 @@ public class MemberDto {
 	private String email_id;
 	private String email_domain;
 	private String join_date;
-
-
-	
-	
 }
