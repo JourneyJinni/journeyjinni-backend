@@ -1,17 +1,17 @@
-package com.ssafy.vue.board.model.service;
+package com.ssafy.mvc.model.service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ssafy.mvc.model.Board.FileInfoDto;
+import com.ssafy.mvc.model.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ssafy.vue.board.model.BoardDto;
-import com.ssafy.vue.board.model.BoardListDto;
-import com.ssafy.vue.board.model.FileInfoDto;
-import com.ssafy.vue.board.model.mapper.BoardMapper;
+import com.ssafy.mvc.model.Board.BoardDto;
+import com.ssafy.mvc.model.Board.BoardListDto;
 
 @Service
 public class BoardServiceImpl implements BoardService {

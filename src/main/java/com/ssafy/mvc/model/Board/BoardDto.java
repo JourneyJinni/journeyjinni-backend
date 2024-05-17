@@ -1,8 +1,7 @@
-package com.ssafy.mvc.model;
+package com.ssafy.mvc.model.Board;
 
 import java.util.List;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

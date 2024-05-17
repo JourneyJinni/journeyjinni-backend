@@ -1,9 +1,9 @@
-package com.ssafy.vue.board.model.service;
+package com.ssafy.mvc.model.service;
+
+import com.ssafy.mvc.model.Board.BoardDto;
+import com.ssafy.mvc.model.Board.BoardListDto;
 
 import java.util.Map;
-
-import com.ssafy.vue.board.model.BoardDto;
-import com.ssafy.vue.board.model.BoardListDto;
 
 public interface BoardService {
 

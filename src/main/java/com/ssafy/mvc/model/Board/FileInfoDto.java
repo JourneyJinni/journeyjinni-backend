@@ -1,2 +1,17 @@
-package com.ssafy.mvc.model.Board;public class FileInfoDto {
+package com.ssafy.mvc.model.Board;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+public class FileInfoDto {
+
+    private String saveFolder;
+    private String originalFile;
+    private String saveFile;
 }
