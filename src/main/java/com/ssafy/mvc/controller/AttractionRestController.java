@@ -5,7 +5,9 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ import com.drew.imaging.ImageMetadataReader;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
@@ -142,17 +145,30 @@ public class AttractionRestController {
     }
     
     @PostMapping("/map-img-upload")
-    public String handleImgFilesUpload(@RequestParam("images") MultipartFile[] images) {
-        // images 배열에는 전송된 이미지 파일들이 포함됩니다.
-        // 각 이미지 파일을 저장하거나 다른 작업을 수행할 수 있습니다.
+    public ResponseEntity<?> handleFileUpload(@RequestParam("images") MultipartFile[] images,
+                                              @RequestParam("metadata") String[] metadataList) {
+        Map<String, Object> response = new HashMap<>();
+        for (int i = 0; i < images.length; i++) {
+            MultipartFile image = images[i];
+            String metadataJson = metadataList[i];
 
-        // 예시로, 받은 이미지 파일들의 개수를 출력해보겠습니다.
-        System.out.println("Received " + images.length + " images");
+            try {
+                // 메타데이터를 JSON으로 파싱
+                ObjectMapper objectMapper = new ObjectMapper();
+                Map<String, Object> metadata = objectMapper.readValue(metadataJson, Map.class);
 
-        // 파일을 처리한 후 응답을 반환합니다.
-        return "Images uploaded successfully!";
+                // 응답에 메타데이터 추가
+                response.put(image.getOriginalFilename(), metadata);
+
+                // 여기서 이미지를 저장하거나 추가 작업을 수행할 수 있습니다.
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process file: " + image.getOriginalFilename());
+            }
+        }
+        return ResponseEntity.ok(response);
     }
-
 
 
 }
