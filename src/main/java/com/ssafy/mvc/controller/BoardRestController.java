@@ -91,6 +91,18 @@ public class BoardRestController {
 
     }
 
+    @PostMapping("/validate")
+    public ResponseEntity<?> validate(@RequestBody  Map<String, Object> map) throws Exception {
+        log.info(map.get("user_id") + " vs " + map.get("author"));
+        if (map.get("user_id").equals(map.get("author"))) {
+
+            return ResponseEntity.ok().build(); // 200 OK 반환
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); // 401 Unauthorized 반환
+    }
+
+
     private ResponseEntity<String> exceptionHandling(Exception e) {
         e.printStackTrace();
         return new ResponseEntity<String>("Error : " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
