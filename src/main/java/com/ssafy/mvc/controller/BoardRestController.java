@@ -63,10 +63,10 @@ public class BoardRestController {
     }
 
     @GetMapping("/{articleno}")
-    public ResponseEntity<BoardDto> getArticle(@PathVariable("articleno")  int articleno) throws Exception {
-        log.info("getArticle - 호출 : " + articleno);
-        boardService.updateHit(articleno);
-        return new ResponseEntity<BoardDto>(boardService.getArticle(articleno), HttpStatus.OK);
+    public ResponseEntity<BoardDto> getArticle(@PathVariable("articleno")  int articleNo) throws Exception {
+        log.info("getArticle - 호출 : " + articleNo);
+        boardService.updateHit(articleNo);
+        return new ResponseEntity<BoardDto>(boardService.getArticle(articleNo), HttpStatus.OK);
     }
 
     @GetMapping("/modify/{articleno}")

@@ -68,7 +68,7 @@
 		</where>
 	</select>
 	
-	<select id="getArticle" parameterType="int" resultMap="viewArticle">
+	<select id="getArticle" parameterType="int" resultMap="article">
 		select b.article_no, b.user_id, b.subject, b.content, b.hit, b.register_time, m.user_name 
 		from board b, members m
 		where b.user_id = m.user_id
