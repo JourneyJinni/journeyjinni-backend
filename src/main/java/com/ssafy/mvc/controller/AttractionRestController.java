@@ -181,7 +181,7 @@ public class AttractionRestController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
     @PostMapping("/register-trip")
-    public ResponseEntity<?> handleFileUpload(@RequestParam("userId") String userId, @RequestParam("tripName") String tripName){
+    public ResponseEntity<?> registerTrip(@RequestParam("userId") String userId, @RequestParam("tripName") String tripName){
         try {
             
         	System.out.println(userId);
@@ -193,6 +193,29 @@ public class AttractionRestController {
         }
     
     return ResponseEntity.ok("ok");
+    }
+    @PostMapping("/register-attraction")
+    public ResponseEntity<?> registerAttraction(@RequestParam("tripId") String tripId, @RequestParam("attractionName") String attractionName,@RequestParam("attractionDes") String attractionDes,
+    		@RequestParam("images") MultipartFile[] images, @RequestParam("metadata") String[] metadataList){
+    	
+        System.out.println(tripId);
+        System.out.println(attractionName);
+        System.out.println(attractionDes);
+//        for (int i = 0; i < images.length; i++) {
+//            MultipartFile image = images[i];
+//            String metadataJson = metadataList[i];
+//            
+//            try {
+//  
+//
+//                // 여기서 이미지를 저장하거나 추가 작업을 수행할 수 있습니다.
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process file: ");
+//            }
+//        }
+        return ResponseEntity.ok("ok");
     }
 }
     
