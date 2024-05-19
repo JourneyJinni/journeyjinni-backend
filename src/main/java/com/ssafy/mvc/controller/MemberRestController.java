@@ -157,7 +157,8 @@ public class MemberRestController {
 	}
 
 
-	@PostMapping("/join")
+	@PostMapping("/signup")
+	@ResponseBody
 	public ResponseEntity<Object> join(@RequestBody Map<String,String> map) {
 		
 		log.info("map: {}", map);
@@ -168,17 +169,36 @@ public class MemberRestController {
 					.body(Map.of("success", false, "message", "서버 오류가 발생했습니다."));
 		}
 		return ResponseEntity.ok()
-				.body(Map.of("success", false, "message", "로그인이 성공적으로 완료되었습니다."));
+				.body(Map.of("success", true, "message", "로그인이 성공적으로 완료되었습니다."));
 	}
 
 
-	@GetMapping("/idcheck/{userid}")
+	@PostMapping("/checkUserId")
 	@ResponseBody
-    public ResponseEntity<Object> idCheck(@PathVariable String userid) throws Exception {
+	public ResponseEntity<Object> idCheck(@RequestBody Map<String, String> request) throws Exception {
+		String pattern = "^[a-zA-Z0-9]+$";
+		String userid = request.get("userid");
 		int cnt = memberService.memberIdCheck(userid);
-        if (cnt == 0)
+		if (cnt == 0 && userid.matches(pattern))
 			return ResponseEntity.ok().body(Map.of("success", true, "message", "사용가능한 ID입니다."));
 
-		return ResponseEntity.ok().body(Map.of("success", true, "message", "사용불가능한 ID입니다."));
-    }
+		return ResponseEntity.ok().body(Map.of("success", false, "message", "사용불가능한 ID입니다."));
+	}
+
+	@GetMapping("/delete/{user_id}")
+	public ResponseEntity<?> delete(@PathVariable ("user_id") String user_id) {
+		Map<String, Object> resultMap = new HashMap<>();
+		log.info("delete user : user_id : {}", user_id);
+		HttpStatus status = HttpStatus.ACCEPTED;
+		try {
+			memberService.memberDelete(user_id);
+			status = HttpStatus.OK;
+		} catch (Exception e) {
+			log.error("탈퇴 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+
 }
