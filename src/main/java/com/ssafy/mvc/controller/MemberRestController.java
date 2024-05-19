@@ -185,4 +185,20 @@ public class MemberRestController {
 		return ResponseEntity.ok().body(Map.of("success", false, "message", "사용불가능한 ID입니다."));
 	}
 
+	@GetMapping("/delete/{user_id}")
+	public ResponseEntity<?> delete(@PathVariable ("user_id") String user_id) {
+		Map<String, Object> resultMap = new HashMap<>();
+		log.info("delete user : user_id : {}", user_id);
+		HttpStatus status = HttpStatus.ACCEPTED;
+		try {
+			memberService.memberDelete(user_id);
+			status = HttpStatus.OK;
+		} catch (Exception e) {
+			log.error("탈퇴 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+
 }
