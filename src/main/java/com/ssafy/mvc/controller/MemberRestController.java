@@ -172,13 +172,16 @@ public class MemberRestController {
 	}
 
 
-	@GetMapping("/idcheck/{userid}")
+	@PostMapping("/checkUserId")
 	@ResponseBody
-    public ResponseEntity<Object> idCheck(@PathVariable String userid) throws Exception {
+	public ResponseEntity<Object> idCheck(@RequestBody Map<String, String> request) throws Exception {
+		String pattern = "^[a-zA-Z0-9]+$";
+		String userid = request.get("userid");
 		int cnt = memberService.memberIdCheck(userid);
-        if (cnt == 0)
+		if (cnt == 0 && userid.matches(pattern))
 			return ResponseEntity.ok().body(Map.of("success", true, "message", "사용가능한 ID입니다."));
 
-		return ResponseEntity.ok().body(Map.of("success", true, "message", "사용불가능한 ID입니다."));
-    }
+		return ResponseEntity.ok().body(Map.of("success", false, "message", "사용불가능한 ID입니다."));
+	}
+
 }
