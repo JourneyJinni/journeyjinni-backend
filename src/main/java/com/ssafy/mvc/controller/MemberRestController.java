@@ -157,7 +157,8 @@ public class MemberRestController {
 	}
 
 
-	@PostMapping("/join")
+	@PostMapping("/signup")
+	@ResponseBody
 	public ResponseEntity<Object> join(@RequestBody Map<String,String> map) {
 		
 		log.info("map: {}", map);
@@ -168,7 +169,7 @@ public class MemberRestController {
 					.body(Map.of("success", false, "message", "서버 오류가 발생했습니다."));
 		}
 		return ResponseEntity.ok()
-				.body(Map.of("success", false, "message", "로그인이 성공적으로 완료되었습니다."));
+				.body(Map.of("success", true, "message", "로그인이 성공적으로 완료되었습니다."));
 	}
 
 
