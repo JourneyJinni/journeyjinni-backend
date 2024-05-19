@@ -9,6 +9,7 @@ import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserTripDto;
 
 public interface AttractionService {
 
@@ -18,7 +19,8 @@ public interface AttractionService {
 
 	List<AttractionDto> list() throws SQLException;
 	AttractionDto getAttraction(int contentId) throws SQLException;
-
+	void registerUserTrip(String userId, String tripName) throws SQLException;
+	List<UserTripDto> getUserTrip(String userId) throws SQLException;
 	public List<AttractionDto> getFilteredList(FilterRequestDto request) throws SQLException;
 	List<Integer> getRoute(ArrayList<String[]> list) throws SQLException;;
 	

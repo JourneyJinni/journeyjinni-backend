@@ -41,6 +41,13 @@
 		<result property="sidoCode" column="sido_code"/>
 	</resultMap>
 	
+	<resultMap id="userTripResultMap" type="UserTripDto">
+		<result property="trip_id" column="trip_id"/>
+		<result property="user_id" column="user_id"/>
+		<result property="trip_name" column="trip_name"/>
+	</resultMap>
+	
+	
 	<select id="getGugun" parameterType="String" resultMap="gugnResultMap">
 		select *
 		from gugun
@@ -81,6 +88,16 @@
 	    </where>
 	    limit 10
 	</select>
+	
+	<select id="getUserTrip" parameterType="String" resultMap="userTripResultMap">
+        SELECT * FROM my_trips
+		WHERE user_id = #{userId}
+    </select>
+    
+    <insert id="registerUserTrip" parameterType="String">
+    	insert into my_trips (user_id,trip_name)
+		values(#{userId}, #{tripName});
+    </insert>
 
 
 </mapper>

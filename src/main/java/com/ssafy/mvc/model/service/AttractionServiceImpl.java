@@ -10,6 +10,8 @@ import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserTripDto;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,6 +104,19 @@ public class AttractionServiceImpl implements AttractionService {
 			return;
 		}
 		dfs(route,adjMatrix,visited,minVertex,cnt+1);
+		
+	}
+
+	@Override
+	public List<UserTripDto> getUserTrip(String userId) throws SQLException {
+		
+		return attractionMapper.getUserTrip(userId);
+	}
+
+	@Override
+	public void registerUserTrip(String userId, String tripName) throws SQLException {
+		attractionMapper.registerUserTrip(userId, tripName);
+		return;
 		
 	}
 

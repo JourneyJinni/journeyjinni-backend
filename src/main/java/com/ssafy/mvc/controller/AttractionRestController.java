@@ -31,6 +31,7 @@ import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.NowLocation;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserTripDto;
 import com.ssafy.mvc.model.service.AttractionService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -169,6 +170,31 @@ public class AttractionRestController {
         }
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/get-usertrip/{userId}")
+    public ResponseEntity<List<UserTripDto>> getUserTrip(@PathVariable("userId") String userId) {
+        try {
+            return ResponseEntity.ok(attractionService.getUserTrip(userId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    @PostMapping("/register-trip")
+    public ResponseEntity<?> handleFileUpload(@RequestParam("userId") String userId, @RequestParam("tripName") String tripName){
+        try {
+            
+        	System.out.println(userId);
+        	System.out.println(tripName);
+        	attractionService.registerUserTrip(userId, tripName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("failed");
+        }
+    
+    return ResponseEntity.ok("ok");
+    }
 }
+    
+
+
