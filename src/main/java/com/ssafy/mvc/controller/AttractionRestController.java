@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,7 @@ import com.ssafy.mvc.service.AttractionService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+@Slf4j
 @RestController
 public class AttractionRestController {
 
@@ -78,26 +80,13 @@ public class AttractionRestController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-    /**
-     * 반환 타입 수정 완료 그러나 얻는 타입 추후 수정 필요
-     * @param city
-     * @param category
-     * @return
-     */
     @PostMapping("/filterlist")
     public ResponseEntity<List<AttractionDto>> filterList(@RequestBody FilterRequestDto request) {
 
-          String sido = request.getSido();
-          String gugun = request.getGugun();
-          String attractionType = request.getAttractionType();
-        
-    	  System.out.println(sido);
-    	  System.out.println(gugun);
-    	  System.out.println(attractionType);
-
+        log.info(request.getSido());
+        log.info(request.getAttractionType());
         try {
             List<AttractionDto> filteredList = attractionService.getFilteredList(request);
-            System.out.println("[Log] : filterList 실행");
 
             return ResponseEntity.ok(filteredList);
         } catch (SQLException e) {
