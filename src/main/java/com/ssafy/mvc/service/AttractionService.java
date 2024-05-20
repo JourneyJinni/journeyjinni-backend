@@ -9,6 +9,8 @@ import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserAttractionDto;
+import com.ssafy.mvc.model.UserMapImageDto;
 import com.ssafy.mvc.model.UserTripDto;
 
 public interface AttractionService {
@@ -20,7 +22,9 @@ public interface AttractionService {
 	List<AttractionDto> list() throws SQLException;
 	AttractionDto getAttraction(int contentId) throws SQLException;
 	void registerUserTrip(String userId, String tripName) throws SQLException;
-	void registerUserAttraction(String tripId, String attractionName, String attractionDes) throws SQLException;
+	void registerUserAttraction(UserAttractionDto dto) throws SQLException;
+	void registerUserMapImage(UserMapImageDto dto) throws SQLException;
+	
 	List<UserTripDto> getUserTrip(String userId) throws SQLException;
 	List<UserTripDto> getUserAttraction(String tripId) throws SQLException;
 	public List<AttractionDto> getFilteredList(FilterRequestDto request) throws SQLException;

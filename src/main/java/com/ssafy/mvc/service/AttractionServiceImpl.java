@@ -9,6 +9,8 @@ import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserAttractionDto;
+import com.ssafy.mvc.model.UserMapImageDto;
 import com.ssafy.mvc.model.UserTripDto;
 
 import org.springframework.stereotype.Service;
@@ -116,16 +118,22 @@ public class AttractionServiceImpl implements AttractionService {
 		
 	}
 
-	@Override
-	public void registerUserAttraction(String tripId, String attractionName, String attractionDes) throws SQLException {
-		attractionMapper.registerUserAttraction(tripId, attractionName, attractionDes);
-		return;
-		
-	}
 
 	@Override
 	public List<UserTripDto> getUserAttraction(String tripId) throws SQLException {
 		return attractionMapper.getUserAttraction(tripId);
+	}
+
+	@Override
+	public void registerUserAttraction(UserAttractionDto dto) throws SQLException {
+		attractionMapper.registerUserAttraction(dto);
+		
+	}
+
+	@Override
+	public void registerUserMapImage(UserMapImageDto dto) throws SQLException {
+		attractionMapper.registerUserMapImage(dto);
+		
 	}
 
 

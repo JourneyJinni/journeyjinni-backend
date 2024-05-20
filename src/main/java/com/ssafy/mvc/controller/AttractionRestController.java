@@ -3,13 +3,16 @@ package com.ssafy.mvc.controller;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +33,16 @@ import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
+import com.ssafy.mvc.model.MetadataDto;
 import com.ssafy.mvc.model.NowLocation;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserAttractionDto;
+import com.ssafy.mvc.model.UserMapImageDto;
 import com.ssafy.mvc.model.UserTripDto;
 import com.ssafy.mvc.service.AttractionService;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
@@ -188,13 +195,95 @@ public class AttractionRestController {
     public ResponseEntity<?> registerAttraction(@RequestParam("tripId") String tripId, @RequestParam("attractionName") String attractionName,@RequestParam("attractionDes") String attractionDes,
     		@RequestParam("images") MultipartFile[] images, @RequestParam("metadata") String[] metadataList){
     	
-        
+    		List<UserMapImageDto> imageList = new ArrayList<UserMapImageDto>(); 
         try {
+            UserAttractionDto dto = new UserAttractionDto();
+            dto.setAttraction_description(attractionDes);
+            dto.setAttraction_name(attractionName);
+            dto.setTrip_id(tripId);
             
-        	System.out.println(tripId);
-            System.out.println(attractionName);
-            System.out.println(attractionDes);
-        	attractionService.registerUserAttraction(tripId, attractionName, attractionDes);
+        	System.out.println(dto.getAttraction_description());
+            System.out.println(dto.getAttraction_name());
+            System.out.println(dto.getTrip_id());
+        	attractionService.registerUserAttraction(dto);
+        	if(images.length ==1) {
+        		String meta = metadataList[0] + ","+ metadataList[1] + "," + metadataList[2];
+        		ObjectMapper objectMapper = new ObjectMapper();
+        		MetadataDto metadata = objectMapper.readValue(meta, MetadataDto.class);
+        		System.out.println("---------------------------");
+                System.out.println("Date: " + metadata.getDate());
+                System.out.println("Latitude: " + metadata.getLatitude());
+                System.out.println("Longitude: " + metadata.getLongitude());
+                System.out.println("---------------------------");
+                // ISO 8601 형식을 OffsetDateTime으로 파싱
+                String dateStr = metadata.getDate().substring(0,10) + " " + metadata.getDate().substring(11,19);
+                System.out.println("dateStr: " + dateStr);
+                
+                // 문자열을 LocalDateTime으로 파싱
+                LocalDateTime localDateTime = LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+                // 그리니치 표준시(GMT)로부터 9시간을 더하여 한국 시간으로 변환
+                ZonedDateTime gmtDateTime = ZonedDateTime.of(localDateTime, java.time.ZoneId.of("GMT"));
+                ZonedDateTime koreaDateTime = gmtDateTime.plusHours(9);
+                
+                System.out.println(koreaDateTime.toString());
+                
+                dateStr = koreaDateTime.toString().substring(0,10) + " " + koreaDateTime.toString().substring(11,19);
+                
+                
+                
+        		UserMapImageDto userImage = new UserMapImageDto();
+        		userImage.setAttraction_id(dto.getAttraction_id());
+        		userImage.setImage(images[0].getBytes());
+        		userImage.setDate(dateStr);
+        		userImage.setLatitude(metadata.getLatitude());
+        		userImage.setLongitude(metadata.getLongitude());
+        		
+        		attractionService.registerUserMapImage(userImage);
+        		
+        		
+                
+        	}else {
+        	
+        	for(int i=0;i<metadataList.length;i++) {
+        		System.out.println(metadataList[i]);
+        		ObjectMapper objectMapper = new ObjectMapper();
+        		MetadataDto metadata = objectMapper.readValue(metadataList[i], MetadataDto.class);
+        		System.out.println("---------------------------");
+                System.out.println("Date: " + metadata.getDate());
+                System.out.println("Latitude: " + metadata.getLatitude());
+                System.out.println("Longitude: " + metadata.getLongitude());
+                System.out.println("---------------------------");
+                
+                String dateStr = metadata.getDate().substring(0,10) + " " + metadata.getDate().substring(11,19);
+                System.out.println("dateStr: " + dateStr);
+                
+                // 문자열을 LocalDateTime으로 파싱
+                LocalDateTime localDateTime = LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+                // 그리니치 표준시(GMT)로부터 9시간을 더하여 한국 시간으로 변환
+                ZonedDateTime gmtDateTime = ZonedDateTime.of(localDateTime, java.time.ZoneId.of("GMT"));
+                ZonedDateTime koreaDateTime = gmtDateTime.plusHours(9);
+                
+                System.out.println(koreaDateTime.toString());
+                
+                dateStr = koreaDateTime.toString().substring(0,10) + " " + koreaDateTime.toString().substring(11,19);
+                
+                
+                
+        		UserMapImageDto userImage = new UserMapImageDto();
+        		userImage.setAttraction_id(dto.getAttraction_id());
+        		userImage.setImage(images[0].getBytes());
+        		userImage.setDate(dateStr);
+        		userImage.setLatitude(metadata.getLatitude());
+        		userImage.setLongitude(metadata.getLongitude());
+        		
+        		attractionService.registerUserMapImage(userImage);
+                
+                
+        		}
+        	}
+
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("failed");

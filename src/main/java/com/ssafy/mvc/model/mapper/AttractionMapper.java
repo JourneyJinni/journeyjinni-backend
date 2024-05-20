@@ -10,6 +10,8 @@ import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
 import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
+import com.ssafy.mvc.model.UserAttractionDto;
+import com.ssafy.mvc.model.UserMapImageDto;
 import com.ssafy.mvc.model.UserTripDto;
 
 @Mapper
@@ -19,7 +21,8 @@ public interface AttractionMapper {
 	List<GugunDto> getGugun(String sidoCode) throws SQLException;
 	
 	void registerUserTrip(String userId, String tripName) throws SQLException;
-	void registerUserAttraction(String tripId, String attractionName, String attractionDes) throws SQLException;
+	void registerUserAttraction(UserAttractionDto dto) throws SQLException;
+	void registerUserMapImage(UserMapImageDto dto) throws SQLException;
 	
 	List<AttractionDto> listAttraction() throws SQLException;
 	AttractionDto getAttractionbyContentId(int contentId) throws SQLException;
