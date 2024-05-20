@@ -81,13 +81,13 @@
 		FROM attraction_info ai
 		JOIN attraction_description ad ON ai.content_id = ad.content_id
 		WHERE 1=1
-		<if test="sido != null">
+		<if test="sido != 0">
 			AND ai.sido_code = #{sido}
 		</if>
-		<if test="gugun != null">
+		<if test="gugun != 0">
 			AND ai.gugun_code = #{gugun}
 		</if>
-		<if test="attractionType != null">
+		<if test="attractionType != 0">
 			AND ai.content_type_id = #{attractionType}
 		</if>
 		ORDER BY ai.content_id DESC
