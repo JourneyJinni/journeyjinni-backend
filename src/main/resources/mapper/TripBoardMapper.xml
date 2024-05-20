@@ -10,10 +10,41 @@
         <result column="trip_name" property="tripName"/>
     </resultMap>
 
+    <resultMap id="TripAttractionResultMap" type="com.ssafy.mvc.model.trip.TripAttractionDto">
+        <id property="attractionId" column="attraction_id"/>
+        <result property="tripId" column="trip_id"/>
+        <result property="attractionName" column="attraction_name"/>
+        <result property="attractionDescription" column="attraction_description"/>
+    </resultMap>
 
-    <select id="getTrips" resultMap="tripResultMap">
+    <!-- TripImageDto 매핑 -->
+    <resultMap id="TripImageResultMap" type="com.ssafy.mvc.model.trip.TripImageDto">
+        <id property="imageId" column="image_id"/>
+        <result property="attractionId" column="attraction_id"/>
+        <result property="image" column="image"/>
+        <result property="imageDescription" column="image_description"/>
+        <result property="latitude" column="latitude"/>
+        <result property="longitude" column="longitude"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+
+    <select id="findTrips" resultMap="tripResultMap">
         select *
         from my_trips
     </select>
+    
+    <select id="findTripAttractionById" parameterType="int" resultMap="TripAttractionResultMap">
+        select *
+        from my_attractions
+        where trip_id = ${tripId}
+    </select>
+
+    <select id="findTripImagesByAttractionId" parameterType="int" resultMap="TripImageResultMap">
+        select *
+        from my_images
+        where attraction_id = ${attractionId}
+    </select>
+
 
 </mapper>
