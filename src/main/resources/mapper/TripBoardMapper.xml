@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mvc.model.mapper.TripBoardMapper">
+
+    <resultMap id="tripResultMap" type="com.ssafy.mvc.model.trip.TripDto">
+        <id column="trip_id" property="tripId"/>
+        <result column="user_id" property="userId"/>
+        <result column="trip_name" property="tripName"/>
+    </resultMap>
+
+
+    <select id="getTrips" resultMap="tripResultMap">
+        select *
+        from my_trips
+    </select>
+
+</mapper>
