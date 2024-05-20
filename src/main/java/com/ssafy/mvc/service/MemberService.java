@@ -1,4 +1,4 @@
-package com.ssafy.mvc.model.service;
+package com.ssafy.mvc.service;
 
 import java.sql.SQLException;
 import java.util.Map;

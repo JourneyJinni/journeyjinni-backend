@@ -1,4 +1,4 @@
-package com.ssafy.mvc.model.service;
+package com.ssafy.mvc.service;
 
 import com.ssafy.mvc.model.Board.BoardDto;
 import com.ssafy.mvc.model.Board.BoardListDto;
