@@ -1,10 +1,9 @@
-package com.ssafy.mvc.model.service;
+package com.ssafy.mvc.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import com.ssafy.mvc.model.CategoryDto;
 import com.ssafy.mvc.model.FilterRequestDto;
@@ -12,12 +11,9 @@ import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.SidoDto;
 import com.ssafy.mvc.model.UserTripDto;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mvc.model.AttractionDto;
-import com.ssafy.util.Distance.DistanceSort;
-import com.ssafy.mvc.model.NowLocation;
 import com.ssafy.mvc.model.mapper.AttractionMapper;
 import com.ssafy.util.Distance.DistanceUtil;
 

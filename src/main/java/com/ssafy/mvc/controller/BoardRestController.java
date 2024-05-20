@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.ssafy.mvc.model.Board.BoardDto;
 import com.ssafy.mvc.model.Board.BoardListDto;
-import com.ssafy.mvc.model.service.BoardService;
+import com.ssafy.mvc.service.BoardService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

@@ -1,4 +1,4 @@
-package com.ssafy.mvc.model.service;
+package com.ssafy.mvc.service;
 
 import java.util.HashMap;
 import java.util.List;

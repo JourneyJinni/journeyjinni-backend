@@ -1,15 +1,12 @@
 package com.ssafy.mvc.controller;
 
 import com.ssafy.mvc.model.MemberDto;
-import com.ssafy.mvc.model.mapper.MemberMapper;
-import com.ssafy.mvc.model.service.MemberService;
+import com.ssafy.mvc.service.MemberService;
 import com.ssafy.util.jwt.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

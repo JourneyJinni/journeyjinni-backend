@@ -1,8 +1,7 @@
-package com.ssafy.mvc.model.service;
+package com.ssafy.mvc.service;
 
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.mapper.PageMapper;
-import org.apache.ibatis.jdbc.SQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

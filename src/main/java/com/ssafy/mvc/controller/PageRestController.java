@@ -1,12 +1,11 @@
 package com.ssafy.mvc.controller;
 
 import com.ssafy.mvc.model.AttractionDto;
-import com.ssafy.mvc.model.service.PageService;
+import com.ssafy.mvc.service.PageService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

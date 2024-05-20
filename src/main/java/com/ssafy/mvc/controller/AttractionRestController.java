@@ -32,7 +32,7 @@ import com.ssafy.mvc.model.GugunDto;
 import com.ssafy.mvc.model.NowLocation;
 import com.ssafy.mvc.model.SidoDto;
 import com.ssafy.mvc.model.UserTripDto;
-import com.ssafy.mvc.model.service.AttractionService;
+import com.ssafy.mvc.service.AttractionService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
