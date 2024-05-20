@@ -120,6 +120,18 @@ public class AttractionServiceImpl implements AttractionService {
 		
 	}
 
+	@Override
+	public void registerUserAttraction(String tripId, String attractionName, String attractionDes) throws SQLException {
+		attractionMapper.registerUserAttraction(tripId, attractionName, attractionDes);
+		return;
+		
+	}
+
+	@Override
+	public List<UserTripDto> getUserAttraction(String tripId) throws SQLException {
+		return attractionMapper.getUserAttraction(tripId);
+	}
+
 
 
 	

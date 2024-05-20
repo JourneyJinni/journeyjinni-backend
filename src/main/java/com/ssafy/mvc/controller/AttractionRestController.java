@@ -180,6 +180,7 @@ public class AttractionRestController {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+    
     @PostMapping("/register-trip")
     public ResponseEntity<?> registerTrip(@RequestParam("userId") String userId, @RequestParam("tripName") String tripName){
         try {
@@ -198,9 +199,18 @@ public class AttractionRestController {
     public ResponseEntity<?> registerAttraction(@RequestParam("tripId") String tripId, @RequestParam("attractionName") String attractionName,@RequestParam("attractionDes") String attractionDes,
     		@RequestParam("images") MultipartFile[] images, @RequestParam("metadata") String[] metadataList){
     	
-        System.out.println(tripId);
-        System.out.println(attractionName);
-        System.out.println(attractionDes);
+        
+        try {
+            
+        	System.out.println(tripId);
+            System.out.println(attractionName);
+            System.out.println(attractionDes);
+        	attractionService.registerUserAttraction(tripId, attractionName, attractionDes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("failed");
+        }
+        
 //        for (int i = 0; i < images.length; i++) {
 //            MultipartFile image = images[i];
 //            String metadataJson = metadataList[i];
@@ -216,6 +226,17 @@ public class AttractionRestController {
 //            }
 //        }
         return ResponseEntity.ok("ok");
+    }
+    
+    @GetMapping("/get-userattraction/{tripId}")
+    public ResponseEntity<List<UserTripDto>> getUserAttraction(@PathVariable("tripId") String tripId) {
+        try {
+            return ResponseEntity.ok(attractionService.getUserAttraction(tripId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 }
     
