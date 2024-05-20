@@ -19,9 +19,11 @@ public interface AttractionMapper {
 	List<GugunDto> getGugun(String sidoCode) throws SQLException;
 	
 	void registerUserTrip(String userId, String tripName) throws SQLException;
+	void registerUserAttraction(String tripId, String attractionName, String attractionDes) throws SQLException;
 	
 	List<AttractionDto> listAttraction() throws SQLException;
 	AttractionDto getAttractionbyContentId(int contentId) throws SQLException;
 	List<UserTripDto> getUserTrip(String userId) throws SQLException;
+	List<UserTripDto> getUserAttraction(String tripId) throws SQLException;
 	List<AttractionDto> fetchFilteredList(FilterRequestDto request) throws SQLException;
 }

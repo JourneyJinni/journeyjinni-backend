@@ -47,6 +47,13 @@
 		<result property="trip_name" column="trip_name"/>
 	</resultMap>
 	
+	<resultMap id="userAttractionResultMap" type="UserAttractionDto">
+		<result property="attraction_id" column="attraction_id"/>
+		<result property="trip_id" column="trip_id"/>
+		<result property="attraction_name" column="attraction_name"/>
+		<result property="attraction_description" column="attraction_description"/>
+	</resultMap>
+	
 	
 	<select id="getGugun" parameterType="String" resultMap="gugnResultMap">
 		select *
@@ -103,6 +110,16 @@
     	insert into my_trips (user_id,trip_name)
 		values(#{userId}, #{tripName});
     </insert>
+    
+    <insert id="registerUserAttraction" parameterType="String">
+    	insert into my_attractions (trip_id,attraction_name,attraction_description)
+		values(#{tripId}, #{attractionName}, #{attractionDes});
+    </insert>
+    
+    <select id="getUserAttraction" parameterType="String" resultMap="userAttractionResultMap">
+        SELECT * FROM my_attractions
+		WHERE trip_id = #{tripId}
+    </select>
 
 
 </mapper>
