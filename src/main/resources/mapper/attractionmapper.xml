@@ -77,16 +77,21 @@
     </select>
 
 	<select id="fetchFilteredList" parameterType="com.ssafy.mvc.model.FilterRequestDto" resultMap="attractionDto">
-	    SELECT * FROM attraction_info ai JOIN attraction_description ad USING (content_id)
-	    <where>
-            ai.sido_code = #{sido}
-                AND
-            ai.gugun_code = #{gugun}
-            	AND    
-            ai.content_type_id = #{attractionType}
-                
-	    </where>
-	    limit 10
+		SELECT *
+		FROM attraction_info ai
+		JOIN attraction_description ad ON ai.content_id = ad.content_id
+		WHERE 1=1
+		<if test="sido != null">
+			AND ai.sido_code = #{sido}
+		</if>
+		<if test="gugun != null">
+			AND ai.gugun_code = #{gugun}
+		</if>
+		<if test="attractionType != null">
+			AND ai.content_type_id = #{attractionType}
+		</if>
+		ORDER BY ai.content_id DESC
+		limit 10
 	</select>
 	
 	<select id="getUserTrip" parameterType="String" resultMap="userTripResultMap">
