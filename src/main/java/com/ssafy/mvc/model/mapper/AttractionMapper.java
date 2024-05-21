@@ -33,5 +33,13 @@ public interface AttractionMapper {
 	List<UserTripDto> getUserAttraction(String tripId) throws SQLException;
 	List<AttractionDto> fetchFilteredList(FilterRequestDto request) throws SQLException;
 	
-	void deleteUserAttraction(String attractionId) throws SQLException;
+	UserAttractionDto getUserAttractionById(String attractionId) throws SQLException;
+	UserTripDto getUserTripById(String tripId) throws SQLException;
+	UserMapImageDto getUserMapImageById(String imageId) throws SQLException;
+	
+	void deleteUserAttractionById(String attractionId) throws SQLException;
+	void deleteTripById(String tripId) throws SQLException;
+	void deleteUserMapImageById(String imageId) throws SQLException;
+	 
+	
 }
