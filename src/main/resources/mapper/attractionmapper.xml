@@ -88,6 +88,11 @@
 	  ORDER BY ai.content_id DESC
 	</select>
 
+	<select id="allAttractions" resultMap="attractionDto">
+		SELECT *
+		FROM attraction_info
+	</select>
+
     <select id="getAttractionbyContentId" parameterType="int" resultMap="attractionDto">
         SELECT * FROM attraction_info ai JOIN attraction_description ad
         WHERE ai.content_id = ad.content_id AND ai.content_id = #{contentId}

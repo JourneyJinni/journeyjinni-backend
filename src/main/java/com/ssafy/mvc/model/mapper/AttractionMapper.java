@@ -25,6 +25,7 @@ public interface AttractionMapper {
 	void registerUserMapImage(UserMapImageDto dto) throws SQLException;
 	
 	List<AttractionDto> listAttraction() throws SQLException;
+	List<AttractionDto> allAttractions() throws SQLException;
 	AttractionDto getAttractionbyContentId(int contentId) throws SQLException;
 	List<UserTripDto> getUserTrip(String userId) throws SQLException;
 	List<UserTripDto> getUserAttraction(String tripId) throws SQLException;

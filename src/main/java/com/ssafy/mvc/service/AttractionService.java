@@ -4,14 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ssafy.mvc.model.AttractionDto;
-import com.ssafy.mvc.model.CategoryDto;
-import com.ssafy.mvc.model.FilterRequestDto;
-import com.ssafy.mvc.model.GugunDto;
-import com.ssafy.mvc.model.SidoDto;
-import com.ssafy.mvc.model.UserAttractionDto;
-import com.ssafy.mvc.model.UserMapImageDto;
-import com.ssafy.mvc.model.UserTripDto;
+import com.ssafy.mvc.model.*;
 
 public interface AttractionService {
 
@@ -20,6 +13,7 @@ public interface AttractionService {
 	List<GugunDto> getGugun(String sidoCode) throws SQLException;
 
 	List<AttractionDto> list() throws SQLException;
+	public List<AttractionDto> allAttractions(NowLocation nowLocation) throws SQLException;
 	AttractionDto getAttraction(int contentId) throws SQLException;
 	void registerUserTrip(String userId, String tripName) throws SQLException;
 	void registerUserAttraction(UserAttractionDto dto) throws SQLException;
