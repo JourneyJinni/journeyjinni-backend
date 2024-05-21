@@ -336,11 +336,11 @@ public class AttractionRestController {
     
     //Update
     @PutMapping("/update-tripbyid/{tripId}")
-    public ResponseEntity<?> updateUserTripById(@PathVariable("tripId") String tripId){
+    public ResponseEntity<?> updateUserTripById(@PathVariable("tripId") String tripId, @RequestParam("tripName") String tripName){
 		
     	try {
-    		attractionService.deleteTripById(tripId);
-            return ResponseEntity.ok("well deleted");
+    		attractionService.updateUserTripById(tripId, tripName);
+            return ResponseEntity.ok("well updateed");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -349,11 +349,12 @@ public class AttractionRestController {
     }
     
     @PutMapping("/update-attractionbyid/{attractionId}")
-    public ResponseEntity<?> updateUserAttractionById(@PathVariable("attractionId") String attractionId){
+    public ResponseEntity<?> updateUserAttractionById(@PathVariable("attractionId") String attractionId, @RequestParam("attractionName") String attractionName,
+    		@RequestParam("attractionDes") String attractionDes){
 		
     	try {
-    		attractionService.deleteUserAttractionById(attractionId);
-            return ResponseEntity.ok("well deleted");
+    		attractionService.updateUserAttractionById(attractionId, attractionName, attractionDes);
+            return ResponseEntity.ok("well updated");
         } catch (SQLException e) {
             e.printStackTrace();
         }

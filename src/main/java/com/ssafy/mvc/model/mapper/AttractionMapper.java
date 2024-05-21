@@ -40,6 +40,10 @@ public interface AttractionMapper {
 	void deleteUserAttractionById(String attractionId) throws SQLException;
 	void deleteTripById(String tripId) throws SQLException;
 	void deleteUserMapImageById(String imageId) throws SQLException;
+	
+	void updateUserTripById(String tripId, String tripName) throws SQLException;
+	void updateUserAttractionById(String attractionId, String attractionName, String attractionDes) throws SQLException;
+	
 	 
 	
 }

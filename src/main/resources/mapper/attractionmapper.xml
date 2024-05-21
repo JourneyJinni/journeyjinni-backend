@@ -156,6 +156,18 @@
 		where attraction_id = #{attractionId};
 	</delete>
 	
+	<delete id="deleteTripById" parameterType="String">
+		delete from my_trips
+		where trip_id = #{tripId};
+	</delete>
+	
+	<delete id="deleteUserMapImageById" parameterType="String">
+		delete from my_images
+		where image_id = #{imageId};
+	</delete>
+	
+	
+	
 	 <select id="getUserAttractionById" parameterType="String" resultMap="userAttractionResultMap">
         SELECT * FROM my_attractions
 		WHERE attraction_id = #{attractionId}
@@ -170,6 +182,17 @@
         SELECT * FROM my_images
 		WHERE image_id = #{imageId}
     </select>
+    
+    <update id="updateUserTripById" parameterType="String">
+    	update my_trips
+    	set trip_name = #{tripName}
+    	where trip_id = #{tripId}
+    </update>
+    <update id="updateUserAttractionById" parameterType="String">
+    	update my_attractions
+    	set attraction_name = #{attractionName}, attraction_description = #{attractionDes}
+    	where attraction_id = #{attractionId}
+    </update>
 	
 
 

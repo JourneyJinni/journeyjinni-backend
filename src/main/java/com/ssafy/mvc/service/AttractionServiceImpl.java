@@ -176,6 +176,20 @@ public class AttractionServiceImpl implements AttractionService {
 		
 	}
 
+	@Override
+	public void updateUserTripById(String tripId, String tripName) throws SQLException {
+		attractionMapper.updateUserTripById(tripId, tripName);
+		
+	}
+
+	@Override
+	public void updateUserAttractionById(String attractionId, String attractionName, String attractionDes)
+			throws SQLException {
+		attractionMapper.updateUserAttractionById(attractionId, attractionName, attractionDes);
+		
+	}
+
+
 
 
 	
