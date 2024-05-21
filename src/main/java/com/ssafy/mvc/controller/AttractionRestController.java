@@ -3,6 +3,10 @@ package com.ssafy.mvc.controller;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -98,13 +102,12 @@ public class AttractionRestController {
 
 
     @PostMapping("/nowLocation")
-    public String nowLocation(HttpServletRequest request) {
-        System.out.println("[Log] : 위치 정보가 사용됨!");
-        String latitude = request.getParameter("latitude");
-        String longitude = request.getParameter("longitude");
-        new NowLocation(latitude, longitude);
+    public ResponseEntity<List<AttractionDto>> nowLocation(@RequestBody NowLocation nowLocation) throws SQLException {
+        log.info("nowLocation" + nowLocation.toString());
+        List<AttractionDto> attractionList = attractionService.allAttractions(nowLocation);
 
-        return "attraction";
+        List<AttractionDto> limitedList = attractionList.size() > 100 ? attractionList.subList(0, 100) : attractionList;
+        return ResponseEntity.ok(limitedList);
     }
     
     @GetMapping("/picturetest")
