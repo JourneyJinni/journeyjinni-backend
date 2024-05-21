@@ -114,7 +114,7 @@
 			AND ai.content_type_id = #{attractionType}
 		</if>
 		ORDER BY ai.content_id DESC
-		limit 10
+		limit 100
 	</select>
 	
 	<select id="getUserTrip" parameterType="String" resultMap="userTripResultMap">
