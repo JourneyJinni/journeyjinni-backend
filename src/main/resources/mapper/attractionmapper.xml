@@ -54,6 +54,16 @@
 		<result property="attraction_description" column="attraction_description"/>
 	</resultMap>
 	
+	<resultMap id="userImageResultMap" type="UserMapImageDto">
+		<result property="image_id" column="image_id"/>
+		<result property="attraction_id" column="attraction_id"/>
+		<result property="image" column="image"/>
+		<result property="image_description" column="image_description"/>
+		<result property="latitude" column="latitude"/>
+		<result property="longitude" column="longitude"/>
+		<result property="date" column="date"/>
+	</resultMap>
+	
 	
 	<select id="getGugun" parameterType="String" resultMap="gugnResultMap">
 		select *
@@ -116,15 +126,21 @@
 		values(#{userId}, #{tripName});
     </insert>
     
-    <insert id="registerUserAttraction" parameterType="String">
+    <insert id="registerUserAttraction" parameterType="com.ssafy.mvc.model.UserAttractionDto" useGeneratedKeys="true" keyProperty="attraction_id">
     	insert into my_attractions (trip_id,attraction_name,attraction_description)
-		values(#{tripId}, #{attractionName}, #{attractionDes});
+		values(#{trip_id}, #{attraction_name}, #{attraction_description});
     </insert>
     
     <select id="getUserAttraction" parameterType="String" resultMap="userAttractionResultMap">
         SELECT * FROM my_attractions
 		WHERE trip_id = #{tripId}
     </select>
+    
+    
+    <insert id="registerUserMapImage" parameterType="com.ssafy.mvc.model.UserMapImageDto">
+    	insert into my_images (attraction_id,image,image_description,latitude,longitude,date)
+		values(#{attraction_id},#{image},#{image_description},#{latitude},#{longitude},#{date});
+    </insert>
 
 
 </mapper>
