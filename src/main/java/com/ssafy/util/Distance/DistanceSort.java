@@ -20,9 +20,6 @@ public class DistanceSort {
 			aroundList.add(new AttractionDistance(attractionDto, d));
 		}
 
-		//기존의 API 사용 방식
-		//Collections.sort(aroundList);
-
 		mergeSortByDistance(aroundList);
 
 		for (int i = 0; i < aroundList.size(); i++) {

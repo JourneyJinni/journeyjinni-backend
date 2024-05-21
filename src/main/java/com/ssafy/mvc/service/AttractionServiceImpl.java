@@ -5,21 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.ssafy.mvc.model.CategoryDto;
-import com.ssafy.mvc.model.FilterRequestDto;
-import com.ssafy.mvc.model.GugunDto;
-import com.ssafy.mvc.model.SidoDto;
-import com.ssafy.mvc.model.UserAttractionDto;
-import com.ssafy.mvc.model.UserMapImageDto;
-import com.ssafy.mvc.model.UserTripDto;
+import com.ssafy.mvc.model.*;
 
+import com.ssafy.util.Distance.DistanceSort;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.mapper.AttractionMapper;
 import com.ssafy.util.Distance.DistanceUtil;
 
-
+@Slf4j
 @Service
 public class AttractionServiceImpl implements AttractionService {
 
@@ -47,6 +42,11 @@ public class AttractionServiceImpl implements AttractionService {
 	@Override
 	public List<AttractionDto> list() throws SQLException {
 		return attractionMapper.listAttraction();
+	}
+
+	@Override
+	public List<AttractionDto> allAttractions(NowLocation nowLocation) throws SQLException {
+		return DistanceSort.isAroundSort(nowLocation.getLatitude(), nowLocation.getLongitude(), attractionMapper.allAttractions());
 	}
 
 	@Override
