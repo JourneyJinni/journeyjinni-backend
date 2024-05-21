@@ -215,7 +215,8 @@ public class AttractionRestController {
                 System.out.println("Latitude: " + metadata.getLatitude());
                 System.out.println("Longitude: " + metadata.getLongitude());
                 System.out.println("---------------------------");
-                // ISO 8601 형식을 OffsetDateTime으로 파싱
+                
+                
                 String dateStr = metadata.getDate().substring(0,10) + " " + metadata.getDate().substring(11,19);
                 System.out.println("dateStr: " + dateStr);
                 
