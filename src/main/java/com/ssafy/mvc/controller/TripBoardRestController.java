@@ -44,13 +44,26 @@ public class TripBoardRestController {
         }
     }
 
-    @GetMapping("/getTripImage/{attractionId}")
+    @GetMapping("/getTripImageByAttraction/{attractionId}")
     public ResponseEntity<List<TripImageDto>> getTripImage(@PathVariable int attractionId) {
         try {
             List<TripImageDto> tripImages = tripBoardService.getTripImages(attractionId);
             return ResponseEntity.ok(tripImages);
         } catch (Exception e) {
             log.error("Failed to get trip images", e);
+            return ResponseEntity.status(500).build();
+        }
+    }
+
+    @GetMapping("/getTripImageByTrip/{tripId}")
+    public ResponseEntity<TripImageDto> getTripImageByTrip(@PathVariable int tripId) {
+        try {
+            log.info("Get trip image by trip id {}", tripId);
+            TripImageDto tripImages = tripBoardService.getTripImages(tripBoardService.getTripAttraction(tripId).get(0).
+                    getAttractionId()).get(0);
+            return ResponseEntity.ok(tripImages);
+        } catch (Exception e) {
+            log.error("Failed to get trip images " + tripId , e);
             return ResponseEntity.status(500).build();
         }
     }
