@@ -65,6 +65,7 @@
 	</resultMap>
 	
 	
+	
 	<select id="getGugun" parameterType="String" resultMap="gugnResultMap">
 		select *
 		from gugun
@@ -141,6 +142,19 @@
     	insert into my_images (attraction_id,image,image_description,latitude,longitude,date)
 		values(#{attraction_id},#{image},#{image_description},#{latitude},#{longitude},#{date});
     </insert>
+	<select id="getMyMapImages" parameterType="String" resultMap="userImageResultMap" >
+		select * from my_images
+		where attraction_id in (select attraction_id from my_attractions
+		where trip_id in
+		(select trip_id from my_trips
+		where user_id = #{userId}
+		))
+	</select>
+	
+	<delete id="deleteUserAttraction" parameterType="String">
+		delete from my_attractions
+		where attraction_id = #{attractionId};
+	</delete>
 
 
 </mapper>

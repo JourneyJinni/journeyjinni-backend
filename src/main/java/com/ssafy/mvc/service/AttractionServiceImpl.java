@@ -136,6 +136,18 @@ public class AttractionServiceImpl implements AttractionService {
 		
 	}
 
+	@Override
+	public List<UserMapImageDto> getMyMapImages(String userId) throws SQLException {
+		return attractionMapper.getMyMapImages(userId);
+	}
+
+	@Override
+	public void deleteUserAttraction(String attractionId) throws SQLException {
+		
+		attractionMapper.deleteUserAttraction(attractionId);
+		
+	}
+
 
 
 	

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +43,6 @@ import com.ssafy.mvc.model.UserMapImageDto;
 import com.ssafy.mvc.model.UserTripDto;
 import com.ssafy.mvc.service.AttractionService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -245,7 +246,7 @@ public class AttractionRestController {
                 
         	}else {
         	
-        	for(int i=0;i<metadataList.length;i++) {
+        	for(int i=0;i<images.length;i++) {
         		System.out.println(metadataList[i]);
         		ObjectMapper objectMapper = new ObjectMapper();
         		MetadataDto metadata = objectMapper.readValue(metadataList[i], MetadataDto.class);
@@ -273,7 +274,7 @@ public class AttractionRestController {
                 
         		UserMapImageDto userImage = new UserMapImageDto();
         		userImage.setAttraction_id(dto.getAttraction_id());
-        		userImage.setImage(images[0].getBytes());
+        		userImage.setImage(images[i].getBytes());
         		userImage.setDate(dateStr);
         		userImage.setLatitude(metadata.getLatitude());
         		userImage.setLongitude(metadata.getLongitude());
@@ -289,20 +290,6 @@ public class AttractionRestController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("failed");
         }
         
-//        for (int i = 0; i < images.length; i++) {
-//            MultipartFile image = images[i];
-//            String metadataJson = metadataList[i];
-//            
-//            try {
-//  
-//
-//                // 여기서 이미지를 저장하거나 추가 작업을 수행할 수 있습니다.
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process file: ");
-//            }
-//        }
         return ResponseEntity.ok("ok");
     }
     
@@ -316,6 +303,31 @@ public class AttractionRestController {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+    @GetMapping("/get-mymap-imgs/{userId}")
+    public ResponseEntity<List<UserMapImageDto>> getImage(@PathVariable String userId) {
+        try {
+            return ResponseEntity.ok(attractionService.getMyMapImages(userId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    @DeleteMapping("/delete-userattraction/{attractionId}")
+    public ResponseEntity<?> deleteUserAttraction(@PathVariable("attractionId") String attractionId){
+		
+    	try {
+    		attractionService.deleteUserAttraction(attractionId);
+            return ResponseEntity.ok("well deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    	
+    
 }
     
 

@@ -24,10 +24,14 @@ public interface AttractionMapper {
 	void registerUserAttraction(UserAttractionDto dto) throws SQLException;
 	void registerUserMapImage(UserMapImageDto dto) throws SQLException;
 	
+	List<UserMapImageDto> getMyMapImages(String userId) throws SQLException;
+	
 	List<AttractionDto> listAttraction() throws SQLException;
 	List<AttractionDto> allAttractions() throws SQLException;
 	AttractionDto getAttractionbyContentId(int contentId) throws SQLException;
 	List<UserTripDto> getUserTrip(String userId) throws SQLException;
 	List<UserTripDto> getUserAttraction(String tripId) throws SQLException;
 	List<AttractionDto> fetchFilteredList(FilterRequestDto request) throws SQLException;
+	
+	void deleteUserAttraction(String attractionId) throws SQLException;
 }
