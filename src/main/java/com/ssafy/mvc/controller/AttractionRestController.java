@@ -1,18 +1,13 @@
 package com.ssafy.mvc.controller;
 
 
-import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,15 +16,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.drew.imaging.ImageMetadataReader;
-import com.drew.metadata.Metadata;
-import com.drew.metadata.exif.ExifSubIFDDirectory;
-import com.drew.metadata.exif.GpsDirectory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.mvc.model.AttractionDto;
 import com.ssafy.mvc.model.CategoryDto;
@@ -114,58 +106,6 @@ public class AttractionRestController {
         return ResponseEntity.ok(limitedList);
     }
     
-    @GetMapping("/picturetest")
-    public void getImageMetadata() {
-        String filePath = "C:\\Users\\SSAFY\\Downloads\\1708953894311.jpg"; // 이미지 파일 경로를 설정하세요.
-
-        try {
-            File imageFile = new File(filePath);
-            Metadata metadata = ImageMetadataReader.readMetadata(imageFile);
-
-            // 날짜 정보 추출
-            ExifSubIFDDirectory directory = metadata.getFirstDirectoryOfType(ExifSubIFDDirectory.class);
-            Date date = directory.getDate(ExifSubIFDDirectory.TAG_DATETIME_ORIGINAL);
-            System.out.println("사진이 찍힌 날짜: " + date);
-
-            // 위도 경도 정보 추출
-            GpsDirectory gpsDirectory = metadata.getFirstDirectoryOfType(GpsDirectory.class);
-            if (gpsDirectory != null) {
-                Double latitude = gpsDirectory.getGeoLocation().getLatitude();
-                Double longitude = gpsDirectory.getGeoLocation().getLongitude();
-                System.out.println("위도: " + latitude + ", 경도: " + longitude);
-            } else {
-                System.out.println("위치 정보가 없습니다.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    @PostMapping("/map-img-upload")
-    public ResponseEntity<?> handleFileUpload(@RequestParam("images") MultipartFile[] images,
-                                              @RequestParam("metadata") String[] metadataList) {
-        Map<String, Object> response = new HashMap<>();
-        for (int i = 0; i < images.length; i++) {
-            MultipartFile image = images[i];
-            String metadataJson = metadataList[i];
-            
-            try {
-                // 메타데이터를 JSON으로 파싱
-                ObjectMapper objectMapper = new ObjectMapper();
-                Map<String, Object> metadata = objectMapper.readValue(metadataJson, Map.class);
-
-                // 응답에 메타데이터 추가
-                response.put(image.getOriginalFilename(), metadata);
-
-                // 여기서 이미지를 저장하거나 추가 작업을 수행할 수 있습니다.
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process file: " + image.getOriginalFilename());
-            }
-        }
-        return ResponseEntity.ok(response);
-    }
     @GetMapping("/get-usertrip/{userId}")
     public ResponseEntity<List<UserTripDto>> getUserTrip(@PathVariable("userId") String userId) {
         try {
@@ -314,11 +254,51 @@ public class AttractionRestController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
     
-    @DeleteMapping("/delete-userattraction/{attractionId}")
-    public ResponseEntity<?> deleteUserAttraction(@PathVariable("attractionId") String attractionId){
+    //get by id
+    @GetMapping("/get-tripbyid/{tripId}")
+    public ResponseEntity<?> getUserTripById(@PathVariable("tripId") String tripId){
 		
     	try {
-    		attractionService.deleteUserAttraction(attractionId);
+    		
+            return ResponseEntity.ok(attractionService.getUserTripById(tripId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    @GetMapping("/get-attractionbyid/{attractionId}")
+    public ResponseEntity<?> getUserAttractionById(@PathVariable("attractionId") String attractionId){
+		
+    	try {
+    		
+            return ResponseEntity.ok(attractionService.getUserAttractionById(attractionId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    @GetMapping("/get-mapimagebyid/{imageId}")
+    public ResponseEntity<?> getUserMapImageById(@PathVariable("imageId") String imageId){
+		
+    	try {
+    		
+            return ResponseEntity.ok(attractionService.getUserMapImageById(imageId));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    //Delete by id
+    @DeleteMapping("/delete-tripbyid/{tripId}")
+    public ResponseEntity<?> deleteUserTripById(@PathVariable("tripId") String tripId){
+		
+    	try {
+    		attractionService.deleteTripById(tripId);
             return ResponseEntity.ok("well deleted");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -326,7 +306,77 @@ public class AttractionRestController {
     	
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+    
+    @DeleteMapping("/delete-attractionbyid/{attractionId}")
+    public ResponseEntity<?> deleteUserAttractionById(@PathVariable("attractionId") String attractionId){
+		
+    	try {
+    		attractionService.deleteUserAttractionById(attractionId);
+            return ResponseEntity.ok("well deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    @DeleteMapping("/delete-mapimagebyid/{imageId}")
+    public ResponseEntity<?> deleteUserMapImageById(@PathVariable("imageId") String imageId){
+		
+    	try {
+    		attractionService.deleteUserMapImageById(imageId);
+            return ResponseEntity.ok("well deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    
+    //Update
+    @PutMapping("/update-tripbyid/{tripId}")
+    public ResponseEntity<?> updateUserTripById(@PathVariable("tripId") String tripId){
+		
+    	try {
+    		attractionService.deleteTripById(tripId);
+            return ResponseEntity.ok("well deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    @PutMapping("/update-attractionbyid/{attractionId}")
+    public ResponseEntity<?> updateUserAttractionById(@PathVariable("attractionId") String attractionId){
+		
+    	try {
+    		attractionService.deleteUserAttractionById(attractionId);
+            return ResponseEntity.ok("well deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    @PutMapping("/update-mapimagebyid/{imageId}")
+    public ResponseEntity<?> updateUserMapImageById(@PathVariable("imageId") String imageId){
+		
+    	try {
+    		attractionService.deleteUserMapImageById(imageId);
+            return ResponseEntity.ok("well deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
+    	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    
+    
+    
+    
     
 }
     

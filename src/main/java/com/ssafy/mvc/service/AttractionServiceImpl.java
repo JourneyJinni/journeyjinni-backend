@@ -141,10 +141,38 @@ public class AttractionServiceImpl implements AttractionService {
 		return attractionMapper.getMyMapImages(userId);
 	}
 
+
 	@Override
-	public void deleteUserAttraction(String attractionId) throws SQLException {
+	public UserAttractionDto getUserAttractionById(String attractionId) throws SQLException {
+		return attractionMapper.getUserAttractionById(attractionId);
+	}
+
+	@Override
+	public UserTripDto getUserTripById(String tripId) throws SQLException {
 		
-		attractionMapper.deleteUserAttraction(attractionId);
+		return attractionMapper.getUserTripById(tripId);
+	}
+
+	@Override
+	public UserMapImageDto getUserMapImageById(String imageId) throws SQLException {
+		return attractionMapper.getUserMapImageById(imageId);
+	}
+
+	@Override
+	public void deleteUserAttractionById(String attractionId) throws SQLException {
+		attractionMapper.deleteUserAttractionById(attractionId);
+		
+	}
+
+	@Override
+	public void deleteTripById(String tripId) throws SQLException {
+		attractionMapper.deleteTripById(tripId);
+		
+	}
+
+	@Override
+	public void deleteUserMapImageById(String imageId) throws SQLException {
+		attractionMapper.deleteUserMapImageById(imageId);
 		
 	}
 

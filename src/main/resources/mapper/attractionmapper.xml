@@ -151,10 +151,26 @@
 		))
 	</select>
 	
-	<delete id="deleteUserAttraction" parameterType="String">
+	<delete id="deleteUserAttractionById" parameterType="String">
 		delete from my_attractions
 		where attraction_id = #{attractionId};
 	</delete>
+	
+	 <select id="getUserAttractionById" parameterType="String" resultMap="userAttractionResultMap">
+        SELECT * FROM my_attractions
+		WHERE attraction_id = #{attractionId}
+    </select>
+    
+    <select id="getUserTripById" parameterType="String" resultMap="userTripResultMap">
+        SELECT * FROM my_trips
+		WHERE trip_id = #{tripId}
+    </select>
+    
+    <select id="getUserMapImageById" parameterType="String" resultMap="userImageResultMap">
+        SELECT * FROM my_images
+		WHERE image_id = #{imageId}
+    </select>
+	
 
 
 </mapper>
