@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
+import com.ssafy.mvc.model.trip.TripImageDto;
+import com.ssafy.mvc.service.TripBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +47,11 @@ public class AttractionRestController {
 
 
     private final AttractionService attractionService;
-
+    private final TripBoardService tripBoardService;
     @Autowired
-    public AttractionRestController(AttractionService attractionService) {
+    public AttractionRestController(AttractionService attractionService, TripBoardService tripBoardService) {
         this.attractionService = attractionService;
+        this.tripBoardService = tripBoardService;
     }
 
     @GetMapping("/getcity")
@@ -109,7 +110,26 @@ public class AttractionRestController {
         List<AttractionDto> limitedList = attractionList.size() > 100 ? attractionList.subList(0, 100) : attractionList;
         return ResponseEntity.ok(limitedList);
     }
-    
+
+    @PostMapping("/compare")
+    public ResponseEntity<?> compareImages(@RequestParam("file") MultipartFile file) throws Exception {
+        log.info("이미지 받아옴! " + file.toString());
+
+        BufferedImage image = ImageIO.read(file.getInputStream());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", outputStream);
+        byte[] data = outputStream.toByteArray();
+
+        Long imageId = attractionService.findMostSimilarImage(data);
+        TripImageDto userMapImageDto = tripBoardService.getImageByImageId(Math.toIntExact(imageId));
+        Map<String, Object> response = new HashMap<>();
+        log.info("imageId" + imageId + "결과 값" + userMapImageDto.toString());
+        response.put("image", userMapImageDto);
+
+        return ResponseEntity.ok(response);
+    }
+
+
     @GetMapping("/get-usertrip/{userId}")
     public ResponseEntity<List<UserTripDto>> getUserTrip(@PathVariable("userId") String userId) {
         try {
@@ -375,19 +395,6 @@ public class AttractionRestController {
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
-
-
-    @PostMapping("/compare")
-    public Long compareImages(@RequestParam("file") MultipartFile file) throws Exception {
-        log.info("이미지 받아옴! " + file.toString());
-
-        BufferedImage image = ImageIO.read(file.getInputStream());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", outputStream);
-        byte[] data = outputStream.toByteArray();
-        return attractionService.findMostSimilarImage(data);
-    }
-    
 }
     
 

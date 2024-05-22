@@ -1,5 +1,6 @@
 package com.ssafy.mvc.service;
 
+import com.ssafy.mvc.model.UserMapImageDto;
 import com.ssafy.mvc.model.mapper.TripBoardMapper;
 import com.ssafy.mvc.model.trip.TripAttractionDto;
 import com.ssafy.mvc.model.trip.TripDto;
@@ -32,5 +33,10 @@ public class TripBoardServiceImpl implements TripBoardService{
     @Override
     public List<TripImageDto> getTripImages(int attractionId) throws SQLException {
         return tripBoardMapper.findTripImagesByAttractionId(attractionId);
+    }
+
+    @Override
+    public TripImageDto getImageByImageId(int imageId) throws SQLException {
+        return tripBoardMapper.findImageByImageId(imageId);
     }
 }
