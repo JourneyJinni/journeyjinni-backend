@@ -189,6 +189,12 @@ public class AttractionServiceImpl implements AttractionService {
 		
 	}
 
+	@Override
+	public void updateUserMapImageById(String imageId, String imageDes) throws SQLException {
+		attractionMapper.updateUserMapImageById(imageId, imageDes);
+		
+	}
+
 
 
 

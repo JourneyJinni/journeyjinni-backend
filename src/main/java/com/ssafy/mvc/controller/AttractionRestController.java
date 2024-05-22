@@ -185,19 +185,15 @@ public class AttractionRestController {
         		
                 
         	}else {
-        	
+        	System.out.println(images.length);
         	for(int i=0;i<images.length;i++) {
         		System.out.println(metadataList[i]);
         		ObjectMapper objectMapper = new ObjectMapper();
         		MetadataDto metadata = objectMapper.readValue(metadataList[i], MetadataDto.class);
-        		System.out.println("---------------------------");
-                System.out.println("Date: " + metadata.getDate());
-                System.out.println("Latitude: " + metadata.getLatitude());
-                System.out.println("Longitude: " + metadata.getLongitude());
-                System.out.println("---------------------------");
+        		
                 
                 String dateStr = metadata.getDate().substring(0,10) + " " + metadata.getDate().substring(11,19);
-                System.out.println("dateStr: " + dateStr);
+                
                 
                 // 문자열을 LocalDateTime으로 파싱
                 LocalDateTime localDateTime = LocalDateTime.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -206,7 +202,7 @@ public class AttractionRestController {
                 ZonedDateTime gmtDateTime = ZonedDateTime.of(localDateTime, java.time.ZoneId.of("GMT"));
                 ZonedDateTime koreaDateTime = gmtDateTime.plusHours(9);
                 
-                System.out.println(koreaDateTime.toString());
+                
                 
                 dateStr = koreaDateTime.toString().substring(0,10) + " " + koreaDateTime.toString().substring(11,19);
                 
@@ -363,11 +359,11 @@ public class AttractionRestController {
     }
     
     @PutMapping("/update-mapimagebyid/{imageId}")
-    public ResponseEntity<?> updateUserMapImageById(@PathVariable("imageId") String imageId){
+    public ResponseEntity<?> updateUserMapImageById(@PathVariable("imageId") String imageId,@RequestParam("imageDes") String imageDes ){
 		
     	try {
-    		attractionService.deleteUserMapImageById(imageId);
-            return ResponseEntity.ok("well deleted");
+    		attractionService.updateUserMapImageById(imageId, imageDes);
+            return ResponseEntity.ok("well updated");
         } catch (SQLException e) {
             e.printStackTrace();
         }

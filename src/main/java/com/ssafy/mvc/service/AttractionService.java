@@ -35,4 +35,5 @@ public interface AttractionService {
 	
 	void updateUserTripById(String tripId, String tripName) throws SQLException;
 	void updateUserAttractionById(String attractionId, String attractionName, String attractionDes) throws SQLException;
+	void updateUserMapImageById(String imageId, String imageDes) throws SQLException;
 }

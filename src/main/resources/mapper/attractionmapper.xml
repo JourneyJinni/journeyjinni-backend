@@ -193,6 +193,11 @@
     	set attraction_name = #{attractionName}, attraction_description = #{attractionDes}
     	where attraction_id = #{attractionId}
     </update>
+    <update id="updateUserMapImageById" parameterType="String">
+    	update my_images
+    	set image_description = #{imageDes}
+    	where image_id = #{imageId}
+    </update>
 	
 
 
