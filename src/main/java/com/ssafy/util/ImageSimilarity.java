@@ -1,7 +1,9 @@
 package com.ssafy.util;
 import org.opencv.core.*;
+import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
+import org.opencv.osgi.OpenCVNativeLoader;
 
 import java.util.Arrays;
 
@@ -9,7 +11,11 @@ public class ImageSimilarity {
 
     public static double calculateSimilarity(byte[] imageData1, byte[] imageData2) {
         // OpenCV 라이브러리 로드
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        if (isLibraryLoaded()) {
+//            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        }
+        System.out.println("OpenCV version: " + Core.VERSION);
+        new OpenCVNativeLoader().init();
 
         // 이미지 바이트 배열을 Mat 객체로 변환
         MatOfByte matOfByte1 = new MatOfByte(imageData1);
@@ -41,5 +47,14 @@ public class ImageSimilarity {
         // 히스토그램 비교 (유사도 측정)
 
         return Imgproc.compareHist(hist1, hist2, Imgproc.CV_COMP_CORREL);
+    }
+
+    private static boolean isLibraryLoaded() {
+        try {
+            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+            return true;
+        } catch (UnsatisfiedLinkError e) {
+            return false;
+        }
     }
 }

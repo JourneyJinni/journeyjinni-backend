@@ -208,6 +208,7 @@ public class AttractionServiceImpl implements AttractionService {
 			if (similarity > maxSimilarity) {
 				maxSimilarity = similarity;
 				mostSimilarImageId = imageEntity.getImage_id();
+				log.info(mostSimilarImageId + "가 더 높다! (" + similarity + ")");
 			}
 		}
 
