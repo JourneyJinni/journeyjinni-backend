@@ -15,6 +15,8 @@ import static org.opencv.imgcodecs.Imgcodecs.imdecode;
 public class ImageSimilarity {
 
     public static double calculateSimilarity(byte[] imageData1, byte[] imageData2) {
+
+        new OpenCVNativeLoader().init();
         // Convert byte arrays to Mat objects
         Mat image1 = imdecode(new MatOfByte(imageData1), Imgcodecs.IMREAD_COLOR);
         Mat image2 = imdecode(new MatOfByte(imageData2), Imgcodecs.IMREAD_COLOR);
