@@ -135,6 +135,13 @@
 		    <version>2.15.1</version>
 		</dependency>
 
+			<!-- OpenCV Dependency -->
+			<dependency>
+				<groupId>org.openpnp</groupId>
+				<artifactId>opencv</artifactId>
+				<version>4.5.3-1</version>
+			</dependency>
+
 
 
 

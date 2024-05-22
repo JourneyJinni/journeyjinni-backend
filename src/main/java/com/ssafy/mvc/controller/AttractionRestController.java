@@ -1,6 +1,8 @@
 package com.ssafy.mvc.controller;
 
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -36,6 +38,8 @@ import com.ssafy.mvc.model.UserTripDto;
 import com.ssafy.mvc.service.AttractionService;
 
 import lombok.extern.slf4j.Slf4j;
+
+import javax.imageio.ImageIO;
 
 @Slf4j
 @RestController
@@ -370,10 +374,19 @@ public class AttractionRestController {
     	
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
-    
-    
-    
-    
+
+
+
+    @PostMapping("/compare")
+    public Long compareImages(@RequestParam("file") MultipartFile file) throws Exception {
+        log.info("이미지 받아옴! " + file.toString());
+
+        BufferedImage image = ImageIO.read(file.getInputStream());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, "jpg", outputStream);
+        byte[] data = outputStream.toByteArray();
+        return attractionService.findMostSimilarImage(data);
+    }
     
 }
     

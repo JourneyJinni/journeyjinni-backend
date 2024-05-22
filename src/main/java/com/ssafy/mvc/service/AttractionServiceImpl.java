@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.ssafy.mvc.model.mapper.AttractionMapper;
 import com.ssafy.util.Distance.DistanceUtil;
 
+import static com.ssafy.util.ImageSimilarity.calculateSimilarity;
+
 @Slf4j
 @Service
 public class AttractionServiceImpl implements AttractionService {
@@ -196,6 +198,22 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 
+	public Long findMostSimilarImage(byte[] queryImageData) throws SQLException {
+		List<ImageDto> allImages = attractionMapper.findAll();
+		Long mostSimilarImageId = null;
+		double maxSimilarity = Double.MIN_VALUE;
+
+		for (ImageDto imageEntity : allImages) {
+			double similarity = calculateSimilarity(queryImageData, imageEntity.getImage());
+			if (similarity > maxSimilarity) {
+				maxSimilarity = similarity;
+				mostSimilarImageId = imageEntity.getImage_id();
+			}
+		}
+
+		log.info("가장 높은 이미지는 " + mostSimilarImageId);
+		return mostSimilarImageId;
+	}
 
 
 	

@@ -150,6 +150,11 @@
 		where user_id = #{userId}
 		))
 	</select>
+
+	<select id="findAll" resultType="ImageDto">
+		SELECT image_id, image FROM my_images;
+	</select>
+
 	
 	<delete id="deleteUserAttractionById" parameterType="String">
 		delete from my_attractions
