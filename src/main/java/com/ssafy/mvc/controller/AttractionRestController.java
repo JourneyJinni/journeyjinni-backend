@@ -332,10 +332,10 @@ public class AttractionRestController {
     
     //Update
     @PutMapping("/update-tripbyid/{tripId}")
-    public ResponseEntity<?> updateUserTripById(@PathVariable("tripId") String tripId, @RequestParam("tripName") String tripName){
+    public ResponseEntity<?> updateUserTripById(@PathVariable("tripId") String tripId, @RequestParam("tripName") String tripName, @RequestParam("isShared") String isShared){
 		
     	try {
-    		attractionService.updateUserTripById(tripId, tripName);
+    		attractionService.updateUserTripById(tripId, tripName, isShared);
             return ResponseEntity.ok("well updateed");
         } catch (SQLException e) {
             e.printStackTrace();

@@ -41,7 +41,7 @@ public interface AttractionMapper {
 	void deleteTripById(String tripId) throws SQLException;
 	void deleteUserMapImageById(String imageId) throws SQLException;
 	
-	void updateUserTripById(String tripId, String tripName) throws SQLException;
+	void updateUserTripById(String tripId, String tripName, String isShared) throws SQLException;
 	void updateUserAttractionById(String attractionId, String attractionName, String attractionDes) throws SQLException;
 	void updateUserMapImageById(String imageId, String imageDes) throws SQLException;
 	 
