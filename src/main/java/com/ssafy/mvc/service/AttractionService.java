@@ -28,11 +28,11 @@ public interface AttractionService {
 	UserAttractionDto getUserAttractionById(String attractionId) throws SQLException;
 	UserTripDto getUserTripById(String tripId) throws SQLException;
 	UserMapImageDto getUserMapImageById(String imageId) throws SQLException;
-	
+	public Long findMostSimilarImage(byte[] queryImageData) throws SQLException;
+
 	void deleteUserAttractionById(String attractionId) throws SQLException;
 	void deleteTripById(String tripId) throws SQLException;
 	void deleteUserMapImageById(String imageId) throws SQLException;
-	
 	void updateUserTripById(String tripId, String tripName, String isShared) throws SQLException;
 	void updateUserAttractionById(String attractionId, String attractionName, String attractionDes) throws SQLException;
 	void updateUserMapImageById(String imageId, String imageDes) throws SQLException;

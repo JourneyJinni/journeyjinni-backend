@@ -45,6 +45,13 @@
         from my_images
         where attraction_id = ${attractionId}
     </select>
+    
+    
+    <select id="findImageByImageId" parameterType="int" resultMap="TripImageResultMap">
+        select *
+        from my_images
+        where image_id = ${imageId}
+    </select>
 
 
 </mapper>

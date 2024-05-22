@@ -3,16 +3,8 @@ package com.ssafy.mvc.model.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.ssafy.mvc.model.*;
 import org.apache.ibatis.annotations.Mapper;
-
-import com.ssafy.mvc.model.AttractionDto;
-import com.ssafy.mvc.model.CategoryDto;
-import com.ssafy.mvc.model.FilterRequestDto;
-import com.ssafy.mvc.model.GugunDto;
-import com.ssafy.mvc.model.SidoDto;
-import com.ssafy.mvc.model.UserAttractionDto;
-import com.ssafy.mvc.model.UserMapImageDto;
-import com.ssafy.mvc.model.UserTripDto;
 
 @Mapper
 public interface AttractionMapper {
@@ -36,7 +28,8 @@ public interface AttractionMapper {
 	UserAttractionDto getUserAttractionById(String attractionId) throws SQLException;
 	UserTripDto getUserTripById(String tripId) throws SQLException;
 	UserMapImageDto getUserMapImageById(String imageId) throws SQLException;
-	
+	List<ImageDto> findAll() throws SQLException;
+
 	void deleteUserAttractionById(String attractionId) throws SQLException;
 	void deleteTripById(String tripId) throws SQLException;
 	void deleteUserMapImageById(String imageId) throws SQLException;
