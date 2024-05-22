@@ -190,7 +190,7 @@
     
     <update id="updateUserTripById" parameterType="String">
     	update my_trips
-    	set trip_name = #{tripName}
+    	set trip_name = #{tripName}, is_shared = #{isShared}
     	where trip_id = #{tripId}
     </update>
     <update id="updateUserAttractionById" parameterType="String">

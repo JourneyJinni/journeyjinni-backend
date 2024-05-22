@@ -8,6 +8,7 @@ CREATE TABLE my_trips (
     trip_id INT AUTO_INCREMENT,
     user_id VARCHAR(50) NOT NULL,
     trip_name VARCHAR(50),
+    is_shared bool default false,
     PRIMARY KEY(trip_id),
     FOREIGN KEY (user_id) REFERENCES members(user_id) ON DELETE CASCADE
 );

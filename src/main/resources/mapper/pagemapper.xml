@@ -25,7 +25,8 @@
 
     <select id="getRandomAttractions" parameterType="int" resultMap="attractionDto">
         SELECT *
-        FROM attraction_info
+        FROM attraction_info ai
+		JOIN attraction_description ad ON ai.content_id = ad.content_id
         ORDER BY RAND()
         LIMIT #{attractionCount}
     </select>
