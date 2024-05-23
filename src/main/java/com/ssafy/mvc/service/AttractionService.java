@@ -13,7 +13,7 @@ public interface AttractionService {
 	List<GugunDto> getGugun(String sidoCode) throws SQLException;
 
 	List<AttractionDto> list() throws SQLException;
-	public List<AttractionDto> allAttractions(NowLocation nowLocation) throws SQLException;
+	List<AttractionDto> allAttractions(NowLocation nowLocation) throws SQLException;
 	AttractionDto getAttraction(int contentId) throws SQLException;
 	void registerUserTrip(String userId, String tripName) throws SQLException;
 	void registerUserAttraction(UserAttractionDto dto) throws SQLException;

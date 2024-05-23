@@ -91,7 +91,8 @@
 
 	<select id="allAttractions" resultMap="attractionDto">
 		SELECT *
-		FROM attraction_info
+		FROM attraction_info ai
+	 	JOIN attraction_description ad ON ai.content_id = ad.content_id;
 	</select>
 
     <select id="getAttractionbyContentId" parameterType="int" resultMap="attractionDto">
