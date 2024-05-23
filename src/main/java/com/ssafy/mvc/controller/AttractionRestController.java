@@ -90,6 +90,8 @@ public class AttractionRestController {
 
         log.info(request.getSido());
         log.info(request.getAttractionType());
+        log.info(request.getKeyWord());
+        request.setKeyWord("%"+request.getKeyWord() + "%");
         try {
             List<AttractionDto> filteredList = attractionService.getFilteredList(request);
 

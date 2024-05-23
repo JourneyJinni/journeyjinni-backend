@@ -103,7 +103,7 @@
 		SELECT *
 		FROM attraction_info ai
 		JOIN attraction_description ad ON ai.content_id = ad.content_id
-		WHERE 1=1
+		WHERE ai.title like #{keyWord}
 		<if test="sido != 0">
 			AND ai.sido_code = #{sido}
 		</if>
@@ -113,6 +113,7 @@
 		<if test="attractionType != 0">
 			AND ai.content_type_id = #{attractionType}
 		</if>
+		
 		ORDER BY ai.content_id DESC
 		limit 100
 	</select>

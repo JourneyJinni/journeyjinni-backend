@@ -11,4 +11,5 @@ public class FilterRequestDto {
     private String sido;
     private String gugun;
     private String attractionType;
+    private String keyWord;
 }
