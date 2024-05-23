@@ -32,12 +32,14 @@
     <select id="findTrips" resultMap="tripResultMap">
         select *
         from my_trips
+        where is_shared = 1
     </select>
     
     <select id="findTripAttractionById" parameterType="int" resultMap="TripAttractionResultMap">
         select *
         from my_attractions
         where trip_id = ${tripId}
+        
     </select>
 
     <select id="findTripImagesByAttractionId" parameterType="int" resultMap="TripImageResultMap">
