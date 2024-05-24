@@ -24,19 +24,21 @@
 		<result column="save_file" property="saveFile"/>
 	</resultMap>
 
-	<insert id="writeArticle" parameterType="boardDto">
-		insert into board (user_id, subject, content, hit, register_time)
-		values (#{userId}, #{subject}, #{content}, 0, now())
-		<selectKey resultType="int" keyProperty="articleNo" order="AFTER">
-			select last_insert_id()
+	<insert id="writeArticle" parameterType="BoardDto">
+		<selectKey keyProperty="articleNo" resultType="int" order="BEFORE">
+			SELECT COALESCE(MAX(article_no), 0) + 1 FROM board
 		</selectKey>
+		insert into board (article_no, user_id, subject, content, hit, register_time)
+		values (#{articleNo}, #{userId}, #{subject}, #{content}, 0, now())
 	</insert>
-	
+
+
+
 	<insert id="registerFile" parameterType="boardDto">
-		insert into file_info (article_no, save_folder, original_file, save_file)
+		insert into file_info (articleNo, save_folder, original_file, save_file)
 		values
-		<foreach collection="fileInfos" item="fileinfo" separator=" , ">
-			(#{articleNo}, #{fileinfo.saveFolder}, #{fileinfo.originalFile}, #{fileinfo.saveFile})
+		<foreach collection="fileInfos" item="fileinfo" separator=", ">
+			(#{fileinfo.saveFolder}, #{fileinfo.originalFile}, #{fileinfo.saveFile})
 		</foreach>
 	</insert>
 
