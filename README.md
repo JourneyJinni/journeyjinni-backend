@@ -1,186 +1,104 @@
-# SSAFY11_관통_프로젝트
+# 여행지니
+> 여행을 지니다 + 여행을 추천하다의 두가지 뜻을 포함한 단어로 사진 기반 여행 정보 추천 시스템입니다.
 
-## 광주_5반_14팀 (서동인, 김규형)
 
-## BackEnd Info
+## 기술 스택 
+
+### 백엔드 기술 스택
+<img src="https://img.shields.io/badge/Spring-9ACD32?style=flat&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-9ACD32?style=flat&logo=SpringBoot&logoColor=white"/>
+![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=oracle&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white)
+![Geolocation](https://img.shields.io/badge/Geolocation%20API-00A86B?style=flat-square&logo=google-maps&logoColor=white)
+
+## 기능
 
 - 고객들을 위한 회원관리(로그인, 회원가입, 정보 변경)를 제공
-- 여행 계획을 세울 때 각 지역별 유명한 여행지의 정보를 타입(관광지,숙박, 음식점, 축제정보 등..)에 맞게 제공받을 수 있는 서비스로 구현
-- 자신의 현재 위치에 기반하여 가장 가까운 위치의 여행지를 제공
-- 원하는 여행 정보가 있을 경우 모달로 상세 정보를 제공
-- 취향에 맞는 여행 코스 제공 
-- 여행지에 대한 후기 및 별점 제공
 - 게시판을 통해 회원들끼리 커뮤니티 기능 제공
+- 관광지 조회 기능 제공
+  - 카테고리/검색어 기반
+  - GPS 기반 검색 위치 기반
+  - 이미지 기반
+    - metadata 기반
+    - OpenCV 기반
+- 나의 여행 지도 제공
+- 여행 사진 게시판 제공
 
-## 기술 스택
-<img src="https://img.shields.io/badge/Spring-9ACD32?style=flat&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-9ACD32?style=flat&logo=SpringBoot&logoColor=white"/>
-![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white)
-![Apache](https://img.shields.io/badge/Apache-D22128?style=flat-square&logo=Apache&logoColor=white)
-![HTML](https://img.shields.io/badge/HTML-239120?style=flat-square&logo=HTML5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=CSS3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=black)
-
-
-
-## 요구사항
-
-- [x]  로그인 관리
-- [x]  회원 관리
-- [x]  지역별 관광지 정보 수집
-- [x]  관광지, 숙박, 음식점 조회
-- [x]  문화시설, 공연, 여행코스 쇼힝 조회
-- [x]  내 위치 기반 여행 정보 제공 
-- [x]  관광지 세부정보 제공
-- [ ]  관광지에 대한 별점 및 의견 제공
-- [ ]  게시판 기능
-- [ ]  맞춤 여행 코스 제공 및 등록
-
-## ERD, Use case 다이어그램
-
-<table>
-  <tr>
-   <td align="center">
-      <img src="https://github.com/unggu0704/saffy/assets/130115689/7752ce09-780c-47e0-bcf0-425e5c8060bb" alt="ERD Diagram">
-       <span>ERD Diagram</span>
-    </td>
-    <td align="center">
-      <img src="./resources/ssafytrip_usecase.PNG" alt="Use Case Diagram">
-      <span>Use Case Diagram</span>
-    </td>
-  </tr>
-</table>
+## 프로젝트 구조
+![제목 없는 다이어그램 drawio](https://github.com/JourneyJinni/journeyjinni-backend/assets/130115689/abaa3025-76c2-4f64-9fd1-f21191208f18)
 
 
 
-
-
-
-## 메인 화면 및 관광지 조회
+## Use case 다이어그램
 
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/unggu0704/nhnacademy-study/assets/130115689/ceab0b6d-1ebd-4c0d-ac40-37216b814615" alt="signup">
-    </td>
-    <td align="center">
-      <img src="https://github.com/unggu0704/nhnacademy-study/assets/130115689/8c687e8c-bbd3-4604-a68f-61013637a953" alt="login">
-    </td>
+      <img src="https://github.com/JourneyJinni/journeyjinni-backend/blob/master/resources/DIagram/usecase.drawio.png?raw=true" alt="Use Case Diagram">
   </tr>
 </table>
 
-- 관광지 조회는 모두 **attraction-controller** 가 제어합니다.
-- 메인화면은 다른 서비스로 가는 네비게이션 기능을 제공합니다.
-- 데이터베이스에 저장되어 있는 관광지 4곳을 랜덤으로 보여줍니다.
-- 선택한 관광지에 대해서 카카오 맵 api를 활용해 위치 정보를 제공합니다.
-- 결과는 서버에 저장되어 있는 사용자 위치를 기반으로 가까운 순서부터 제공합니다. 
+## ERD 다이어 그램
+![image](https://github.com/JourneyJinni/journeyjinni-backend/assets/130115689/911d22fc-aafe-4249-9c35-ffdac82f26aa)
 
-## 로그인 및 회원 관리
+
+
+
+## 메인화면
+<img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/main.gif?raw=true" alt="login">
+
+## 회원관리 및 게시판
 
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/unggu0704/algorithm-study/assets/130115689/7bd6a5b0-7ca4-4149-8a28-eba5cf1d4414" alt="signup">
+      <img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/login.gif?raw=true" alt="signup">
     </td>
     <td align="center">
-      <img src="https://github.com/unggu0704/algorithm-study/assets/130115689/e3be4e51-90d8-47a4-82fc-653c1c004af5" alt="login">
+      <img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/board.gif?raw=true" alt="login">
     </td>
   </tr>
 </table>
 
+- 로그인과 회원가입은 slide를 통해 가능합니다.
+- 게시판은 회원만 작성 가능합니다.
 
-- 유저관련 CRUD는 모두 **memberController** 가 제어합니다.
-- 로그인 성공 시 유저의 id, 이름은 session에 저장됩니다.
-- 회원가입 시 입력한 ID가 DB에 존재하는 지 ajax를 사용하여 검사합니다.
+## 관광지 조회(검색어 기반)
 
+<img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/search1.gif?raw=true" alt="login">
 
-## 디렉터리 구조
-```
-└─src
-    ├─main
-    │  ├─java
-    │  │  └─com
-    │  │      └─ssafy
-    │  │          │  EnjoyTripSpringBootApplication.java
-    │  │          │
-    │  │          ├─mvc
-    │  │          │  ├─controller
-    │  │          │  │      AttractionContoller.java
-    │  │          │  │      MemberController.java
-    │  │          │  │
-    │  │          │  └─model
-    │  │          │      │  AttractionDistance.java
-    │  │          │      │  AttractionDto.java
-    │  │          │      │  MemberDto.java
-    │  │          │      │  NowLocation.java
-    │  │          │      │
-    │  │          │      ├─mapper
-    │  │          │      │      AttractionMapper.java
-    │  │          │      │      MemberMapper.java
-    │  │          │      │
-    │  │          │      └─service
-    │  │          │              AttractionService.java
-    │  │          │              AttractionServiceImpl.java
-    │  │          │              MemberService.java
-    │  │          │              MemberServiceImpl.java
-    │  │          │
-    │  │          └─util
-    │  │              │  DBUtil.java
-    │  │              │
-    │  │              └─Distance
-    │  │                      DistanceSort.java
-    │  │                      DistanceUtil.java
-    │  │
-    │  ├─resources
-    │  │  │  application.properties
-    │  │  │
-    │  │  └─mapper
-    │  │          attractionmapper.xml
-    │  │          membermapper.xml
-    │  │
-    │  └─webapp
-    │      ├─assets
-    │      │  ├─css
-    │      │  │      main.css
-    │      │  │
-    │      │  ├─img
-    │      │  │      a.png
-    │      │  │      favicon.ico
-    │      │  │      main_beach.jpg
-    │      │  │      my_position.png
-    │      │  │      noimg.jpg
-    │      │  │      noimg.png
-    │      │  │      profile.png
-    │      │  │      ssafy_logo.png
-    │      │  │
-    │      │  ├─js
-    │      │  │      Geolocation.js
-    │      │  │      kakaomap.js
-    │      │  │      main.js
-    │      │  │      map.js
-    │      │  │      tour.js
-    │      │  │
-    │      │  └─map
-    │      │          map.html
-    │      │
-    │      ├─common
-    │      │      error.jsp
-    │      │      footer.jsp
-    │      │      head.jsp
-    │      │      modal.jsp
-    │      │      nav.jsp
-    │      │
-    │      ├─META-INF
-    │      │      MANIFEST.MF
-    │      │
-    │      └─WEB-INF
-    │          └─views
-    │              │  index.jsp
-    │              │
-    │              ├─member
-    │              │      memberInfo.jsp
-    │              │
-    │              └─tour
-    │                      attraction.jsp
-    │
-```
+- 카테고리와 검색어를 기반으로 관광지를 조회합니다.
+- 리스트 형태로 출력되며 modal을 이용해 상세조회가 가능합니다.
+- `KakaoMap`을 통해 정확한 위치를 확인할 수 있습니다.
+
+## 관광지 조회(내 위치기반)
+
+<img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/search123.gif?raw=true" alt="login">
+
+- `GeoLocation`을 사용하여 GPS 정보를 읽습니다.
+- Hoovers Sign 공식에 기반하여 가까운 관광지 리스트를 보여줍니다.
+
+## 관광지 조회(사진 기반)
+
+<img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/search12.gif?raw=true" alt="login">
+
+- `exifr`을 통해 사진의 metedata(경도, 위도)를 획득합니다.
+- Hoovers Sign 공식에 기반하여 가까운 관광지 리스트를 보여줍니다.
+- `OpenCV`의 유사 이미지 검색 모델을 통해 DB에서 가장 유사한 이미지와 그 위치를 제공합니다.
+
+## 나의 여행 지도 
+
+<img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/trip.gif?raw=true" alt="login">
+
+- 여행과 그에 속한 사진을 기록하고 저장할 수 있습니다.
+- 해당 사진은 **나의 여행 지도**에 표시되며 사진을 클릭하여 상세 정보를 기록 할 수 있습니다.
+
+## 여행지도 게시판
+
+<img src="https://github.com/JourneyJinni/journeyjinni-frontend/blob/master/resources/readmeImg/tripcourse.gif?raw=true" alt="login">
+
+- 유저가 만든 사진 기록은 공유가 가능합니다.
+- 갤러리 형태로 기록에 대한 사진을 제공합니다.
+
+## 프로젝트 구조
+
