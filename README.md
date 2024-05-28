@@ -11,6 +11,12 @@
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=OpenCV&logoColor=white)
 ![Geolocation](https://img.shields.io/badge/Geolocation%20API-00A86B?style=flat-square&logo=google-maps&logoColor=white)
 
+## 팀원
+
+|  [김규형](https://github.com/unggu0704)| [서동인](https://github.com/ssDoi)       |
+|----------------------------------------|---------------------------------|
+| <img src="https://github.com/JourneyJinni/.github/assets/130115689/2707f0d7-3239-4755-8d34-fa91939a9723" width="120"> | <img src="https://github.com/JourneyJinni/.github/assets/130115689/98d32549-eb84-4055-b9c3-3e1d734659fe" width="120"> |
+
 ## 기능
 
 - 고객들을 위한 회원관리(로그인, 회원가입, 정보 변경)를 제공
