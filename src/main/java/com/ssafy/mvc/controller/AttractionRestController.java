@@ -396,6 +396,11 @@ public class AttractionRestController {
     	
     	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+    @GetMapping("/test/jenkins-test")
+    public ResponseEntity<?> jenkinsTest()
+    {
+        return ResponseEntity.ok("test jenkins test");
+    }
 
 }
     
