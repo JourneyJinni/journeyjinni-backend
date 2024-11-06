@@ -30,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.AZURE_REGISTRY }}/enjoytrip_springboot:latest
+          tags: jinnicontainerregistry.azurecr.io/enjoytrip_springboot:latest
