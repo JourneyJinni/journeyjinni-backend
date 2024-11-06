@@ -59,6 +59,6 @@ jobs:
           cd gitops/backend/base
           git config --global user.name 'git-actions'
           git config --global user.email 'kyuhung1001@gmail.com'
+          git add kustomization.yaml
           git commit -m 'Update image tag from Github Action'
-          cat backend/base/kustomization.yaml
           git push origin HEAD
