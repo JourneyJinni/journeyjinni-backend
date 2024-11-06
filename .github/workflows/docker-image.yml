@@ -25,7 +25,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-           # 현재 시간 기준으로 태그 생성
+       # 현재 시간 기준으로 태그 생성
       - name: Generate tag based on current time
         run: echo "IMAGE_TAG=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
@@ -35,3 +35,30 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.AZURE_URL }}/jinni:${{ env.IMAGE_TAG }}
+          
+      # Kustomize 명령 가져오기
+      - name: Update kustomization.yaml with new image tag
+        uses: actions/checkout@v4
+        with: 
+          repository: JourneyJinni/gitops
+          ref: main
+          token: ${{ secrets.GIT_TOKEN }}
+          path: gitops
+
+      # 업데이트된 Kustomize 설정 적용
+      - name: Apply Kustomize resoureces
+        run: 
+          pwd
+          cd gitops/backend/base
+          kustomize edit set image ${{ secrets.AZURE_URL }}/${{ env.IMAGE_TAG }}
+          cat backend/base/kustomization.yaml
+
+      # commit & push 설정
+      - name: Commit Manifest
+        run:
+          cd gitops/backend/base
+          git config --global user.name 'git-actions'
+          git config --global user.email 'kyuhung1001@gmail.com'
+          git commit -m 'Update image tag from Github Action'
+          cat backend/base/kustomization.yaml
+          git push origin HEAD
