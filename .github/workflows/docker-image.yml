@@ -51,7 +51,7 @@ jobs:
           pwd
           cd gitops/backend/base
           kustomize edit set image ${{ secrets.AZURE_URL }}/jinni:${{ env.IMAGE_TAG }}
-          cat backend/base/kustomization.yaml
+          cat gitops/backend/base/kustomization.yaml
 
       # commit & push 설정
       - name: Commit Manifest
@@ -61,4 +61,5 @@ jobs:
           git config --global user.email 'kyuhung1001@gmail.com'
           git add kustomization.yaml
           git commit -m 'Update image tag from Github Action'
+          cat kustomization.yaml
           git push origin HEAD
