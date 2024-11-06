@@ -51,7 +51,7 @@ jobs:
           pwd
           cd gitops/backend/base
           kustomize edit set image ${{ secrets.AZURE_URL }}/jinni:${{ env.IMAGE_TAG }}
-          cat gitops/backend/base/kustomization.yaml
+          cat kustomization.yaml
 
       # commit & push 설정
       - name: Commit Manifest
