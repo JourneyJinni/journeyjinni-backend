@@ -47,7 +47,7 @@ jobs:
 
       # 업데이트된 Kustomize 설정 적용
       - name: Apply Kustomize resoureces
-        run: 
+        run: |
           pwd
           cd gitops/backend/base
           kustomize edit set image ${{ secrets.AZURE_URL }}/${{ env.IMAGE_TAG }}
@@ -55,7 +55,7 @@ jobs:
 
       # commit & push 설정
       - name: Commit Manifest
-        run:
+        run: |
           cd gitops/backend/base
           git config --global user.name 'git-actions'
           git config --global user.email 'kyuhung1001@gmail.com'
