@@ -50,7 +50,7 @@ jobs:
         run: |
           pwd
           cd gitops/backend/base
-          kustomize edit set image ${{ secrets.AZURE_URL }}/${{ env.IMAGE_TAG }}
+          kustomize edit set image ${{ secrets.AZURE_URL }}/jinni:${{ env.IMAGE_TAG }}
           cat backend/base/kustomization.yaml
 
       # commit & push 설정
