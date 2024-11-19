@@ -49,7 +49,7 @@ jobs:
       - name: Apply Kustomize resoureces
         run: |
           pwd
-          cd gitops/backend/base
+          cd gitops/backend/overlays/dev
           kustomize edit set image ${{ secrets.AZURE_URL }}/jinni:${{ env.IMAGE_TAG }}
           cat kustomization.yaml
 
