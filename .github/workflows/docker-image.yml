@@ -25,6 +25,15 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+        # ACR에 정상 로그인 확인
+      - name: Verify ACR Login
+        run: |
+          az acr login --name ${AZURE_URL}
+          az acr repository list --name ${AZURE_URL}
+        env:
+          AZURE_URL: ${{ secrets.AZURE_URL }}
+
+
        # 현재 시간 기준으로 태그 생성
       - name: Generate tag based on current time
         run: echo "IMAGE_TAG=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
