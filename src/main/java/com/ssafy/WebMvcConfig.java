@@ -10,9 +10,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://journeyjinni-frontend")  // 프론트엔드 주소를 명시적으로 추가
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedOrigins("*")  // 프론트엔드 주소를 명시적으로 추가
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(true);  // 쿠키 및 인증 정보 포함을 허용
+                .allowCredentials(false);  
     }
 }
