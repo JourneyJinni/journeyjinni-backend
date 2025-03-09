@@ -32,6 +32,11 @@
 - 여행 사진 게시판 제공
 
 ## 프로젝트 구조
+
+### 인프라 구조
+![Image](https://github.com/user-attachments/assets/3c8b8a25-1651-407d-b061-2931c65b5c8f)
+
+### AP 구조
 ![제목 없는 다이어그램 drawio](https://github.com/JourneyJinni/journeyjinni-backend/assets/130115689/1676041a-3b32-4337-b66b-a7996c67d6c3)
 
 
